@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartEMeter</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_chart_year">ChartYear</string>
+    <string name="title_activity_chart_month">ChartMonth</string>
+    <string name="title_activity_chart_day">ChartDay</string>
+    <string name="title_activity_chart">Chart</string>
+
+</resources>

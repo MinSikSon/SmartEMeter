@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="WHITE">#FFFFFF</color>
+    <color name="BLACK">#000000</color>
+    <color name="GREEN">#92D050</color>
+    <color name="RED">#FF0000</color>
+    <color name="SHINEGREEN">#00B050</color>
+    <color name="DARKBLUE">#215968</color>
+    <color name="WtoB1">#EAEAEA</color>
+    <color name="WtoB2">#D8D8D8</color>
+    <color name="WtoB3">#C6C6C6</color>
+    <color name="WtoB4">#B4B4B4</color>
+    <color name="WtoB5">#A2A2A2</color>
+    <color name="WtoB6">#909090</color>
+    <color name="WtoB7">#7E7E7E</color>
+    <color name="WtoB8">#6C6C6C</color>
+    <color name="YELLOW">#FDC721</color>
+
+</resources>
