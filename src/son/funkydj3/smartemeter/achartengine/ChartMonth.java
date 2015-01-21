@@ -11,7 +11,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Color;
-import son.funkydj3.smartemeter.thread.Constant;
+import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.thread.Thread2;
 import son.funkydj3.smartemeter.thread.Thread3;
 import android.graphics.Color;
@@ -47,13 +47,15 @@ public class ChartMonth extends Fragment {
 	}
 	private Handler mHandler2 = new Handler() {
 		public void handleMessage(Message msg) {
-			if(Constant.COUNT2 >= 30){
+			if(Constant.sum_this_month_kWh >= 264){
 				//mCurrentRenderer.setColor(Color.rgb(255, 0, 0)); // * RED
 				mCurrentRenderer2.setColor(Class_Color.RED()); // * RED
 			}
-			// *error* mCurrentSeries.add(1,COUNT); 이렇게 하나만 해도, 나머지 값이 다 COUNT로 바뀐다
-			for(int i = 1 ; i < 31 ; i++){
-				mCurrentSeries2.add(i,Constant.COUNT2+i);
+			double tmp1;
+			for(int i = 1 ; i < 32 ; i++){
+				tmp1 = Constant.this_month_kWh[i];
+				tmp1 = Math.round(tmp1*1000d)/1000d; // * get point 3
+				mCurrentSeries2.add(i, tmp1);
 			}
 			if(mChart2 != null) mChart2.repaint();
 		}
@@ -85,10 +87,12 @@ public class ChartMonth extends Fragment {
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer2.setDisplayChartValues(true);
 		mCurrentRenderer2.setChartValuesTextAlign(Align.CENTER);
-		if(Constant.widthPixels <= 720){
-			mCurrentRenderer2.setChartValuesTextSize(15);
-		}else if(Constant.widthPixels == 1080){
-			mCurrentRenderer2.setChartValuesTextSize(30);
+		if(Constant.widthPixels <= 480){
+			mCurrentRenderer2.setChartValuesTextSize(8);
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mCurrentRenderer2.setChartValuesTextSize(13);
+		}else if(Constant.widthPixels >= 1080){
+			mCurrentRenderer2.setChartValuesTextSize(18);
 		}
 		
 	    //mRenderer.setClickEnabled(false);
@@ -96,23 +100,29 @@ public class ChartMonth extends Fragment {
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
 		mRenderer2.setChartTitle("Month Electric Charge");
-		if(Constant.widthPixels <= 720){
+		if(Constant.widthPixels <= 480){
 			mRenderer2.setChartTitleTextSize(40);
-		}else if(Constant.widthPixels == 1080){
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mRenderer2.setChartTitleTextSize(60);
+		}else if(Constant.widthPixels >= 1080){
 			mRenderer2.setChartTitleTextSize(80);
 		}
 		mRenderer2.setLabelsColor(Color.BLACK); // * "title + label"'s color
-		if(Constant.widthPixels <= 720){
-			mRenderer2.setLabelsTextSize(13);
-		}else if(Constant.widthPixels == 1080){
-			mRenderer2.setLabelsTextSize(26);
+		if(Constant.widthPixels <= 480){
+			mRenderer2.setLabelsTextSize(12);
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mRenderer2.setLabelsTextSize(18);
+		}else if(Constant.widthPixels >= 1080){
+			mRenderer2.setLabelsTextSize(24);
 		}
 		
 		int[] margins2 = new int[] {0,0,0,0}; // {top, left, bottom, right}
-		if(Constant.widthPixels <= 720){
-			margins2 = new int[] {75,25,10,0};
+		if(Constant.widthPixels <= 480){
+			margins2 = new int[] {70,40,0,0};
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			margins2 = new int[] {105,60,0,0};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins2 = new int[] {150,50,20,0};
+			margins2 = new int[] {140,80,0,0};
 		}
 		mRenderer2.setMargins(margins2);
 		mRenderer2.setMarginsColor(Color.WHITE);
@@ -122,7 +132,7 @@ public class ChartMonth extends Fragment {
 		
 		
 		mRenderer2.setPanEnabled(false, true); // * fix graph
-		double[] panLimits2 = new double[] {0,31.5,0,300};
+		double[] panLimits2 = new double[] {0,31.5,0,100};
 		mRenderer2.setPanLimits(panLimits2);
 		mRenderer2.setZoomEnabled(false, false); // * enable zoom
 		double[] range2 = new double[] {0,31.5,0,50};
@@ -130,9 +140,11 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setYLabelsAlign(Align.RIGHT);
 		mRenderer2.setXTitle("Days");
 		mRenderer2.setYTitle("kWh");
-		if(Constant.widthPixels <= 720){ // 720*1080
+		if(Constant.widthPixels <= 480){ // 480*720
 			mRenderer2.setAxisTitleTextSize(16);
-		}else if(Constant.widthPixels == 1080){ // 1080*1920
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){ // 720*1080
+			mRenderer2.setAxisTitleTextSize(24);
+		}else if(Constant.widthPixels >= 1080){ // 1080*1920
 			mRenderer2.setAxisTitleTextSize(32);
 		}
 
@@ -151,7 +163,7 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setYLabels(5);
 		mRenderer2.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer2.setYLabelsAngle(0);
-		for(int i = 0 ; i < 60 ; i++)
+		for(int i = 0 ; i < 21 ; i++)
 		mRenderer2.addYTextLabel(i*5, Integer.toString(i*5));
 		
 		
@@ -159,7 +171,7 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setXAxisMin(0.5);
 		mRenderer2.setXAxisMax(31.5);
 		mRenderer2.setYAxisMin(0);
-		mRenderer2.setYAxisMax(40);
+		mRenderer2.setYAxisMax(25);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer2.addSeriesRenderer(mCurrentRenderer2);

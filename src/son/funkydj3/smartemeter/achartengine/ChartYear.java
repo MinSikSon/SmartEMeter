@@ -11,9 +11,8 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Color;
-import son.funkydj3.smartemeter.thread.Constant;
+import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.thread.Thread1;
-import son.funkydj3.smartemeter.thread.Thread3;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
@@ -23,7 +22,9 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,11 +33,13 @@ import android.widget.TextView;
 public class ChartYear extends Fragment {
 	public GraphicalView mChart; // * Study about "GraphicalView"
 	private XYSeries mCurrentSeries; // * series : set of numbers
+	private XYSeries mCurrentSeries1_2; // *** 
 	private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
-	private SimpleSeriesRenderer mCurrentRenderer;
+	private SimpleSeriesRenderer mCurrentRenderer; // ***
+	private SimpleSeriesRenderer mCurrentRenderer1_2; // ***
 	private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 	
-
+	private Button btn_display;
 	
 	public static ChartYear newInstance(String title) {
 		ChartYear pageFragment = new ChartYear();
@@ -55,23 +58,30 @@ public class ChartYear extends Fragment {
 	}
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(Constant.COUNT >= 7500){
+			if(Constant.sum_this_year_kWh >= 3168){
 				//mCurrentRenderer.setColor(Color.rgb(255, 0, 0)); // * RED
 				mCurrentRenderer.setColor(Class_Color.RED()); // * RED
 			}
-			// *error* mCurrentSeries.add(1,COUNT); 이렇게 하나만 해도, 나머지 값이 다 COUNT로 바뀐다
-			mCurrentSeries.add(1,Constant.COUNT);
-			mCurrentSeries.add(2,Constant.COUNT+500);
-			mCurrentSeries.add(3,Constant.COUNT+200);
-			mCurrentSeries.add(4,Constant.COUNT+1300);
-			mCurrentSeries.add(5,Constant.COUNT+400);
-			mCurrentSeries.add(6,Constant.COUNT);
-			mCurrentSeries.add(7,Constant.COUNT+2600);
-			mCurrentSeries.add(8,Constant.COUNT+1700);
-			mCurrentSeries.add(9,Constant.COUNT+800);
-			mCurrentSeries.add(10,Constant.COUNT+100);
-			mCurrentSeries.add(11,Constant.COUNT+3000);
-			mCurrentSeries.add(12,Constant.COUNT+1100);
+			// *modify* this_year_charge will be modified with data from db
+			if(mDataset.getSeriesCount() == 2){
+				// *modify* last_year_charge will be modified with data from db
+				Constant.last_year_charge = new int[]{
+						5000,3000,12000,3300,5400,6600,
+						7700,7100,3400,11000,2300,21000
+						};
+				for(int i = 1 ; i< 13 ; i++){
+					mCurrentSeries1_2.add(i,Constant.last_year_charge[i-1]); // ***
+				}
+			}
+			
+			double tmp1;
+			for(int i = 1 ; i < 13 ; i++){
+				tmp1 = Constant.this_year_kWh[i];
+				tmp1 = Math.round(tmp1*1000d)/1000d; // * get point 3
+				Constant.this_year_charge[i] = (int)(tmp1 * 300);
+				mCurrentSeries.add(i, Constant.this_year_charge[i]);
+			}
+			
 			if(mChart != null) mChart.repaint();
 		}
 	};
@@ -82,14 +92,30 @@ public class ChartYear extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_chart_year, container, false);
 		TextView textView = (TextView) view.findViewById(R.id.textView3);
-		
 		// setTextView from Main message
 		textView.setText(getArguments().getString("title"));
 		
 		LinearLayout layout = (LinearLayout)view.findViewById(R.id.chart_year);
 		if (mChart == null) initChart();
 		mChart = ChartFactory.getBarChartView(view.getContext(), mDataset, mRenderer, Type.DEFAULT);
+		//mChart = ChartFactory.getLineChartView(view.getContext(), mDataset, mRenderer);
 		layout.addView(mChart);
+		
+		
+		Log.d("SON", "this");
+		btn_display = (Button)view.findViewById(R.id.btn_display_add);
+		btn_display.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(mDataset.getSeriesCount() == 2){
+					mDataset.removeSeries(mDataset.getSeriesCount()-1); // ***
+					mRenderer.removeSeriesRenderer(mCurrentRenderer1_2); // ***
+				}else{
+					mDataset.addSeries(mCurrentSeries1_2); // ***
+					mRenderer.addSeriesRenderer(mCurrentRenderer1_2); // ***
+				}
+			}
+		});
 		
 		return view;
 	}
@@ -97,42 +123,67 @@ public class ChartYear extends Fragment {
 	
 	
 	private void initChart(){
-		mCurrentSeries = new XYSeries("WON");
+		mCurrentSeries = new XYSeries("this year");
 		mDataset.addSeries(mCurrentSeries);
+		mCurrentSeries1_2 = new XYSeries("last year"); // ***
+		//mDataset.addSeries(mCurrentSeries2); // ***
 		
 		mCurrentRenderer = new XYSeriesRenderer();
 		mCurrentRenderer.setColor(Color.rgb(18, 105, 120));
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer.setDisplayChartValues(true);
 		mCurrentRenderer.setChartValuesTextAlign(Align.CENTER);
-		if(Constant.widthPixels <= 720){
+		if(Constant.widthPixels <= 480){
 			mCurrentRenderer.setChartValuesTextSize(15);
-		}else if(Constant.widthPixels == 1080){
-			mCurrentRenderer.setChartValuesTextSize(30);
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mCurrentRenderer.setChartValuesTextSize(20);
+		}else if(Constant.widthPixels >= 1080){
+			mCurrentRenderer.setChartValuesTextSize(25);
 		}
+		
+		// ***
+		mCurrentRenderer1_2 = new XYSeriesRenderer();
+		mCurrentRenderer1_2.setColor(Color.rgb(165, 102, 255));
+		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
+		mCurrentRenderer1_2.setDisplayChartValues(true);
+		mCurrentRenderer1_2.setChartValuesTextAlign(Align.CENTER);
+		if(Constant.widthPixels <= 480){
+			mCurrentRenderer1_2.setChartValuesTextSize(15);
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mCurrentRenderer1_2.setChartValuesTextSize(20);
+		}else if(Constant.widthPixels >= 1080){
+			mCurrentRenderer1_2.setChartValuesTextSize(25);
+		}
+		// ***
 		
 	    //mRenderer.setClickEnabled(false);
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
 		mRenderer.setChartTitle("Year Electric Charge");
-		if(Constant.widthPixels <= 720){
+		if(Constant.widthPixels <= 480){
 			mRenderer.setChartTitleTextSize(40);
-		}else if(Constant.widthPixels == 1080){
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mRenderer.setChartTitleTextSize(60);
+		}else if(Constant.widthPixels >= 1080){
 			mRenderer.setChartTitleTextSize(80);
 		}
 		mRenderer.setLabelsColor(Color.BLACK); // * "title + label"'s color
-		if(Constant.widthPixels <= 720){
+		if(Constant.widthPixels <= 480){
 			mRenderer.setLabelsTextSize(18);
-		}else if(Constant.widthPixels == 1080){
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			mRenderer.setLabelsTextSize(27);
+		}else if(Constant.widthPixels >= 1080){
 			mRenderer.setLabelsTextSize(36);
 		}
 		
 		int[] margins = new int[] {0,0,0,0}; // {top, left, bottom, right}
-		if(Constant.widthPixels <= 720){
-			margins = new int[] {75,45,0,0};
+		if(Constant.widthPixels <= 480){
+			margins = new int[] {70,40,0,0};
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
+			margins = new int[] {105,60,0,0};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins = new int[] {150,90,0,0};
+			margins = new int[] {140,80,0,0};
 		}
 		mRenderer.setMargins(margins);
 		mRenderer.setMarginsColor(Color.WHITE);
@@ -150,9 +201,11 @@ public class ChartYear extends Fragment {
 		mRenderer.setYLabelsAlign(Align.RIGHT);
 		mRenderer.setXTitle("Months");
 		mRenderer.setYTitle("WON");
-		if(Constant.widthPixels <= 720){ // 720*1080
+		if(Constant.widthPixels <= 480){ // 480*720
 			mRenderer.setAxisTitleTextSize(16);
-		}else if(Constant.widthPixels == 1080){ // 1080*1920
+		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){ // 720*1080
+			mRenderer.setAxisTitleTextSize(24);
+		}else if(Constant.widthPixels >= 1080){ // 1080*1920
 			mRenderer.setAxisTitleTextSize(32);
 		}
 
@@ -160,46 +213,31 @@ public class ChartYear extends Fragment {
 		mRenderer.setShowGridX(true);
 		mRenderer.setGridColor(Color.rgb(93, 93, 93));
 		mRenderer.setXLabelsColor(Class_Color.BLACK());
-		mRenderer.setXLabels(24); // sets the number of integer labels to appear
-		mRenderer.addXTextLabel(1, "1");
-		mRenderer.addXTextLabel(2, "2");
-		mRenderer.addXTextLabel(3, "3");
-		mRenderer.addXTextLabel(4, "4");
-		mRenderer.addXTextLabel(5, "5");
-		mRenderer.addXTextLabel(6, "6");
-		mRenderer.addXTextLabel(7, "7");
-		mRenderer.addXTextLabel(8, "8");
-		mRenderer.addXTextLabel(9, "9");
-		mRenderer.addXTextLabel(10, "10");
-		mRenderer.addXTextLabel(11, "11");
-		mRenderer.addXTextLabel(12, "12");
+		mRenderer.setXLabels(0); // sets the number of integer labels to appear
+		for(int i = 1 ; i<13 ; i++){
+			mRenderer.addXTextLabel(i, Integer.toString(i));
+		}
 		
 		
 		mRenderer.setShowGridY(true);
 		mRenderer.setYLabels(5);
 		mRenderer.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer.setYLabelsAngle(300);
-		mRenderer.addYTextLabel(2500, "2,500");
-		mRenderer.addYTextLabel(5000, "5,000");
-		mRenderer.addYTextLabel(7500, "7,500");
-		mRenderer.addYTextLabel(10000, "10,000");
-		mRenderer.addYTextLabel(12500, "12,500");
-		mRenderer.addYTextLabel(15000, "15,000");
-		mRenderer.addYTextLabel(17500, "17,500");
-		mRenderer.addYTextLabel(20000, "20,000");
-		mRenderer.addYTextLabel(22500, "22,500");
-		mRenderer.addYTextLabel(25000, "25,000");
-		mRenderer.addYTextLabel(27500, "27,500");
-		mRenderer.addYTextLabel(30000, "30,000");
-		mRenderer.addYTextLabel(32500, "32,500");
-		mRenderer.addYTextLabel(35000, "35,000");
-		mRenderer.addYTextLabel(37500, "37,500");
-		mRenderer.addYTextLabel(40000, "40,000");
-		mRenderer.addYTextLabel(42500, "42,500");
-		mRenderer.addYTextLabel(45000, "45,000");
-		mRenderer.addYTextLabel(47500, "47,500");
-		mRenderer.addYTextLabel(50000, "50,000");
-		mRenderer.addYTextLabel(52500, "52,500");
+		int num_buf = 2;
+		String num_buf2 = "500";
+		for(int i = 1 ; i < 22 ; i++){
+			String value = Integer.toString(num_buf) + "," + num_buf2;
+			Log.d("SON", value);
+			mRenderer.addYTextLabel(i*2500, value);
+			if(i%2 == 1) {
+				num_buf += 3;
+				num_buf2 = "000";
+			}
+			else {
+				num_buf += 2;
+				num_buf2 = "500";
+			}
+		}
 		
 		mRenderer.setBarSpacing(0.7);
 		mRenderer.setXAxisMin(0.5);
@@ -209,6 +247,7 @@ public class ChartYear extends Fragment {
 		
 		//mRenderer.setPointSize(1.0f);
 	    mRenderer.addSeriesRenderer(mCurrentRenderer);
+	    //mRenderer.addSeriesRenderer(mCurrentRenderer2);
 	}
 	
 	

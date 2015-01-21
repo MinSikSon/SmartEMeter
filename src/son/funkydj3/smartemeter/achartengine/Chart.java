@@ -1,3 +1,12 @@
+/*
+ about (v3.1) : combined chart at ChartYear.java
+ ref source) http://www.javaadvent.com/2012/12/achartengine-charting-library-for.html
+ ref) http://www.programkr.com/blog/MQDN0ADMwYT3.html
+ ref) http://www.achartengine.org/content/javadoc/index.html
+ display) width 480, 720, 1080
+*/
+
+
 package son.funkydj3.smartemeter.achartengine;
 
 import son.funkydj3.smartemeter.R;
@@ -13,7 +22,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class Chart extends FragmentActivity implements OnClickListener  {
-	private static final int NUMBER_OF_PAGERS = 4;
+	private static final int NUMBER_OF_PAGERS = 3;
 	public static ViewPager mViewPager;
 	private MyFragmentPagerAdapter mMyFragmentPagerAdapter;
 

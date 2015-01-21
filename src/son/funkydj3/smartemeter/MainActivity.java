@@ -1,8 +1,8 @@
 package son.funkydj3.smartemeter;
 
 import son.funkydj3.smartemeter.achartengine.Chart;
-import son.funkydj3.smartemeter.thread.Constant;
-import son.funkydj3.smartemeter.thread.Thread_Timer;
+import son.funkydj3.smartemeter.etc.Constant;
+import son.funkydj3.smartemeter.thread.Thread_Second_Timer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +26,13 @@ public class MainActivity extends Activity {
 		Log.d("SON", "MainActivity - onCreate()");
 		init();
 		InfoDeviceDisplay();
-		Thread_Timer TT = new Thread_Timer();
+		Thread_Second_Timer TT = new Thread_Second_Timer();
 		TT.start();
+		Log.d("SON", "TIME : " + System.currentTimeMillis());
+		if(Constant.initConstantCheck == 0){
+			Constant.initConstant();
+			Constant.initConstantCheck = 1;
+		}
 	}
 	
 	private void init(){
