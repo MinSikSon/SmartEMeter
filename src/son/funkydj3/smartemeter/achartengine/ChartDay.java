@@ -112,15 +112,15 @@ public class ChartDay extends Fragment {
 		// mRenderer.setZoomLimits(zoomlimits);
 		mRenderer3_1.setChartTitle("Day Electric Charge - sunrise");
 		if(Constant.widthPixels <= 480){
-			mRenderer3_1.setChartTitleTextSize(40);
+			mRenderer3_1.setChartTitleTextSize(30);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_1.setChartTitleTextSize(50);
+			mRenderer3_1.setChartTitleTextSize(40);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_1.setChartTitleTextSize(60);
+			mRenderer3_1.setChartTitleTextSize(50);
 		}
 		mRenderer3_1.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer3_1.setLabelsTextSize(12);
+			mRenderer3_1.setLabelsTextSize(18);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
 			mRenderer3_1.setLabelsTextSize(22);
 		}else if(Constant.widthPixels >= 1080){
@@ -209,15 +209,15 @@ public class ChartDay extends Fragment {
 		// mRenderer.setZoomLimits(zoomlimits);
 		mRenderer3_2.setChartTitle("Day Electric Charge - sunset");
 		if(Constant.widthPixels <= 480){
-			mRenderer3_2.setChartTitleTextSize(40);
+			mRenderer3_2.setChartTitleTextSize(30);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_2.setChartTitleTextSize(50);
+			mRenderer3_2.setChartTitleTextSize(40);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_2.setChartTitleTextSize(60);
+			mRenderer3_2.setChartTitleTextSize(50);
 		}
 		mRenderer3_2.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer3_2.setLabelsTextSize(12);
+			mRenderer3_2.setLabelsTextSize(18);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
 			mRenderer3_2.setLabelsTextSize(22);
 		}else if(Constant.widthPixels >= 1080){

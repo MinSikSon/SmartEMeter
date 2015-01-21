@@ -22,20 +22,28 @@
         android:id="@+id/chart_year"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="12"
+        android:layout_weight="11"
         android:orientation="vertical" >
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:background="@color/WtoB1" >
+        android:layout_weight="3"
+        android:background="@color/WtoB1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_sum_last_year_charge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_display_add"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="display last month charge" />
     </LinearLayout>
 

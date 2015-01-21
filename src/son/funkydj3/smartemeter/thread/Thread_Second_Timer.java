@@ -1,6 +1,7 @@
 package son.funkydj3.smartemeter.thread;
 
 import son.funkydj3.smartemeter.etc.Accumulator;
+import son.funkydj3.smartemeter.etc.Calculator;
 import son.funkydj3.smartemeter.etc.Class_Time;
 import son.funkydj3.smartemeter.etc.Constant;
 import android.os.Message;
@@ -17,7 +18,6 @@ public class Thread_Second_Timer extends Thread {
 			Accumulator.accmulatePower();
 			Class_Time.update_RealTime();
 			Accumulator.accumulateStart();
-			
 			
 			Constant.COUNT += 100;
 			Constant.COUNT2 += 1;

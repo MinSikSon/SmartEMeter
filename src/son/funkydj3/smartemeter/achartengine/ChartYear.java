@@ -1,5 +1,7 @@
 package son.funkydj3.smartemeter.achartengine;
 
+import java.util.Random;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart.Type;
@@ -10,6 +12,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
+import son.funkydj3.smartemeter.etc.Calculator;
 import son.funkydj3.smartemeter.etc.Class_Color;
 import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.thread.Thread1;
@@ -40,6 +43,7 @@ public class ChartYear extends Fragment {
 	private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 	
 	private Button btn_display;
+	private TextView tv_sum_last_year_charge;
 	
 	public static ChartYear newInstance(String title) {
 		ChartYear pageFragment = new ChartYear();
@@ -65,10 +69,6 @@ public class ChartYear extends Fragment {
 			// *modify* this_year_charge will be modified with data from db
 			if(mDataset.getSeriesCount() == 2){
 				// *modify* last_year_charge will be modified with data from db
-				Constant.last_year_charge = new int[]{
-						5000,3000,12000,3300,5400,6600,
-						7700,7100,3400,11000,2300,21000
-						};
 				for(int i = 1 ; i< 13 ; i++){
 					mCurrentSeries1_2.add(i,Constant.last_year_charge[i-1]); // ***
 				}
@@ -81,8 +81,9 @@ public class ChartYear extends Fragment {
 				Constant.this_year_charge[i] = (int)(tmp1 * 300);
 				mCurrentSeries.add(i, Constant.this_year_charge[i]);
 			}
-			
 			if(mChart != null) mChart.repaint();
+			
+			// *tv
 		}
 	};
 
@@ -111,11 +112,23 @@ public class ChartYear extends Fragment {
 					mDataset.removeSeries(mDataset.getSeriesCount()-1); // ***
 					mRenderer.removeSeriesRenderer(mCurrentRenderer1_2); // ***
 				}else{
+					Random random = new Random();
+					Constant.last_year_charge = new int[]{
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
+							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100
+					};
+					Calculator.sumLastYearCharge();
+					tv_sum_last_year_charge.setText("Last Year Charge : "+Math.round(Constant.sum_last_year_charge) +" WON");
 					mDataset.addSeries(mCurrentSeries1_2); // ***
 					mRenderer.addSeriesRenderer(mCurrentRenderer1_2); // ***
 				}
 			}
 		});
+		tv_sum_last_year_charge = (TextView)view.findViewById(R.id.tv_sum_last_year_charge);
 		
 		return view;
 	}
@@ -179,9 +192,9 @@ public class ChartYear extends Fragment {
 		
 		int[] margins = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(Constant.widthPixels <= 480){
-			margins = new int[] {70,40,0,0};
+			margins = new int[] {70,50,0,0};
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			margins = new int[] {105,60,0,0};
+			margins = new int[] {105,65,0,0};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
 			margins = new int[] {140,80,0,0};
 		}
@@ -222,7 +235,7 @@ public class ChartYear extends Fragment {
 		mRenderer.setShowGridY(true);
 		mRenderer.setYLabels(5);
 		mRenderer.setYLabelsColor(0, Class_Color.BLACK());
-		mRenderer.setYLabelsAngle(300);
+		mRenderer.setYLabelsAngle(310);
 		int num_buf = 2;
 		String num_buf2 = "500";
 		for(int i = 1 ; i < 22 ; i++){
@@ -243,7 +256,7 @@ public class ChartYear extends Fragment {
 		mRenderer.setXAxisMin(0.5);
 		mRenderer.setXAxisMax(12.8);
 		mRenderer.setYAxisMin(0);
-		mRenderer.setYAxisMax(20000);
+		mRenderer.setYAxisMax(30000);
 		
 		//mRenderer.setPointSize(1.0f);
 	    mRenderer.addSeriesRenderer(mCurrentRenderer);

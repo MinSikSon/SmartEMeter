@@ -52,6 +52,8 @@ public class Constant {
 		for(int i = 0 ; i<13 ; i++){
 			this_year_charge[i] = 0;
 			last_year_charge[i] = 0;
+			this_year_kWh[i] = 0;
+			last_year_kWh[i] = 0;
 		}
 		for(int i = 0 ; i<32 ; i++){
 			this_month_kWh[i] = 0;

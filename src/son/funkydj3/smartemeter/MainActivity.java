@@ -26,13 +26,14 @@ public class MainActivity extends Activity {
 		Log.d("SON", "MainActivity - onCreate()");
 		init();
 		InfoDeviceDisplay();
-		Thread_Second_Timer TT = new Thread_Second_Timer();
-		TT.start();
-		Log.d("SON", "TIME : " + System.currentTimeMillis());
 		if(Constant.initConstantCheck == 0){
 			Constant.initConstant();
 			Constant.initConstantCheck = 1;
 		}
+
+		Thread_Second_Timer TT = new Thread_Second_Timer();
+		TT.start();
+		Log.d("SON", "TIME : " + System.currentTimeMillis());
 	}
 	
 	private void init(){
