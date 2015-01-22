@@ -10,7 +10,7 @@ public class Constant {
 	
 	// *accumulate*
 	public static double wattPerSecond = 1;
-	public static double KwattPerSecond = 0.001;
+	public static double KwattPerSecond = 0.1;
 	public static double accumulatedWatt = 0;
 	public static double accumulatedkWh = 0;
 	

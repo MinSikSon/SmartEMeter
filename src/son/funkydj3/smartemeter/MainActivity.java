@@ -1,5 +1,6 @@
 package son.funkydj3.smartemeter;
 
+import son.funkydj3.smartemeter.BluetoothChat.Loading;
 import son.funkydj3.smartemeter.achartengine.Chart;
 import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.thread.Thread_Second_Timer;
@@ -49,7 +50,7 @@ public class MainActivity extends Activity {
 		btn_Main2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent ii = new Intent(MainActivity.this, Chart.class);
+				Intent ii = new Intent(MainActivity.this, Loading.class);
 				startActivity(ii);
 			}
 		});

@@ -92,8 +92,8 @@ public class ChartYear extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_chart_year, container, false);
-		TextView textView = (TextView) view.findViewById(R.id.textView3);
 		// setTextView from Main message
+		TextView textView = (TextView) view.findViewById(R.id.textView1);
 		textView.setText(getArguments().getString("title"));
 		
 		LinearLayout layout = (LinearLayout)view.findViewById(R.id.chart_year);
@@ -114,12 +114,12 @@ public class ChartYear extends Fragment {
 				}else{
 					Random random = new Random();
 					Constant.last_year_charge = new int[]{
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100,
-							(130+random.nextInt(150))*100, (130+random.nextInt(150))*100
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
 					};
 					Calculator.sumLastYearCharge();
 					tv_sum_last_year_charge.setText("Last Year Charge : "+Math.round(Constant.sum_last_year_charge) +" WON");
@@ -173,14 +173,14 @@ public class ChartYear extends Fragment {
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
-		mRenderer.setChartTitle("Year Electric Charge");
+		/*mRenderer.setChartTitle("Year Electric Charge");
 		if(Constant.widthPixels <= 480){
 			mRenderer.setChartTitleTextSize(40);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
 			mRenderer.setChartTitleTextSize(60);
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer.setChartTitleTextSize(80);
-		}
+		}*/
 		mRenderer.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer.setLabelsTextSize(18);
@@ -192,14 +192,14 @@ public class ChartYear extends Fragment {
 		
 		int[] margins = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(Constant.widthPixels <= 480){
-			margins = new int[] {70,50,0,0};
+			margins = new int[] {10,50,0,10};
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			margins = new int[] {105,65,0,0};
+			margins = new int[] {20,65,0,20};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins = new int[] {140,80,0,0};
+			margins = new int[] {30,80,0,30};
 		}
 		mRenderer.setMargins(margins);
-		mRenderer.setMarginsColor(Color.WHITE);
+		mRenderer.setMarginsColor(Color.rgb(204, 175, 150));
 		
 		mRenderer.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -233,7 +233,7 @@ public class ChartYear extends Fragment {
 		
 		
 		mRenderer.setShowGridY(true);
-		mRenderer.setYLabels(5);
+		//mRenderer.setYLabels(5);
 		mRenderer.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer.setYLabelsAngle(310);
 		int num_buf = 2;
@@ -262,6 +262,5 @@ public class ChartYear extends Fragment {
 	    mRenderer.addSeriesRenderer(mCurrentRenderer);
 	    //mRenderer.addSeriesRenderer(mCurrentRenderer2);
 	}
-	
 	
 }

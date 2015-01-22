@@ -35,6 +35,9 @@ public class ChartMonth extends Fragment {
 	
 	public static ChartMonth newInstance(String title) {
 		ChartMonth pageFragment = new ChartMonth();
+		Bundle bundle = new Bundle();
+		bundle.putString("title", title);
+		pageFragment.setArguments(bundle);
 		return pageFragment;
 	}
 
@@ -65,7 +68,9 @@ public class ChartMonth extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_chart_month, container, false);
-		
+		TextView textView = (TextView) view.findViewById(R.id.textView2);
+		textView.setText(getArguments().getString("title"));
+
 		LinearLayout layout2 = (LinearLayout)view.findViewById(R.id.chart_month);
 		//if(mChart == null){
 			if (mChart2 == null) initChart2();
@@ -99,14 +104,14 @@ public class ChartMonth extends Fragment {
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
-		mRenderer2.setChartTitle("Month Electric Charge");
+		/*mRenderer2.setChartTitle("Month Electric Charge");
 		if(Constant.widthPixels <= 480){
 			mRenderer2.setChartTitleTextSize(40);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
 			mRenderer2.setChartTitleTextSize(60);
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer2.setChartTitleTextSize(80);
-		}
+		}*/
 		mRenderer2.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer2.setLabelsTextSize(12);
@@ -118,14 +123,14 @@ public class ChartMonth extends Fragment {
 		
 		int[] margins2 = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(Constant.widthPixels <= 480){
-			margins2 = new int[] {70,40,0,0};
+			margins2 = new int[] {10,40,0,10};
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			margins2 = new int[] {105,60,0,0};
+			margins2 = new int[] {20,60,0,20};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins2 = new int[] {140,80,0,0};
+			margins2 = new int[] {30,80,0,30};
 		}
 		mRenderer2.setMargins(margins2);
-		mRenderer2.setMarginsColor(Color.WHITE);
+		mRenderer2.setMarginsColor(Color.rgb(204, 175, 150));
 		
 		mRenderer2.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -160,7 +165,7 @@ public class ChartMonth extends Fragment {
 		
 		
 		mRenderer2.setShowGridY(true);
-		mRenderer2.setYLabels(5);
+		//mRenderer2.setYLabels(5);
 		mRenderer2.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer2.setYLabelsAngle(0);
 		for(int i = 0 ; i < 21 ; i++)

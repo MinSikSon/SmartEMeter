@@ -5,7 +5,7 @@
  ref) http://www.achartengine.org/content/javadoc/index.html
  display) width 480, 720, 1080
 */
-
+// http://android.codeandmagic.org/android-gaugeview-library/
 
 package son.funkydj3.smartemeter.achartengine;
 
@@ -35,7 +35,6 @@ public class Chart extends FragmentActivity implements OnClickListener  {
 		mMyFragmentPagerAdapter = new MyFragmentPagerAdapter(
 				getSupportFragmentManager());
 		mViewPager.setAdapter(mMyFragmentPagerAdapter);
-		
 	}
 	
 	private Button btn_main_1;
@@ -64,11 +63,11 @@ public class Chart extends FragmentActivity implements OnClickListener  {
 			// TODO Auto-generated method stub
 			if (index == 0) {
 				// return PageFragment_Create.newInstance("My Message " + index);
-				return ChartYear.newInstance("page1");
+				return ChartYear.newInstance("YEAR Electric Charge");
 			} else if (index == 1) {
-				return ChartMonth.newInstance("page2");
+				return ChartMonth.newInstance("MONTH Electric Charge");
 			} else {
-				return ChartDay.newInstance("page3");
+				return ChartDay.newInstance("DAY Electric Charge");
 			}
 		}
 

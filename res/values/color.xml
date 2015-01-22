@@ -16,5 +16,8 @@
     <color name="WtoB7">#7E7E7E</color>
     <color name="WtoB8">#6C6C6C</color>
     <color name="YELLOW">#FDC721</color>
+    <color name="SUNSHINE">#FFFD37</color>
+    <color name="SUNSET">#FD5E53</color>
+    <color name="TITLE">#CCAF96</color>
 
 </resources>

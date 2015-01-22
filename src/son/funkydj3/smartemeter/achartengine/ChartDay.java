@@ -13,6 +13,7 @@ import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Color;
 import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.thread.Thread3;
+import android.R.color;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class ChartDay extends Fragment {
 	public GraphicalView mChart3_1; // * Study about "GraphicalView"
@@ -40,6 +42,9 @@ public class ChartDay extends Fragment {
 	
 	public static ChartDay newInstance(String title) {
 		ChartDay pageFragment = new ChartDay();
+		Bundle bundle = new Bundle();
+		bundle.putString("title", title);
+		pageFragment.setArguments(bundle);
 		return pageFragment;
 	}
 
@@ -75,7 +80,9 @@ public class ChartDay extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.activity_chart_day, container, false);
-		
+		TextView textView = (TextView) view.findViewById(R.id.textView3);
+		textView.setText(getArguments().getString("title"));
+
 		LinearLayout layout3 = (LinearLayout)view.findViewById(R.id.chart_day_1);
 		if(mChart3_1 == null) initChart3_1();
 		mChart3_1 = ChartFactory.getBarChartView(view.getContext(), mDataset3_1, mRenderer3_1, Type.DEFAULT);
@@ -94,7 +101,7 @@ public class ChartDay extends Fragment {
 		mDataset3_1.addSeries(mCurrentSeries3_1);
 		
 		mCurrentRenderer3_1 = new XYSeriesRenderer();
-		mCurrentRenderer3_1.setColor(Color.rgb(18, 105, 120));
+		mCurrentRenderer3_1.setColor(Color.WHITE);
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer3_1.setDisplayChartValues(true);
 		mCurrentRenderer3_1.setChartValuesTextAlign(Align.CENTER);
@@ -110,14 +117,15 @@ public class ChartDay extends Fragment {
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
-		mRenderer3_1.setChartTitle("Day Electric Charge - sunrise");
+		mRenderer3_1.setBackgroundColor(Color.TRANSPARENT);
+		/*mRenderer3_1.setChartTitle("Day - sunrise");
 		if(Constant.widthPixels <= 480){
-			mRenderer3_1.setChartTitleTextSize(30);
+			mRenderer3_1.setChartTitleTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_1.setChartTitleTextSize(40);
+			mRenderer3_1.setChartTitleTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_1.setChartTitleTextSize(50);
-		}
+			mRenderer3_1.setChartTitleTextSize(40);
+		}*/
 		mRenderer3_1.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer3_1.setLabelsTextSize(18);
@@ -129,24 +137,24 @@ public class ChartDay extends Fragment {
 		
 		int[] margins3 = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(Constant.widthPixels <= 480){
-			margins3 = new int[] {70,40,0,0};
+			margins3 = new int[] {10,35,0,10};
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			margins3 = new int[] {105,60,0,0};
+			margins3 = new int[] {20,60,0,20};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins3 = new int[] {140,80,0,0};
+			margins3 = new int[] {30,80,0,30};
 		}
 		mRenderer3_1.setMargins(margins3);
-		mRenderer3_1.setMarginsColor(Color.WHITE);
+		mRenderer3_1.setMarginsColor(Color.rgb(204, 175, 150));
 		
 		mRenderer3_1.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
 		mRenderer3_1.setPanEnabled(false, true); // * fix graph
-		double[] panLimits3_1 = new double[] {0.5,12.5,0,40};
+		double[] panLimits3_1 = new double[] {0.5,12.8,0,40};
 		mRenderer3_1.setPanLimits(panLimits3_1);
 		mRenderer3_1.setZoomEnabled(false, false); // * enable zoom
-		double[] range3_1 = new double[] {0.5,12.5,0,40};
+		double[] range3_1 = new double[] {0.5,12.8,0,40};
 		mRenderer3_1.setInitialRange(range3_1);
 		mRenderer3_1.setYLabelsAlign(Align.RIGHT);
 		mRenderer3_1.setXTitle("Hours");
@@ -159,7 +167,8 @@ public class ChartDay extends Fragment {
 
 		
 		mRenderer3_1.setShowGridX(true);
-		mRenderer3_1.setGridColor(Color.rgb(93, 93, 93));
+		//mRenderer3_1.setGridColor(Color.rgb(93, 93, 93));
+		mRenderer3_1.setGridColor(Color.BLACK);
 		mRenderer3_1.setXLabelsColor(Class_Color.BLACK());
 		mRenderer3_1.setXLabelsAngle(330);
 		mRenderer3_1.setXLabels(12); // sets the number of integer labels to appear
@@ -169,7 +178,7 @@ public class ChartDay extends Fragment {
 		
 		
 		mRenderer3_1.setShowGridY(true);
-		mRenderer3_1.setYLabels(4);
+		//mRenderer3_1.setYLabels(2);
 		mRenderer3_1.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer3_1.setYLabelsAngle(0);
 		for(int i = 0 ; i < 20 ; i++)
@@ -178,11 +187,11 @@ public class ChartDay extends Fragment {
 		
 		mRenderer3_1.setBarSpacing(0.6);
 		mRenderer3_1.setXAxisMin(0.5);
-		mRenderer3_1.setXAxisMax(12.5);
+		mRenderer3_1.setXAxisMax(12.8);
 		mRenderer3_1.setYAxisMin(0);
 		mRenderer3_1.setYAxisMax(8);
 		
-		//mRenderer2.setPointSize(1.0f);
+		mRenderer3_1.setPointSize(1.5f);
 	    mRenderer3_1.addSeriesRenderer(mCurrentRenderer3_1);
 	}
 	
@@ -191,7 +200,7 @@ public class ChartDay extends Fragment {
 		mDataset3_2.addSeries(mCurrentSeries3_2);
 		
 		mCurrentRenderer3_2 = new XYSeriesRenderer();
-		mCurrentRenderer3_2.setColor(Color.rgb(18, 105, 120));
+		mCurrentRenderer3_2.setColor(Color.WHITE);
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer3_2.setDisplayChartValues(true);
 		mCurrentRenderer3_2.setChartValuesTextAlign(Align.CENTER);
@@ -207,14 +216,15 @@ public class ChartDay extends Fragment {
 
 		// double[] zoomlimits = new double[] {0,20,0,40}; // {zoomMinimumX, zoomMaximumX, zoomMinimumY, zoomMaximumY}
 		// mRenderer.setZoomLimits(zoomlimits);
-		mRenderer3_2.setChartTitle("Day Electric Charge - sunset");
+		mRenderer3_2.setBackgroundColor(Color.TRANSPARENT);
+		/*mRenderer3_2.setChartTitle("Day - sunset");
 		if(Constant.widthPixels <= 480){
-			mRenderer3_2.setChartTitleTextSize(30);
+			mRenderer3_2.setChartTitleTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_2.setChartTitleTextSize(40);
+			mRenderer3_2.setChartTitleTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_2.setChartTitleTextSize(50);
-		}
+			mRenderer3_2.setChartTitleTextSize(40);
+		}*/
 		mRenderer3_2.setLabelsColor(Color.BLACK); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer3_2.setLabelsTextSize(18);
@@ -226,24 +236,24 @@ public class ChartDay extends Fragment {
 		
 		int[] margins3 = new int[] {0,0,0,0}; // {top, left, bottom, right}
 		if(Constant.widthPixels <= 480){
-			margins3 = new int[] {70,40,0,0};
+			margins3 = new int[] {10,35,0,10};
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			margins3 = new int[] {105,60,0,0};
+			margins3 = new int[] {20,60,0,20};
 		}else if(Constant.widthPixels == 1080){ // 1080*1920
-			margins3 = new int[] {140,80,0,0};
+			margins3 = new int[] {30,80,0,30};
 		}
 		mRenderer3_2.setMargins(margins3);
-		mRenderer3_2.setMarginsColor(Color.WHITE);
+		mRenderer3_2.setMarginsColor(Color.rgb(204, 175, 150));
 		
 		mRenderer3_2.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
 		mRenderer3_2.setPanEnabled(false, true); // * fix graph
-		double[] panLimits3_2 = new double[] {12.5,24.5,0,40};
+		double[] panLimits3_2 = new double[] {12.5,24.8,0,40};
 		mRenderer3_2.setPanLimits(panLimits3_2);
 		mRenderer3_2.setZoomEnabled(false, false); // * enable zoom
-		double[] range3_2 = new double[] {12.5,24.5,0,40};
+		double[] range3_2 = new double[] {12.5,24.8,0,40};
 		mRenderer3_2.setInitialRange(range3_2);
 		mRenderer3_2.setYLabelsAlign(Align.RIGHT);
 		mRenderer3_2.setXTitle("Hours");
@@ -256,7 +266,8 @@ public class ChartDay extends Fragment {
 
 		
 		mRenderer3_2.setShowGridX(true);
-		mRenderer3_2.setGridColor(Color.rgb(93, 93, 93));
+		//mRenderer3_2.setGridColor(Color.rgb(93, 93, 93));
+		mRenderer3_2.setGridColor(Color.BLACK);
 		mRenderer3_2.setXLabelsColor(Class_Color.BLACK());
 		mRenderer3_2.setXLabelsAngle(330);
 		mRenderer3_2.setXLabels(12); // sets the number of integer labels to appear
@@ -266,7 +277,7 @@ public class ChartDay extends Fragment {
 		
 		
 		mRenderer3_2.setShowGridY(true);
-		mRenderer3_2.setYLabels(4);
+		//mRenderer3_2.setYLabels(2);
 		mRenderer3_2.setYLabelsColor(0, Class_Color.BLACK());
 		mRenderer3_2.setYLabelsAngle(0);
 		for(int i = 0 ; i < 20 ; i++)
@@ -275,7 +286,7 @@ public class ChartDay extends Fragment {
 		
 		mRenderer3_2.setBarSpacing(0.6);
 		mRenderer3_2.setXAxisMin(12.5);
-		mRenderer3_2.setXAxisMax(24.5);
+		mRenderer3_2.setXAxisMax(24.8);
 		mRenderer3_2.setYAxisMin(0);
 		mRenderer3_2.setYAxisMax(8);
 		
