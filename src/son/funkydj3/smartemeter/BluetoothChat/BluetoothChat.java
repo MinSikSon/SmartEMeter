@@ -107,8 +107,8 @@ public class BluetoothChat extends Activity {
 	public TextView tv_time;
 	
 	//*point* thread
-	public Son_Thread ST; 
-	public Son_Thread_Timer STT;
+	public BT_Thread ST; 
+	public BT_Thread_Timer STT;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -131,9 +131,9 @@ public class BluetoothChat extends Activity {
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
 		// Start thread
-		ST = new Son_Thread(mHandler2);
+		ST = new BT_Thread(mHandler2);
 		ST.start();
-		STT = new Son_Thread_Timer();
+		STT = new BT_Thread_Timer();
 		STT.start();
 
 		// If the adapter is null, then Bluetooth is not supported
@@ -359,10 +359,10 @@ public class BluetoothChat extends Activity {
 				for(int i = 0 ; i<8 ; i++) if(D_SON) Log.d("SON", "readBuf[] : " + readBuf[i]);
 				if(D_SON) Log.d("SON","---------------------------------------------------");
 
-				String readBufToStr = Son_TypeCasting.byteToHex(readBuf); // *point* byteToHex
+				String readBufToStr = BT_TypeCasting.byteToHex(readBuf); // *point* byteToHex
 				Log.d("SON", "readBufToStr : " + readBufToStr);
 				
-				Son_StringCutter ssc = new Son_StringCutter(readBufToStr);
+				BT_StringCutter ssc = new BT_StringCutter(readBufToStr);
 				ssc.Cutting();
 				String OK_ACK = ssc.get_ACK();
 
@@ -376,10 +376,10 @@ public class BluetoothChat extends Activity {
 				Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
 				
 				{
-					CURRENT = (Math.round(Son_TypeCasting._6HexToDec(CURRENT_String)));
+					CURRENT = (Math.round(BT_TypeCasting._6HexToDec(CURRENT_String)));
 					CURRENT /= 10000;
 				}
-				VOLTAGE = Son_TypeCasting.V_Gain(0.1 * Son_TypeCasting._4HexToDec(VOLTAGE_String));
+				VOLTAGE = BT_TypeCasting.V_Gain(0.1 * BT_TypeCasting._4HexToDec(VOLTAGE_String));
 				//VOLTAGE = Son_TypeCasting.V_Gain(VOLTAGE);
 				Log.d("SON", "this");
 				//*point* �� ���� �����ǿ� Data�� display�ȴ�

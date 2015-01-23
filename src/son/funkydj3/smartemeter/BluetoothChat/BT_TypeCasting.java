@@ -2,7 +2,7 @@ package son.funkydj3.smartemeter.BluetoothChat;
 
 import android.util.Log;
 
-public class Son_TypeCasting {
+public class BT_TypeCasting {
 
 	// *point* 30byte�� �������� ��
 	public static String byteToHex(byte[] bytes) {

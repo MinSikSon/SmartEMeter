@@ -583,7 +583,7 @@ public class BluetoothChatService {
             	//*point* test
             	String toSend = "A5084100044E1A5A";
             	
-            	mmOutStream.write(Son_TypeCasting.SendByteData(toSend));
+            	mmOutStream.write(BT_TypeCasting.SendByteData(toSend));
             	
                 //mmOutStream.write(buffer); // *point* ASCII ���ڿ��� ������
                 //Log.d("SON", "BluetoothChatService / ConnectedThread write()");

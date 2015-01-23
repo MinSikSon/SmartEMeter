@@ -2,7 +2,7 @@ package son.funkydj3.smartemeter.BluetoothChat;
 
 import java.io.IOException;
 
-public class Son_Thread_Timer extends Thread {
+public class BT_Thread_Timer extends Thread {
 
 	private int GLOBAL_TIME = 0;
 	private int GRID_TIME_SECOND = 0;

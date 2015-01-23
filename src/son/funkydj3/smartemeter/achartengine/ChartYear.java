@@ -227,10 +227,18 @@ public class ChartYear extends Fragment {
 		mRenderer.setGridColor(Color.rgb(93, 93, 93));
 		mRenderer.setXLabelsColor(Class_Color.BLACK());
 		mRenderer.setXLabels(0); // sets the number of integer labels to appear
-		for(int i = 1 ; i<13 ; i++){
-			mRenderer.addXTextLabel(i, Integer.toString(i));
-		}
-		
+		mRenderer.addXTextLabel(1, "J");
+		mRenderer.addXTextLabel(2, "F");
+		mRenderer.addXTextLabel(3, "M");
+		mRenderer.addXTextLabel(4, "A");
+		mRenderer.addXTextLabel(5, "M");
+		mRenderer.addXTextLabel(6, "J");
+		mRenderer.addXTextLabel(7, "J");
+		mRenderer.addXTextLabel(8, "A");
+		mRenderer.addXTextLabel(9, "S");
+		mRenderer.addXTextLabel(10, "O");
+		mRenderer.addXTextLabel(11, "N");
+		mRenderer.addXTextLabel(12, "D");
 		
 		mRenderer.setShowGridY(true);
 		//mRenderer.setYLabels(5);

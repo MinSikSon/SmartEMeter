@@ -2,7 +2,7 @@ package son.funkydj3.smartemeter.BluetoothChat;
 
 import java.util.StringTokenizer;
 
-public class Son_StringCutter {
+public class BT_StringCutter {
 
 	private String str;
 	private int Cutting_Count = 0;
@@ -13,7 +13,7 @@ public class Son_StringCutter {
 	private String VOLTAGE1, VOLTAGE2;
 	private String BIT1, BIT2, BIT3, BIT4, BIT5, BIT6, BIT7, BIT8;
 
-	public Son_StringCutter(String str) {
+	public BT_StringCutter(String str) {
 		this.str = str;
 	}
 

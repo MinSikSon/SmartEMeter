@@ -3,15 +3,15 @@ package son.funkydj3.smartemeter.BluetoothChat;
 import android.os.Handler;
 import android.os.Message;
 
-public class Son_Thread extends Thread {
+public class BT_Thread extends Thread {
 	Handler mHandler;
 	
 
-	public Son_Thread() {
+	public BT_Thread() {
 
 	}
 
-	public Son_Thread(Handler mHandler) {
+	public BT_Thread(Handler mHandler) {
 		this.mHandler = mHandler;
 	}
 
