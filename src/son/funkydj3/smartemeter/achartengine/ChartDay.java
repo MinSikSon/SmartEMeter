@@ -126,7 +126,7 @@ public class ChartDay extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer3_1.setChartTitleTextSize(40);
 		}*/
-		mRenderer3_1.setLabelsColor(Color.BLACK); // * "title + label"'s color
+		mRenderer3_1.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer3_1.setLabelsTextSize(18);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
@@ -144,7 +144,8 @@ public class ChartDay extends Fragment {
 			margins3 = new int[] {30,80,0,30};
 		}
 		mRenderer3_1.setMargins(margins3);
-		mRenderer3_1.setMarginsColor(Color.rgb(204, 175, 150));
+		mRenderer3_1.setMarginsColor(Color.rgb(241, 233, 211));
+		
 		
 		mRenderer3_1.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -169,7 +170,7 @@ public class ChartDay extends Fragment {
 		mRenderer3_1.setShowGridX(true);
 		//mRenderer3_1.setGridColor(Color.rgb(93, 93, 93));
 		mRenderer3_1.setGridColor(Color.BLACK);
-		mRenderer3_1.setXLabelsColor(Class_Color.BLACK());
+		mRenderer3_1.setXLabelsColor(Color.BLACK);
 		mRenderer3_1.setXLabelsAngle(330);
 		mRenderer3_1.setXLabels(12); // sets the number of integer labels to appear
 		for(int i = 1 ; i < 13 ; i++){
@@ -179,7 +180,7 @@ public class ChartDay extends Fragment {
 		
 		mRenderer3_1.setShowGridY(true);
 		//mRenderer3_1.setYLabels(2);
-		mRenderer3_1.setYLabelsColor(0, Class_Color.BLACK());
+		mRenderer3_1.setYLabelsColor(0, Color.BLACK);
 		mRenderer3_1.setYLabelsAngle(0);
 		for(int i = 0 ; i < 20 ; i++)
 			mRenderer3_1.addYTextLabel(i*2, Integer.toString(i*2));
@@ -225,7 +226,7 @@ public class ChartDay extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer3_2.setChartTitleTextSize(40);
 		}*/
-		mRenderer3_2.setLabelsColor(Color.BLACK); // * "title + label"'s color
+		mRenderer3_2.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer3_2.setLabelsTextSize(18);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
@@ -243,7 +244,7 @@ public class ChartDay extends Fragment {
 			margins3 = new int[] {30,80,0,30};
 		}
 		mRenderer3_2.setMargins(margins3);
-		mRenderer3_2.setMarginsColor(Color.rgb(204, 175, 150));
+		mRenderer3_2.setMarginsColor(Color.rgb(241, 233, 211));
 		
 		mRenderer3_2.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -268,7 +269,7 @@ public class ChartDay extends Fragment {
 		mRenderer3_2.setShowGridX(true);
 		//mRenderer3_2.setGridColor(Color.rgb(93, 93, 93));
 		mRenderer3_2.setGridColor(Color.BLACK);
-		mRenderer3_2.setXLabelsColor(Class_Color.BLACK());
+		mRenderer3_2.setXLabelsColor(Color.BLACK);
 		mRenderer3_2.setXLabelsAngle(330);
 		mRenderer3_2.setXLabels(12); // sets the number of integer labels to appear
 		for(int i = 1 ; i < 13 ; i++){
@@ -278,7 +279,7 @@ public class ChartDay extends Fragment {
 		
 		mRenderer3_2.setShowGridY(true);
 		//mRenderer3_2.setYLabels(2);
-		mRenderer3_2.setYLabelsColor(0, Class_Color.BLACK());
+		mRenderer3_2.setYLabelsColor(0, Color.BLACK);
 		mRenderer3_2.setYLabelsAngle(0);
 		for(int i = 0 ; i < 20 ; i++)
 			mRenderer3_2.addYTextLabel(i*2, Integer.toString(i*2));

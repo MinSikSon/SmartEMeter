@@ -112,7 +112,7 @@ public class ChartMonth extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer2.setChartTitleTextSize(80);
 		}*/
-		mRenderer2.setLabelsColor(Color.BLACK); // * "title + label"'s color
+		mRenderer2.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer2.setLabelsTextSize(12);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
@@ -130,7 +130,7 @@ public class ChartMonth extends Fragment {
 			margins2 = new int[] {30,80,0,30};
 		}
 		mRenderer2.setMargins(margins2);
-		mRenderer2.setMarginsColor(Color.rgb(204, 175, 150));
+		mRenderer2.setMarginsColor(Color.rgb(241, 233, 211));
 		
 		mRenderer2.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -156,7 +156,7 @@ public class ChartMonth extends Fragment {
 		
 		mRenderer2.setShowGridX(true);
 		mRenderer2.setGridColor(Color.rgb(93, 93, 93));
-		mRenderer2.setXLabelsColor(Class_Color.BLACK());
+		mRenderer2.setXLabelsColor(Color.BLACK);
 		mRenderer2.setXLabelsAngle(320);
 		mRenderer2.setXLabels(30); // sets the number of integer labels to appear
 		for(int i = 1 ; i < 31 ; i++){
@@ -166,7 +166,7 @@ public class ChartMonth extends Fragment {
 		
 		mRenderer2.setShowGridY(true);
 		//mRenderer2.setYLabels(5);
-		mRenderer2.setYLabelsColor(0, Class_Color.BLACK());
+		mRenderer2.setYLabelsColor(0, Color.BLACK);
 		mRenderer2.setYLabelsAngle(0);
 		for(int i = 0 ; i < 21 ; i++)
 		mRenderer2.addYTextLabel(i*5, Integer.toString(i*5));

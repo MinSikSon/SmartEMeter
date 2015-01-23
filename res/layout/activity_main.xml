@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Gauge"
-            android:textSize="30dp" />
+            android:textSize="35dp" />
 
         <Button
             android:id="@+id/btn_Main2"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Chart"
-            android:textSize="30dp" />
+            android:textSize="35dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +40,8 @@
             android:id="@+id/img_Main1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1" 
+            android:scaleType="centerCrop"/>
     </LinearLayout>
 
     <LinearLayout
@@ -54,8 +55,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Saving\nCampaign"
-            android:textSize="30dp" />
+            android:text="Saving"
+            android:textSize="35dp" />
 
         <Button
             android:id="@+id/btn_Main6"
@@ -63,7 +64,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Option"
-            android:textSize="30dp" />
+            android:textSize="35dp" />
     </LinearLayout>
 
 </LinearLayout>

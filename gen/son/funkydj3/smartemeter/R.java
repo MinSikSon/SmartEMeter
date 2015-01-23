@@ -11,9 +11,12 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int BACKGROUNDCOLOR=0x7f040014;
         public static final int BLACK=0x7f040001;
+        public static final int CHARTBACKGOUND=0x7f040012;
         public static final int DARKBLUE=0x7f040005;
         public static final int GREEN=0x7f040002;
+        public static final int HOLOCOLOR=0x7f040013;
         public static final int RED=0x7f040003;
         public static final int SHINEGREEN=0x7f040004;
         public static final int SUNSET=0x7f040010;
@@ -31,48 +34,59 @@ public final class R {
         public static final int YELLOW=0x7f04000e;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int img_main1=0x7f020001;
-        public static final int img_main2=0x7f020002;
-        public static final int img_main3=0x7f020003;
-        public static final int main_bottom_current=0x7f020004;
-        public static final int main_bottom_current2=0x7f020005;
-        public static final int main_bottom_current3=0x7f020006;
-        public static final int main_bottom_current4=0x7f020007;
-        public static final int main_bottom_current5=0x7f020008;
-        public static final int main_bottom_current6=0x7f020009;
-        public static final int main_bottom_time=0x7f02000a;
-        public static final int main_bottom_time1=0x7f02000b;
-        public static final int main_bottom_time2=0x7f02000c;
-        public static final int main_bottom_time3=0x7f02000d;
-        public static final int main_bottom_time4=0x7f02000e;
-        public static final int main_bottom_time5=0x7f02000f;
-        public static final int main_bottom_voltage=0x7f020010;
-        public static final int main_sun=0x7f020011;
-        public static final int main_thunder=0x7f020012;
-        public static final int main_top_gridpower=0x7f020013;
-        public static final int main_top_solarpower=0x7f020014;
-        public static final int smartgrid_logo1=0x7f020015;
-        public static final int smartgrid_logo2=0x7f020016;
-        public static final int smartgrid_logo3=0x7f020017;
-        public static final int sunrise=0x7f020018;
-        public static final int sunset=0x7f020019;
-        public static final int title=0x7f02001a;
+        public static final int background_dark=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int img_main_berlin=0x7f020002;
+        public static final int img_main_busan=0x7f020003;
+        public static final int img_main_chicago=0x7f020004;
+        public static final int img_main_city=0x7f020005;
+        public static final int img_main_dog=0x7f020006;
+        public static final int img_main_dog2=0x7f020007;
+        public static final int img_main_dog3=0x7f020008;
+        public static final int img_main_donga=0x7f020009;
+        public static final int img_main_goplay=0x7f02000a;
+        public static final int img_main_radiotower=0x7f02000b;
+        public static final int img_main_spark=0x7f02000c;
+        public static final int img_main_stair=0x7f02000d;
+        public static final int img_main_temple=0x7f02000e;
+        public static final int main_bottom_current=0x7f02000f;
+        public static final int main_bottom_current2=0x7f020010;
+        public static final int main_bottom_current3=0x7f020011;
+        public static final int main_bottom_current4=0x7f020012;
+        public static final int main_bottom_current5=0x7f020013;
+        public static final int main_bottom_current6=0x7f020014;
+        public static final int main_bottom_time=0x7f020015;
+        public static final int main_bottom_time1=0x7f020016;
+        public static final int main_bottom_time2=0x7f020017;
+        public static final int main_bottom_time3=0x7f020018;
+        public static final int main_bottom_time4=0x7f020019;
+        public static final int main_bottom_time5=0x7f02001a;
+        public static final int main_bottom_voltage=0x7f02001b;
+        public static final int main_sun=0x7f02001c;
+        public static final int main_thunder=0x7f02001d;
+        public static final int main_top_gridpower=0x7f02001e;
+        public static final int main_top_solarpower=0x7f02001f;
+        public static final int splash_logo1=0x7f020020;
+        public static final int splash_logo2=0x7f020021;
+        public static final int splash_logo3=0x7f020022;
+        public static final int sunrise=0x7f020023;
+        public static final int sunset=0x7f020024;
+        public static final int title=0x7f020025;
     }
     public static final class id {
-        public static final int btn_Chart1=0x7f080000;
-        public static final int btn_Chart2=0x7f080001;
-        public static final int btn_Chart3=0x7f080002;
+        public static final int btn_Chart1=0x7f080001;
+        public static final int btn_Chart2=0x7f080002;
+        public static final int btn_Chart3=0x7f080003;
         public static final int btn_Main1=0x7f08000d;
         public static final int btn_Main2=0x7f08000e;
         public static final int btn_Main5=0x7f080010;
         public static final int btn_Main6=0x7f080011;
-        public static final int btn_display_add=0x7f08000c;
+        public static final int btn_display_add=0x7f08000b;
         public static final int button_scan=0x7f080018;
         public static final int chart_day_1=0x7f080005;
         public static final int chart_day_2=0x7f080006;
         public static final int chart_month=0x7f080008;
-        public static final int chart_year=0x7f08000a;
+        public static final int chart_year=0x7f08000c;
         public static final int discoverable=0x7f080022;
         public static final int img_Main1=0x7f08000f;
         public static final int insecure_connect_scan=0x7f080021;
@@ -90,11 +104,11 @@ public final class R {
         public static final int title_paired_devices=0x7f080014;
         public static final int title_right_text=0x7f080013;
         public static final int tv_current=0x7f08001c;
-        public static final int tv_sum_last_year_charge=0x7f08000b;
+        public static final int tv_sum_last_year_charge=0x7f08000a;
         public static final int tv_time=0x7f08001f;
         public static final int tv_top_right=0x7f08001a;
         public static final int tv_voltage=0x7f08001d;
-        public static final int viewpager=0x7f080003;
+        public static final int viewpager=0x7f080000;
     }
     public static final class layout {
         public static final int activity_chart=0x7f030000;

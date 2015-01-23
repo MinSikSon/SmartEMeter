@@ -63,11 +63,11 @@ public class Chart extends FragmentActivity implements OnClickListener  {
 			// TODO Auto-generated method stub
 			if (index == 0) {
 				// return PageFragment_Create.newInstance("My Message " + index);
-				return ChartYear.newInstance("YEAR Electric Charge");
+				return ChartYear.newInstance("MONTHLY Electric Charge");
 			} else if (index == 1) {
-				return ChartMonth.newInstance("MONTH Electric Charge");
+				return ChartMonth.newInstance("DAILY Electric Charge");
 			} else {
-				return ChartDay.newInstance("DAY Electric Charge");
+				return ChartDay.newInstance("HOURLY Electric Charge");
 			}
 		}
 

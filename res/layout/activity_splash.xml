@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" 
-    android:background="@drawable/smartgrid_logo3">
+    android:background="@drawable/splash_logo1">
 
     
 

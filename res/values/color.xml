@@ -19,5 +19,8 @@
     <color name="SUNSHINE">#FFFD37</color>
     <color name="SUNSET">#FD5E53</color>
     <color name="TITLE">#CCAF96</color>
-
+    <color name="CHARTBACKGOUND">#F1E9D3</color>
+    <color name="HOLOCOLOR">#54575A</color>
+    <color name="BACKGROUNDCOLOR">#24292F</color>
+    
 </resources>

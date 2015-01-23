@@ -181,7 +181,7 @@ public class ChartYear extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer.setChartTitleTextSize(80);
 		}*/
-		mRenderer.setLabelsColor(Color.BLACK); // * "title + label"'s color
+		mRenderer.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
 			mRenderer.setLabelsTextSize(18);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
@@ -199,7 +199,7 @@ public class ChartYear extends Fragment {
 			margins = new int[] {30,80,0,30};
 		}
 		mRenderer.setMargins(margins);
-		mRenderer.setMarginsColor(Color.rgb(204, 175, 150));
+		mRenderer.setMarginsColor(Color.rgb(241, 233, 211));
 		
 		mRenderer.setApplyBackgroundColor(true);
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
@@ -225,7 +225,7 @@ public class ChartYear extends Fragment {
 		
 		mRenderer.setShowGridX(true);
 		mRenderer.setGridColor(Color.rgb(93, 93, 93));
-		mRenderer.setXLabelsColor(Class_Color.BLACK());
+		mRenderer.setXLabelsColor(Color.BLACK);
 		mRenderer.setXLabels(0); // sets the number of integer labels to appear
 		mRenderer.addXTextLabel(1, "J");
 		mRenderer.addXTextLabel(2, "F");
@@ -242,7 +242,7 @@ public class ChartYear extends Fragment {
 		
 		mRenderer.setShowGridY(true);
 		//mRenderer.setYLabels(5);
-		mRenderer.setYLabelsColor(0, Class_Color.BLACK());
+		mRenderer.setYLabelsColor(0, Color.BLACK);
 		mRenderer.setYLabelsAngle(310);
 		int num_buf = 2;
 		String num_buf2 = "500";

@@ -48,12 +48,37 @@ public class MainActivity extends Activity {
 	}
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
-			if(Constant.PUBLIC_TIME % 10 == 0){
-				img_Main1.setImageResource(R.drawable.img_main1);
-			}else if(Constant.PUBLIC_TIME % 10 == 5){
-				img_Main1.setImageResource(R.drawable.img_main2);
-			}else if(Constant.PUBLIC_TIME % 10 == 9){
-				img_Main1.setImageResource(R.drawable.img_main3);
+			// * width 4inch, dp 150
+			if(Constant.PUBLIC_TIME % 101 == 1){
+				img_Main1.setImageResource(R.drawable.img_main_spark);
+			}else if(Constant.PUBLIC_TIME % 101 == 7){
+				img_Main1.setImageResource(R.drawable.img_main_stair);
+			}else if(Constant.PUBLIC_TIME % 101 == 13){
+				img_Main1.setImageResource(R.drawable.img_main_chicago);
+			}else if(Constant.PUBLIC_TIME % 101 == 19){
+				img_Main1.setImageResource(R.drawable.img_main_city);
+			}else if(Constant.PUBLIC_TIME % 101 == 25){
+				img_Main1.setImageResource(R.drawable.img_main_dog3);
+			}else if(Constant.PUBLIC_TIME % 101 == 31){
+				img_Main1.setImageResource(R.drawable.img_main_goplay);
+			}else if(Constant.PUBLIC_TIME % 101 == 37){
+				img_Main1.setImageResource(R.drawable.img_main_donga);
+			}else if(Constant.PUBLIC_TIME % 101 == 49){
+				img_Main1.setImageResource(R.drawable.img_main_radiotower);
+			}else if(Constant.PUBLIC_TIME % 101 == 55){
+				img_Main1.setImageResource(R.drawable.img_main_spark);
+			}else if(Constant.PUBLIC_TIME % 101 == 61){
+				img_Main1.setImageResource(R.drawable.img_main_dog2);
+			}else if(Constant.PUBLIC_TIME % 101 == 67){
+				img_Main1.setImageResource(R.drawable.img_main_busan);
+			}else if(Constant.PUBLIC_TIME % 101 == 73){
+				img_Main1.setImageResource(R.drawable.img_main_temple);
+			}else if(Constant.PUBLIC_TIME % 101 == 79){
+				img_Main1.setImageResource(R.drawable.img_main_donga);
+			}else if(Constant.PUBLIC_TIME % 101 == 91){
+				img_Main1.setImageResource(R.drawable.img_main_berlin);
+			}else if(Constant.PUBLIC_TIME % 101 == 97){
+				img_Main1.setImageResource(R.drawable.img_main_dog);
 			}
 		}
 	};
