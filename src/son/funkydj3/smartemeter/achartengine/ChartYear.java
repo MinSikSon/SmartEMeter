@@ -181,13 +181,13 @@ public class ChartYear extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer.setChartTitleTextSize(80);
 		}*/
-		mRenderer.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
+		mRenderer.setLabelsColor(Color.rgb(241, 233, 211)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer.setLabelsTextSize(18);
+			mRenderer.setLabelsTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer.setLabelsTextSize(27);
+			mRenderer.setLabelsTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer.setLabelsTextSize(36);
+			mRenderer.setLabelsTextSize(40);
 		}
 		
 		int[] margins = new int[] {0,0,0,0}; // {top, left, bottom, right}
@@ -205,15 +205,15 @@ public class ChartYear extends Fragment {
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
-		mRenderer.setPanEnabled(false, true); // * fix graph
-		double[] panLimits = new double[] {0,0,0,50000};
+		mRenderer.setPanEnabled(false, false); // * fix graph
+		double[] panLimits = new double[] {0,12,0,400};
 		mRenderer.setPanLimits(panLimits);
 		mRenderer.setZoomEnabled(false, false); // * enable zoom
-		double[] range = new double[] {0,12,0,40000};
+		double[] range = new double[] {0,12,0,400};
 		mRenderer.setInitialRange(range);
 		mRenderer.setYLabelsAlign(Align.RIGHT);
 		mRenderer.setXTitle("Months");
-		mRenderer.setYTitle("WON");
+		mRenderer.setYTitle("kWh");
 		if(Constant.widthPixels <= 480){ // 480*720
 			mRenderer.setAxisTitleTextSize(16);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){ // 720*1080
@@ -243,28 +243,16 @@ public class ChartYear extends Fragment {
 		mRenderer.setShowGridY(true);
 		//mRenderer.setYLabels(5);
 		mRenderer.setYLabelsColor(0, Color.BLACK);
-		mRenderer.setYLabelsAngle(310);
-		int num_buf = 2;
-		String num_buf2 = "500";
-		for(int i = 1 ; i < 22 ; i++){
-			String value = Integer.toString(num_buf) + "," + num_buf2;
-			Log.d("SON", value);
-			mRenderer.addYTextLabel(i*2500, value);
-			if(i%2 == 1) {
-				num_buf += 3;
-				num_buf2 = "000";
-			}
-			else {
-				num_buf += 2;
-				num_buf2 = "500";
-			}
+		mRenderer.setYLabelsAngle(0);
+		for(int i = 1 ; i < 10 ; i++){
+			mRenderer.addYTextLabel(i*50, Integer.toString(i*50));
+			
 		}
-		
 		mRenderer.setBarSpacing(0.7);
 		mRenderer.setXAxisMin(0.5);
 		mRenderer.setXAxisMax(12.8);
 		mRenderer.setYAxisMin(0);
-		mRenderer.setYAxisMax(30000);
+		mRenderer.setYAxisMax(210);
 		
 		//mRenderer.setPointSize(1.0f);
 	    mRenderer.addSeriesRenderer(mCurrentRenderer);

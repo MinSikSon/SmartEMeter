@@ -112,13 +112,13 @@ public class ChartMonth extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer2.setChartTitleTextSize(80);
 		}*/
-		mRenderer2.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
+		mRenderer2.setLabelsColor(Color.rgb(241, 233, 211)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer2.setLabelsTextSize(12);
+			mRenderer2.setLabelsTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer2.setLabelsTextSize(18);
+			mRenderer2.setLabelsTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer2.setLabelsTextSize(24);
+			mRenderer2.setLabelsTextSize(40);
 		}
 		
 		int[] margins2 = new int[] {0,0,0,0}; // {top, left, bottom, right}
@@ -136,7 +136,7 @@ public class ChartMonth extends Fragment {
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
-		mRenderer2.setPanEnabled(false, true); // * fix graph
+		mRenderer2.setPanEnabled(true, false); // * fix graph
 		double[] panLimits2 = new double[] {0,31.5,0,100};
 		mRenderer2.setPanLimits(panLimits2);
 		mRenderer2.setZoomEnabled(false, false); // * enable zoom
@@ -157,8 +157,8 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setShowGridX(true);
 		mRenderer2.setGridColor(Color.rgb(93, 93, 93));
 		mRenderer2.setXLabelsColor(Color.BLACK);
-		mRenderer2.setXLabelsAngle(320);
-		mRenderer2.setXLabels(30); // sets the number of integer labels to appear
+		mRenderer2.setXLabelsAngle(0);
+		//mRenderer2.setXLabels(30); // sets the number of integer labels to appear
 		for(int i = 1 ; i < 31 ; i++){
 			mRenderer2.addXTextLabel(i, Integer.toString(i));
 		}
@@ -174,9 +174,9 @@ public class ChartMonth extends Fragment {
 		
 		mRenderer2.setBarSpacing(0.6);
 		mRenderer2.setXAxisMin(0.5);
-		mRenderer2.setXAxisMax(31.5);
+		mRenderer2.setXAxisMax(12.5);
 		mRenderer2.setYAxisMin(0);
-		mRenderer2.setYAxisMax(25);
+		mRenderer2.setYAxisMax(10);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer2.addSeriesRenderer(mCurrentRenderer2);

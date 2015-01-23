@@ -126,13 +126,13 @@ public class ChartDay extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer3_1.setChartTitleTextSize(40);
 		}*/
-		mRenderer3_1.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
+		mRenderer3_1.setLabelsColor(Color.rgb(241, 233, 211)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer3_1.setLabelsTextSize(18);
+			mRenderer3_1.setLabelsTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_1.setLabelsTextSize(22);
+			mRenderer3_1.setLabelsTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_1.setLabelsTextSize(32);
+			mRenderer3_1.setLabelsTextSize(40);
 		}
 		
 		int[] margins3 = new int[] {0,0,0,0}; // {top, left, bottom, right}
@@ -226,13 +226,13 @@ public class ChartDay extends Fragment {
 		}else if(Constant.widthPixels >= 1080){
 			mRenderer3_2.setChartTitleTextSize(40);
 		}*/
-		mRenderer3_2.setLabelsColor(Color.rgb(38, 43, 49)); // * "title + label"'s color
+		mRenderer3_2.setLabelsColor(Color.rgb(241, 233, 211)); // * "title + label"'s color
 		if(Constant.widthPixels <= 480){
-			mRenderer3_2.setLabelsTextSize(18);
+			mRenderer3_2.setLabelsTextSize(20);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mRenderer3_2.setLabelsTextSize(22);
+			mRenderer3_2.setLabelsTextSize(30);
 		}else if(Constant.widthPixels >= 1080){
-			mRenderer3_2.setLabelsTextSize(32);
+			mRenderer3_2.setLabelsTextSize(40);
 		}
 		
 		int[] margins3 = new int[] {0,0,0,0}; // {top, left, bottom, right}
