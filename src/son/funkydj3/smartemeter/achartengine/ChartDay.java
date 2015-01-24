@@ -53,6 +53,7 @@ public class ChartDay extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		t3 = new Thread3(mHandler3);
+		t3.setDaemon(true);
 		t3.start();
 	}
 	private Handler mHandler3 = new Handler() {

@@ -16,6 +16,7 @@
 
 package son.funkydj3.smartemeter.BluetoothChat;
 
+import son.funkydj3.smartemeter.MainActivity;
 import son.funkydj3.smartemeter.R;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -29,8 +30,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,7 +79,7 @@ public class BluetoothChat extends Activity {
 	// Array adapter for the conversation thread
 	private ArrayAdapter<String> mConversationArrayAdapter;
 	// String buffer for outgoing messages
-	private StringBuffer mOutStringBuffer;
+	public static StringBuffer mOutStringBuffer;
 	// Local Bluetooth adapter
 	//private BluetoothAdapter mBluetoothAdapter = null;
 	public static BluetoothAdapter mBluetoothAdapter = null;
@@ -84,31 +88,33 @@ public class BluetoothChat extends Activity {
 	public static BluetoothChatService mChatService = null;
 
 	// *point*
-	public int init_data_get_count = 0;
-	public int data_get_count = 0; // *point* ó���� ������ �߸��� Stream ���͸� ���� ���Ǵ�
+	public static int init_data_get_count = 0;
+	public static int data_get_count = 0; // *point* ó���� ������ �߸��� Stream ���͸� ���� ���Ǵ�
 									// count
 
-	public String VOLTAGE_String;
-	public String CURRENT_String;
-	public double VOLTAGE;
-	public double CURRENT;
+	public static String VOLTAGE_String;
+	public static String CURRENT_String;
+	public static double VOLTAGE;
+	public static double CURRENT;
 	public static int RECEIVE_DATA_OK = 0;
 	
 	public static int BLUETOOTH_STATE_SON = 0;
 
 	// *point* layout
-	public ImageView iv_top_left;
-	public TextView tv_top_right;
-	public ImageView iv_bottom_time;
-	public ImageView iv_current;
+	public static ImageView iv_top_left;
+	public static TextView tv_top_right;
+	public static ImageView iv_bottom_time;
+	public static ImageView iv_current;
 	
-	public TextView tv_current;
-	public TextView tv_voltage;
-	public TextView tv_time;
+	public static TextView tv_current;
+	public static TextView tv_voltage;
+	public static TextView tv_time;
+	
+	public static Button btn_Guage;
 	
 	//*point* thread
-	public BT_Thread ST; 
-	public BT_Thread_Timer STT;
+	public static BT_Thread ST= null; 
+	public static BT_Thread_Timer STT = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -127,14 +133,30 @@ public class BluetoothChat extends Activity {
 		tv_time = (TextView)findViewById(R.id.tv_time);
 		
 		
+		//*
+		btn_Guage = (Button)findViewById(R.id.test);
+		btn_Guage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(BluetoothChat.this, MainActivity.class);
+				startActivity(i);
+			}
+		});
+		
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
 		// Start thread
-		ST = new BT_Thread(mHandler2);
-		ST.start();
-		STT = new BT_Thread_Timer();
-		STT.start();
+		if(ST == null){
+			ST = new BT_Thread(mHandler2);
+			ST.setDaemon(true);
+			ST.start();
+		}
+		if(STT == null){
+			STT = new BT_Thread_Timer();
+			STT.setDaemon(true);
+			STT.start();
+		}
 
 		// If the adapter is null, then Bluetooth is not supported
 		if (mBluetoothAdapter == null) {
@@ -155,11 +177,8 @@ public class BluetoothChat extends Activity {
 		// setupChat() will then be called during onActivityResult
 		// *point* ó�� ����ǰ� �ߴ�, Bluetooth Ȱ��ȭ ����â
 		if (!mBluetoothAdapter.isEnabled()) {
-			Intent enableIntent = new Intent(
-					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-			
-			
 			// Otherwise, setup the chat session
 		} else {
 			if (mChatService == null)
@@ -495,9 +514,10 @@ public class BluetoothChat extends Activity {
 	}
 	
 	
-	
+	// **********************************************************************************************************	
+	// **********************************************************************************************************
 	// *point*
-	Handler mHandler2 = new Handler() {
+	public static Handler mHandler2 = new Handler() {
 		public void handleMessage(Message msg) {
 			byte[] send = { 1, 1 };
 			mChatService.write(send);
@@ -545,8 +565,10 @@ public class BluetoothChat extends Activity {
 			}
 		}
 	};
+	// **********************************************************************************************************
+	// **********************************************************************************************************
 	
-	public void animation_time(){
+	public static void animation_time(){
 		if((STT.get_grid_time_second()%5) == 0){
 			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time1);
 		}else if((STT.get_grid_time_second()%5) == 1){
@@ -559,7 +581,7 @@ public class BluetoothChat extends Activity {
 			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time5);
 		}
 	}
-	public void animation_current(){
+	public static void animation_current(){
 		if(STT.get_grid_time_second()%10 == 0){
 			iv_current.setBackgroundResource(R.drawable.main_bottom_current);
 		}else if(STT.get_grid_time_second()%10 == 1){

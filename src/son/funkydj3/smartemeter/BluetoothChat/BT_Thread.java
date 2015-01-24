@@ -19,10 +19,6 @@ public class BT_Thread extends Thread {
 	public void run() {
 		while (true) {
 			Message msg = Message.obtain();
-			// obtain() : �ý����� �޽��� Ǯ���� �޽��� ��ü�� ���� �� ����ϴ� �޼���.
-			// ���� ����� ������ �Ź� Message ��ü�� new �����ڷ� ���� �����ϸ�
-			// �޸𸮵� ���� �Ҹ��� ���̰� �ӵ��� ������ ���̴�.
-			// �׷��� �ȵ���̵�� �ý��ۿ� �޽��� Ǯ�� �ξ� ĳ�ø� �����Ѵ�.
 
 			
 			mHandler.sendMessage(msg);

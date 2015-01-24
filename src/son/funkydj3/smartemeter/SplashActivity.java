@@ -30,7 +30,7 @@ public class SplashActivity extends Activity {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					Intent intent = new Intent(getBaseContext(), MainActivity.class);
+					Intent intent = new Intent(getBaseContext(), BluetoothChat.class);
 					startActivityForResult(intent, REQUEST_CODE_MAIN);
 
 					finish();

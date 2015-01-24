@@ -46,6 +46,7 @@ public class ChartMonth extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		t2 = new Thread2(mHandler2);
+		t2.setDaemon(true);
 		t2.start();
 	}
 	private Handler mHandler2 = new Handler() {

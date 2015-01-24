@@ -58,6 +58,7 @@ public class ChartYear extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		t1 = new Thread1(mHandler);
+		t1.setDaemon(true);
 		t1.start();
 	}
 	private Handler mHandler = new Handler() {

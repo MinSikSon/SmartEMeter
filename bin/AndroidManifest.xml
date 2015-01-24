@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
-        android:name="son.funkydj3.smartemeter.etc.Class_Font"
+        android:name=".etc.Class_Font"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -24,6 +24,7 @@
         </activity>
         <activity
             android:name=".SplashActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:label="@string/title_activity_splash"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -54,7 +55,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="son.funkydj3.smartemeter.option.Option"
+            android:name=".option.Option"
             android:label="@string/title_activity_option" >
         </activity>
         <activity
@@ -72,6 +73,10 @@
             android:name=".BluetoothChat.Loading"
             android:label="@string/title_activity_loading"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="son.funkydj3.smartemeter.gauge.Guage"
+            android:label="@string/title_activity_guage" >
         </activity>
     </application>
 

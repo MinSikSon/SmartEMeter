@@ -1,13 +1,12 @@
 package son.funkydj3.smartemeter;
 
-import son.funkydj3.smartemeter.BluetoothChat.BluetoothChat;
 import son.funkydj3.smartemeter.achartengine.Chart;
-import son.funkydj3.smartemeter.etc.Class_Color;
 import son.funkydj3.smartemeter.etc.Constant;
+import son.funkydj3.smartemeter.gauge.Guage;
+import son.funkydj3.smartemeter.option.Option;
 import son.funkydj3.smartemeter.thread.Thread_Second_Timer;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,9 +26,10 @@ public class MainActivity extends Activity {
 	private Button btn_Main5;
 	private Button btn_Main6;
 	
-	private ImageView img_Main1;
+	public static ImageView img_Main1;
 	
-
+	public static Thread_Second_Timer TT = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,11 +46,16 @@ public class MainActivity extends Activity {
 		if(Constant.GET_TST_STATE.equalsIgnoreCase("RUNNABLE")){
 			Constant.BREAK_TST = 1;
 		}
-		Thread_Second_Timer TT = new Thread_Second_Timer(mHandler);
-		TT.start();
+		//if(TT == null)
+		//{	
+			TT = new Thread_Second_Timer(mHandler);
+			TT.setDaemon(true);
+			TT.start();
+			Log.d("SON", "MainActivity - TT.start()");
+		//}
 		Log.d("SON", "TIME : " + System.currentTimeMillis());
 	}
-	private Handler mHandler = new Handler() {
+	public static Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			// * width 4inch, dp 150
 			if(Constant.PUBLIC_TIME % 101 == 1){
@@ -92,7 +97,7 @@ public class MainActivity extends Activity {
 		btn_Main1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(MainActivity.this, BluetoothChat.class);
+				Intent i = new Intent(MainActivity.this, Guage.class);
 				startActivity(i);
 			}
 		});
@@ -133,7 +138,7 @@ public class MainActivity extends Activity {
 		btn_Main6.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent iii = new Intent(MainActivity.this, Chart.class);
+				Intent iii = new Intent(MainActivity.this, Option.class);
 				startActivity(iii);
 			}
 		});
