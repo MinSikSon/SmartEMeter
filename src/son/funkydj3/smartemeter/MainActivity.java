@@ -42,6 +42,10 @@ public class MainActivity extends Activity {
 			Constant.initConstantCheck = 1;
 		}
 
+		
+		if(Constant.GET_TST_STATE.equalsIgnoreCase("RUNNABLE")){
+			Constant.BREAK_TST = 1;
+		}
 		Thread_Second_Timer TT = new Thread_Second_Timer(mHandler);
 		TT.start();
 		Log.d("SON", "TIME : " + System.currentTimeMillis());

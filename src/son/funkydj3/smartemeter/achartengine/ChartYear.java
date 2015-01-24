@@ -75,11 +75,12 @@ public class ChartYear extends Fragment {
 			}
 			
 			double tmp1;
+			double tmp2;
 			for(int i = 1 ; i < 13 ; i++){
 				tmp1 = Constant.this_year_kWh[i];
-				tmp1 = Math.round(tmp1*1000d)/1000d; // * get point 3
-				Constant.this_year_charge[i] = (int)(tmp1 * 300);
-				mCurrentSeries.add(i, Constant.this_year_charge[i]);
+				tmp2 = 300 * (Math.round(tmp1*1000d)/1000d); // * get point 3
+				Constant.this_year_charge[i] = (int)(tmp2);
+				mCurrentSeries.add(i, Constant.this_year_kWh[i]);
 			}
 			if(mChart != null) mChart.repaint();
 			
@@ -114,12 +115,12 @@ public class ChartYear extends Fragment {
 				}else{
 					Random random = new Random();
 					Constant.last_year_charge = new int[]{
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
-							(250+random.nextInt(50))*100, (250+random.nextInt(50))*100,
+							(150+random.nextInt(100)), (150+random.nextInt(100)),
+							(150+random.nextInt(100)), (150+random.nextInt(100)), 
+							(150+random.nextInt(100)), (150+random.nextInt(100)), 
+							(150+random.nextInt(100)), (150+random.nextInt(100)), 
+							(150+random.nextInt(100)), (150+random.nextInt(100)), 
+							(150+random.nextInt(100)), (150+random.nextInt(100))
 					};
 					Calculator.sumLastYearCharge();
 					tv_sum_last_year_charge.setText("Last Year Charge : "+Math.round(Constant.sum_last_year_charge) +" WON");

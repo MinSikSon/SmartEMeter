@@ -1,6 +1,7 @@
 package son.funkydj3.smartemeter.etc;
 
 public class Constant {
+	// *count*
 	public static int PUBLIC_TIME = 0;
 	public static int PACE = 1;
 	
@@ -8,9 +9,13 @@ public class Constant {
 	public static int COUNT2 = 0;
 	public static int COUNT3 = 0;
 	
+	public static String GET_TST_STATE = "";
+	public static int BREAK_TST = 0;
+	
+	
 	// *accumulate*
 	public static double wattPerSecond = 1;
-	public static double KwattPerSecond = 0.1;
+	public static double KwattPerSecond = 0.001;
 	public static double accumulatedWatt = 0;
 	public static double accumulatedkWh = 0;
 	
