@@ -18,6 +18,8 @@ package son.funkydj3.smartemeter.BluetoothChat;
 
 import son.funkydj3.smartemeter.MainActivity;
 import son.funkydj3.smartemeter.R;
+import son.funkydj3.smartemeter.etc.Class_Data;
+import son.funkydj3.smartemeter.handler.BackPressCloseHandler;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -94,18 +96,13 @@ public class BluetoothChat extends Activity {
 
 	public static String VOLTAGE_String;
 	public static String CURRENT_String;
-	public static double VOLTAGE;
-	public static double CURRENT;
+	private static double VOLTAGE;
+	private static double CURRENT;
 	public static int RECEIVE_DATA_OK = 0;
 	
 	public static int BLUETOOTH_STATE_SON = 0;
 
 	// *point* layout
-	public static ImageView iv_top_left;
-	public static TextView tv_top_right;
-	public static ImageView iv_bottom_time;
-	public static ImageView iv_current;
-	
 	public static TextView tv_current;
 	public static TextView tv_voltage;
 	public static TextView tv_time;
@@ -116,6 +113,9 @@ public class BluetoothChat extends Activity {
 	public static BT_Thread ST= null; 
 	public static BT_Thread_Timer STT = null;
 
+	// *
+	private BackPressCloseHandler backPressCloseHandler;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -124,10 +124,6 @@ public class BluetoothChat extends Activity {
 
 		// Set up the window layout
 		setContentView(R.layout.bt_main);
-		iv_top_left = (ImageView)findViewById(R.id.iv_top_left);
-		tv_top_right = (TextView)findViewById(R.id.tv_top_right);
-		iv_bottom_time = (ImageView)findViewById(R.id.iv_bottom_time);
-		iv_current = (ImageView)findViewById(R.id.iv_current);
 		tv_current = (TextView)findViewById(R.id.tv_current);
 		tv_voltage = (TextView)findViewById(R.id.tv_voltage);
 		tv_time = (TextView)findViewById(R.id.tv_time);
@@ -164,6 +160,8 @@ public class BluetoothChat extends Activity {
 			finish();
 			return;
 		}
+		
+		backPressCloseHandler = new BackPressCloseHandler(this);
 	}
 
 	@Override
@@ -405,14 +403,15 @@ public class BluetoothChat extends Activity {
 				if(OK_ACK.equals("06")) {
 					if(VOLTAGE >= 210 && VOLTAGE <= 230){
 						RECEIVE_DATA_OK = 1;
+					}else{
+						RECEIVE_DATA_OK = 0;
 					}
 				}
 				else RECEIVE_DATA_OK = 0;
 					
 
 				String readMessage = new String(readBuf, 0, msg.arg1);
-				// mConversationArrayAdapter.add(mConnectedDeviceName+":  " +
-				// readMessage);
+				// mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
 				// mConversationArrayAdapter.add(readMessage);
 				readMessage = "0"; // *point* String �ʱ�ȭ
 
@@ -530,79 +529,43 @@ public class BluetoothChat extends Activity {
 			
 			if (BLUETOOTH_STATE_SON == 1) {
 				if(RECEIVE_DATA_OK == 1){
-					tv_current.setText(CURRENT + "\n\n A");
-					tv_voltage.setText(VOLTAGE + "\n\n V");
+					tv_current.setText(CURRENT + " mA");
+					tv_voltage.setText(VOLTAGE + " V");
+					// *
+					Class_Data.Data_CURRENT = CURRENT;
+					Class_Data.Data_VOLTAGE = VOLTAGE;
+					Class_Data.Data_POWER = CURRENT*VOLTAGE;
 				}
 				if(STT.get_grid_time_hour() > 0 ){
-					tv_time.setText(STT.get_grid_time_hour() + " h\n" + STT.get_grid_time_minute() + " m\n"+STT.get_grid_time_second()+" s");
+					tv_time.setText(STT.get_grid_time_hour() + " Hour " + STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
 				}
 				else if(STT.get_grid_time_minute() > 0){
-					tv_time.setText(STT.get_grid_time_minute() + " m\n"+STT.get_grid_time_second()+" s");
+					tv_time.setText(STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
 				}else{
-					tv_time.setText(STT.get_grid_time_second() + " s");
+					tv_time.setText(STT.get_grid_time_second() + " Sec");
 				}
 				//*point* ��������� �ٸ� �� �ֱ� ������, �� �κ��� �����ϰ� �ٲ������.
 				if(CURRENT > 0.0048){
-					iv_top_left.setBackgroundResource(R.drawable.main_top_gridpower);
-					tv_top_right.setBackgroundResource(R.drawable.main_thunder);
-					tv_top_right.setText("Grid\nPower");
 					STT.up_grid_time();
-					animation_time();
-					animation_current();
 				}
 				else{
-					iv_top_left.setBackgroundResource(R.drawable.main_top_solarpower);
-					tv_top_right.setBackgroundResource(R.drawable.main_sun);
-					tv_top_right.setText("Solar\nPower");
 				}
 				
 			} else {
-				tv_current.setText("0\n\n A");
-				tv_voltage.setText("0\n\n V");
-				iv_top_left.setBackgroundResource(R.drawable.main_top_solarpower);
-				tv_top_right.setBackgroundResource(R.drawable.main_sun);
-				tv_top_right.setText("Solar\nPower");
+				Class_Data.Data_CURRENT = 0;
+				Class_Data.Data_VOLTAGE = 0;
+				tv_current.setText("0 mA");
+				tv_voltage.setText("0 V");
 			}
 		}
 	};
 	// **********************************************************************************************************
 	// **********************************************************************************************************
 	
-	public static void animation_time(){
-		if((STT.get_grid_time_second()%5) == 0){
-			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time1);
-		}else if((STT.get_grid_time_second()%5) == 1){
-			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time2);
-		}else if((STT.get_grid_time_second()%5) == 2){
-			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time3);
-		}else if((STT.get_grid_time_second()%5) == 3){
-			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time4);
-		}else if((STT.get_grid_time_second()%5) == 4){
-			iv_bottom_time.setBackgroundResource(R.drawable.main_bottom_time5);
-		}
+	
+	@Override
+	public void onBackPressed() {
+		//super.onBackPressed();
+		//backPressCloseHandler.onBackPressed();
 	}
-	public static void animation_current(){
-		if(STT.get_grid_time_second()%10 == 0){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current);
-		}else if(STT.get_grid_time_second()%10 == 1){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current2);
-		}else if(STT.get_grid_time_second()%10 == 2){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current3);
-		}else if(STT.get_grid_time_second()%10 == 3){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current4);
-		}else if(STT.get_grid_time_second()%10 == 4){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current5);
-		}else if(STT.get_grid_time_second()%10 == 5){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current6);
-		}else if(STT.get_grid_time_second()%10 == 6){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current5);
-		}else if(STT.get_grid_time_second()%10 == 7){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current4);
-		}else if(STT.get_grid_time_second()%10 == 8){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current3);
-		}else if(STT.get_grid_time_second()%10 == 9){
-			iv_current.setBackgroundResource(R.drawable.main_bottom_current2);
-		}
-	}
-
 }

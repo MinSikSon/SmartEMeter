@@ -24,9 +24,9 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:label="@string/title_activity_splash"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -68,15 +68,20 @@
             android:name=".BluetoothChat.DeviceListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".BluetoothChat.Loading"
             android:label="@string/title_activity_loading"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="son.funkydj3.smartemeter.gauge.Guage"
+            android:name=".gauge.Guage"
             android:label="@string/title_activity_guage" >
+        </activity>
+        <activity
+            android:name=".Saving"
+            android:label="@string/title_activity_saving" >
         </activity>
     </application>
 

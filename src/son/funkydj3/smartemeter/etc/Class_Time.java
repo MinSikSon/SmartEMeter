@@ -32,7 +32,7 @@ public class Class_Time {
 		strCurDay = CurDayFormat.format(date);
 		strCurHour = CurHourFormat.format(date);
 		strCurMinute = CurMinuteFormat.format(date);
-		strCurSecond = CurMinuteFormat.format(date);
+		strCurSecond = CurSecondFormat.format(date);
 	}
 	
 	public static int getCurDate(){
@@ -45,7 +45,7 @@ public class Class_Time {
 	}
 	public static int getCurYear(){
 		int a = Integer.parseInt(strCurYear); 
-		if(Constant.PACE == 2)a = Integer.parseInt(strCurYear); // ** this is key point
+		//if(Constant.PACE == 2)a = Integer.parseInt(strCurYear); // ** this is key point
 		return a;
 	}
 	public static int getCurMonth(){

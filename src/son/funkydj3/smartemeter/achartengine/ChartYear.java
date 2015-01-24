@@ -81,7 +81,7 @@ public class ChartYear extends Fragment {
 				tmp1 = Constant.this_year_kWh[i];
 				tmp2 = 300 * (Math.round(tmp1*1000d)/1000d); // * get point 3
 				Constant.this_year_charge[i] = (int)(tmp2);
-				mCurrentSeries.add(i, Constant.this_year_kWh[i]);
+				mCurrentSeries.add(i, Math.round(Constant.this_year_kWh[i]));
 			}
 			if(mChart != null) mChart.repaint();
 			

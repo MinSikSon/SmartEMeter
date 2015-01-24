@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
 		btn_Main5.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent iii = new Intent(MainActivity.this, Chart.class);
+				Intent iii = new Intent(MainActivity.this, Saving.class);
 				startActivity(iii);
 			}
 		});

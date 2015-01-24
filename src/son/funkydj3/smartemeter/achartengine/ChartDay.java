@@ -65,12 +65,11 @@ public class ChartDay extends Fragment {
 			}
 			double tmp1, tmp2;
 			for(int i = 1 ; i < 13 ; i++){
-				tmp1 = Constant.today_kWh[i];
-				tmp1 = Math.round(tmp1*1000d)/1000d; // * get point 3
-				tmp2 = Constant.today_kWh[i+12];
-				tmp2 = Math.round(tmp2*1000d)/1000d; // * get point 3
+				tmp1 = (Math.round(Constant.today_kWh[i]*1000d))/1000d; // * get point 3
+				tmp2 = (Math.round(Constant.today_kWh[i+12]*1000d))/1000d; // * get point 3
 				mCurrentSeries3_1.add(i, tmp1);
 				mCurrentSeries3_2.add(i+12, tmp2);
+				//Log.d("SON", ""+tmp1+" / " + tmp2);
 			}
 			if(mChart3_1 != null) mChart3_1.repaint();
 			if(mChart3_2 != null) mChart3_2.repaint();

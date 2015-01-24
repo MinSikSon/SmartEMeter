@@ -16,8 +16,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Pairing\nN\nGauging"
-            android:textSize="33dp" />
+            android:text="Gauging"
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/btn_Main2"
@@ -55,7 +55,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Saving"
-            android:textSize="35dp" />
+            android:textSize="32dp" />
 
         <Button
             android:id="@+id/btn_Main6"
