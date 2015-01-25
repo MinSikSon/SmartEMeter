@@ -9,6 +9,8 @@
     <string name="title_activity_chart_day">ChartDay</string>
     <string name="title_activity_chart">Chart</string>
     <string name="title_activity_option">Option</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">GaugeView</string>
 
     <!-- BluetoothChat -->
     <string name="send">Send</string>
@@ -34,5 +36,7 @@
     <string name="title_activity_loading">RP</string>
     <string name="title_activity_guage">Guage</string>
     <string name="title_activity_saving">Saving</string>
+    <string name="title_activity_gauge_view">GaugeView</string>
+    <string name="title_activity_gauge">GaugeActivity</string>
 
 </resources>

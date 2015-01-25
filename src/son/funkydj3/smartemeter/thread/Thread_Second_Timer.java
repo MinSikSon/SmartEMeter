@@ -29,7 +29,7 @@ public class Thread_Second_Timer extends Thread {
 			Constant.COUNT3 += 1;
 			
 			Constant.GET_TST_STATE = "" + Thread.currentThread().getState();
-			Log.d("SON", ""+Thread.currentThread().getState());
+			//Log.d("SON", ""+Thread.currentThread().getState());
 			if(Constant.BREAK_TST == 1){
 				Constant.BREAK_TST = 0;
 				Log.d("SON","BREAK_TST");

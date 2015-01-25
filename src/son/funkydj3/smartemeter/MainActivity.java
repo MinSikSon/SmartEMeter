@@ -2,8 +2,9 @@ package son.funkydj3.smartemeter;
 
 import son.funkydj3.smartemeter.achartengine.Chart;
 import son.funkydj3.smartemeter.etc.Constant;
-import son.funkydj3.smartemeter.gauge.Guage;
+import son.funkydj3.smartemeter.gauge.GaugeActivity;
 import son.funkydj3.smartemeter.option.Option;
+import son.funkydj3.smartemeter.saving.Saving;
 import son.funkydj3.smartemeter.thread.Thread_Second_Timer;
 import android.app.Activity;
 import android.content.Intent;
@@ -97,7 +98,7 @@ public class MainActivity extends Activity {
 		btn_Main1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(MainActivity.this, Guage.class);
+				Intent i = new Intent(MainActivity.this, GaugeActivity.class);
 				startActivity(i);
 			}
 		});
