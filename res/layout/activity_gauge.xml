@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/title"
             android:gravity="center"
-            android:text="Display Present Data"
+            android:text="Display Metering Data"
             android:textColor="@color/WHITE"
             android:textSize="18dp" />
     </LinearLayout>
@@ -28,24 +28,34 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         android:background="@drawable/background_dark"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/tv_gauge_date"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:layout_weight="2"
             android:background="@color/HOLOCOLOR"
-            android:textColor="@color/WHITE" />
+            android:gravity="center"
+            android:textColor="@color/WHITE"
+            android:textSize="40dp" 
+            android:text="01 Jan 2015"/>
 
-        <Button
+        <TextView
+            android:id="@+id/tv_gauge_time"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="3"
-            android:text="display last month charge"
-            android:textSize="12dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="2"
+            android:background="@color/HOLOCOLOR"
+            android:gravity="center"
+            android:textColor="@color/WHITE"
+            android:textSize="45dp"
+            android:text="12:00:00" />
     </LinearLayout>
 
     <LinearLayout
@@ -67,30 +77,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:text="0"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="35dp" />
 
             <TextView
                 android:id="@+id/tv_gauge_voltage"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:text="0"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="35dp" />
 
             <TextView
                 android:id="@+id/tv_gauge_current"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:text="0"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="35dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -104,25 +114,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text=" W"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text=" V"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text=" mA"
                 android:textColor="@color/BLACK"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
         </LinearLayout>
     </LinearLayout>
 

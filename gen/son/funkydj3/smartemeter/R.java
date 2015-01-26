@@ -8,263 +8,30 @@
 package son.funkydj3.smartemeter;
 
 public final class R {
-    public static final class array {
-        public static final int rangeColors=0x7f040001;
-        public static final int ranges=0x7f040000;
-    }
     public static final class attr {
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int divisions=0x7f010013;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int innerRimBorderWidth=0x7f01000c;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int innerRimWidth=0x7f01000b;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int needleHeight=0x7f01000e;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int needleWidth=0x7f01000d;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int outerBorderWidth=0x7f010009;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int outerRimWidth=0x7f01000a;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int outerShadowWidth=0x7f010008;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int rangeColors=0x7f010016;
-        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-         */
-        public static final int rangeValues=0x7f010015;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int scaleEndValue=0x7f010011;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int scalePosition=0x7f01000f;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int scaleStartAngle=0x7f010012;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int scaleStartValue=0x7f010010;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showInnerRim=0x7f010003;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showNeedle=0x7f010004;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showOuterBorder=0x7f010001;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showOuterRim=0x7f010002;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showOuterShadow=0x7f010000;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showRanges=0x7f010006;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showScale=0x7f010005;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int showText=0x7f010007;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int subdivisions=0x7f010014;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int textShadowColor=0x7f01001d;
-        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-         */
-        public static final int textUnit=0x7f01001a;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int textUnitColor=0x7f01001b;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int textUnitSize=0x7f01001c;
-        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-         */
-        public static final int textValue=0x7f010017;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int textValueColor=0x7f010018;
-        /** <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int textValueSize=0x7f010019;
     }
     public static final class color {
-        public static final int BACKGROUNDCOLOR=0x7f050014;
-        public static final int BLACK=0x7f050001;
-        public static final int CHARTBACKGOUND=0x7f050012;
-        public static final int DARKBLUE=0x7f050005;
-        public static final int GREEN=0x7f050002;
-        public static final int HOLOCOLOR=0x7f050013;
-        public static final int RED=0x7f050003;
-        public static final int SHINEGREEN=0x7f050004;
-        public static final int SUNSET=0x7f050010;
-        public static final int SUNSHINE=0x7f05000f;
-        public static final int TITLE=0x7f050011;
-        public static final int WHITE=0x7f050000;
-        public static final int WtoB1=0x7f050006;
-        public static final int WtoB2=0x7f050007;
-        public static final int WtoB3=0x7f050008;
-        public static final int WtoB4=0x7f050009;
-        public static final int WtoB5=0x7f05000a;
-        public static final int WtoB6=0x7f05000b;
-        public static final int WtoB7=0x7f05000c;
-        public static final int WtoB8=0x7f05000d;
-        public static final int YELLOW=0x7f05000e;
+        public static final int BACKGROUNDCOLOR=0x7f040014;
+        public static final int BLACK=0x7f040001;
+        public static final int CHARTBACKGOUND=0x7f040012;
+        public static final int DARKBLUE=0x7f040005;
+        public static final int GREEN=0x7f040002;
+        public static final int HOLOCOLOR=0x7f040013;
+        public static final int RED=0x7f040003;
+        public static final int SHINEGREEN=0x7f040004;
+        public static final int SUNSET=0x7f040010;
+        public static final int SUNSHINE=0x7f04000f;
+        public static final int TITLE=0x7f040011;
+        public static final int WHITE=0x7f040000;
+        public static final int WtoB1=0x7f040006;
+        public static final int WtoB2=0x7f040007;
+        public static final int WtoB3=0x7f040008;
+        public static final int WtoB4=0x7f040009;
+        public static final int WtoB5=0x7f04000a;
+        public static final int WtoB6=0x7f04000b;
+        public static final int WtoB7=0x7f04000c;
+        public static final int WtoB8=0x7f04000d;
+        public static final int YELLOW=0x7f04000e;
     }
     public static final class drawable {
         public static final int background_dark=0x7f020000;
@@ -311,41 +78,62 @@ containing a value of this type.
         public static final int title=0x7f020029;
     }
     public static final class id {
-        public static final int btn_Chart1=0x7f090001;
-        public static final int btn_Chart2=0x7f090002;
-        public static final int btn_Chart3=0x7f090003;
-        public static final int btn_Main1=0x7f090010;
-        public static final int btn_Main2=0x7f090011;
-        public static final int btn_Main5=0x7f090013;
-        public static final int btn_Main6=0x7f090014;
-        public static final int btn_display_add=0x7f09000b;
-        public static final int button_scan=0x7f09001b;
-        public static final int chart_day_1=0x7f090005;
-        public static final int chart_day_2=0x7f090006;
-        public static final int chart_month=0x7f090008;
-        public static final int chart_year=0x7f09000c;
-        public static final int discoverable=0x7f090022;
-        public static final int img_Main1=0x7f090012;
-        public static final int insecure_connect_scan=0x7f090021;
-        public static final int new_devices=0x7f09001a;
-        public static final int paired_devices=0x7f090018;
-        public static final int secure_connect_scan=0x7f090020;
-        public static final int test=0x7f09001f;
-        public static final int textView1=0x7f090009;
-        public static final int textView2=0x7f090007;
-        public static final int textView3=0x7f090004;
-        public static final int title_left_text=0x7f090015;
-        public static final int title_new_devices=0x7f090019;
-        public static final int title_paired_devices=0x7f090017;
-        public static final int title_right_text=0x7f090016;
-        public static final int tv_current=0x7f09001c;
-        public static final int tv_gauge_current=0x7f09000f;
-        public static final int tv_gauge_power=0x7f09000d;
-        public static final int tv_gauge_voltage=0x7f09000e;
-        public static final int tv_sum_last_year_charge=0x7f09000a;
-        public static final int tv_time=0x7f09001e;
-        public static final int tv_voltage=0x7f09001d;
-        public static final int viewpager=0x7f090000;
+        public static final int btn_Chart1=0x7f080001;
+        public static final int btn_Chart2=0x7f080002;
+        public static final int btn_Chart3=0x7f080003;
+        public static final int btn_Main1=0x7f080025;
+        public static final int btn_Main2=0x7f080026;
+        public static final int btn_Main5=0x7f080028;
+        public static final int btn_Main6=0x7f080029;
+        public static final int btn_display_add=0x7f080012;
+        public static final int btn_display_add2=0x7f08000b;
+        public static final int btn_display_add3=0x7f080006;
+        public static final int button_scan=0x7f080030;
+        public static final int chart_day_1=0x7f080007;
+        public static final int chart_day_2=0x7f080008;
+        public static final int chart_month=0x7f08000f;
+        public static final int chart_year=0x7f08001f;
+        public static final int discoverable=0x7f080037;
+        public static final int img_Main1=0x7f080027;
+        public static final int insecure_connect_scan=0x7f080036;
+        public static final int new_devices=0x7f08002f;
+        public static final int paired_devices=0x7f08002d;
+        public static final int secure_connect_scan=0x7f080035;
+        public static final int test=0x7f080034;
+        public static final int textView1=0x7f080010;
+        public static final int textView2=0x7f080009;
+        public static final int textView3=0x7f080004;
+        public static final int title_left_text=0x7f08002a;
+        public static final int title_new_devices=0x7f08002e;
+        public static final int title_paired_devices=0x7f08002c;
+        public static final int title_right_text=0x7f08002b;
+        public static final int tv_chart_month_day11_20=0x7f08000d;
+        public static final int tv_chart_month_day1_10=0x7f08000c;
+        public static final int tv_chart_month_day21_31=0x7f08000e;
+        public static final int tv_chart_year_month1=0x7f080013;
+        public static final int tv_chart_year_month10=0x7f08001c;
+        public static final int tv_chart_year_month11=0x7f08001d;
+        public static final int tv_chart_year_month12=0x7f08001e;
+        public static final int tv_chart_year_month2=0x7f080014;
+        public static final int tv_chart_year_month3=0x7f080015;
+        public static final int tv_chart_year_month4=0x7f080016;
+        public static final int tv_chart_year_month5=0x7f080017;
+        public static final int tv_chart_year_month6=0x7f080018;
+        public static final int tv_chart_year_month7=0x7f080019;
+        public static final int tv_chart_year_month8=0x7f08001a;
+        public static final int tv_chart_year_month9=0x7f08001b;
+        public static final int tv_current=0x7f080031;
+        public static final int tv_gauge_current=0x7f080024;
+        public static final int tv_gauge_date=0x7f080020;
+        public static final int tv_gauge_power=0x7f080022;
+        public static final int tv_gauge_time=0x7f080021;
+        public static final int tv_gauge_voltage=0x7f080023;
+        public static final int tv_sum_this_month_charge=0x7f08000a;
+        public static final int tv_sum_this_year_charge=0x7f080011;
+        public static final int tv_sum_today_kwh=0x7f080005;
+        public static final int tv_time=0x7f080033;
+        public static final int tv_voltage=0x7f080032;
+        public static final int viewpager=0x7f080000;
     }
     public static final class layout {
         public static final int activity_chart=0x7f030000;
@@ -364,46 +152,46 @@ containing a value of this type.
         public static final int bt_message=0x7f03000d;
     }
     public static final class menu {
-        public static final int option_menu=0x7f080000;
+        public static final int option_menu=0x7f070000;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int bt_not_enabled_leaving=0x7f06000c;
-        public static final int button_scan=0x7f060016;
-        public static final int discoverable=0x7f060019;
-        public static final int hello_world=0x7f060001;
-        public static final int insecure_connect=0x7f060018;
-        public static final int menu_settings=0x7f060008;
-        public static final int none_found=0x7f060013;
-        public static final int none_paired=0x7f060012;
-        public static final int not_connected=0x7f06000b;
+        public static final int app_name=0x7f050000;
+        public static final int bt_not_enabled_leaving=0x7f05000c;
+        public static final int button_scan=0x7f050016;
+        public static final int discoverable=0x7f050019;
+        public static final int hello_world=0x7f050001;
+        public static final int insecure_connect=0x7f050018;
+        public static final int menu_settings=0x7f050008;
+        public static final int none_found=0x7f050013;
+        public static final int none_paired=0x7f050012;
+        public static final int not_connected=0x7f05000b;
         /**  DeviceListActivity 
          */
-        public static final int scanning=0x7f060010;
+        public static final int scanning=0x7f050010;
         /**  Options Menu 
          */
-        public static final int secure_connect=0x7f060017;
-        public static final int select_device=0x7f060011;
+        public static final int secure_connect=0x7f050017;
+        public static final int select_device=0x7f050011;
         /**  BluetoothChat 
          */
-        public static final int send=0x7f06000a;
-        public static final int title_activity_chart=0x7f060006;
-        public static final int title_activity_chart_day=0x7f060005;
-        public static final int title_activity_chart_month=0x7f060004;
-        public static final int title_activity_chart_year=0x7f060003;
-        public static final int title_activity_gauge=0x7f06001e;
-        public static final int title_activity_gauge_view=0x7f06001d;
-        public static final int title_activity_guage=0x7f06001b;
-        public static final int title_activity_loading=0x7f06001a;
-        public static final int title_activity_main=0x7f060009;
-        public static final int title_activity_option=0x7f060007;
-        public static final int title_activity_saving=0x7f06001c;
-        public static final int title_activity_splash=0x7f060002;
-        public static final int title_connected_to=0x7f06000e;
-        public static final int title_connecting=0x7f06000d;
-        public static final int title_not_connected=0x7f06000f;
-        public static final int title_other_devices=0x7f060015;
-        public static final int title_paired_devices=0x7f060014;
+        public static final int send=0x7f05000a;
+        public static final int title_activity_chart=0x7f050006;
+        public static final int title_activity_chart_day=0x7f050005;
+        public static final int title_activity_chart_month=0x7f050004;
+        public static final int title_activity_chart_year=0x7f050003;
+        public static final int title_activity_gauge=0x7f05001e;
+        public static final int title_activity_gauge_view=0x7f05001d;
+        public static final int title_activity_guage=0x7f05001b;
+        public static final int title_activity_loading=0x7f05001a;
+        public static final int title_activity_main=0x7f050009;
+        public static final int title_activity_option=0x7f050007;
+        public static final int title_activity_saving=0x7f05001c;
+        public static final int title_activity_splash=0x7f050002;
+        public static final int title_connected_to=0x7f05000e;
+        public static final int title_connecting=0x7f05000d;
+        public static final int title_not_connected=0x7f05000f;
+        public static final int title_other_devices=0x7f050015;
+        public static final int title_paired_devices=0x7f050014;
     }
     public static final class style {
         /** 
@@ -418,498 +206,9 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f060001;
     }
-    public static final class styleable {
-        /** Attributes that can be used with a GaugeView.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #GaugeView_divisions son.funkydj3.smartemeter:divisions}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_innerRimBorderWidth son.funkydj3.smartemeter:innerRimBorderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_innerRimWidth son.funkydj3.smartemeter:innerRimWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_needleHeight son.funkydj3.smartemeter:needleHeight}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_needleWidth son.funkydj3.smartemeter:needleWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_outerBorderWidth son.funkydj3.smartemeter:outerBorderWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_outerRimWidth son.funkydj3.smartemeter:outerRimWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_outerShadowWidth son.funkydj3.smartemeter:outerShadowWidth}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_rangeColors son.funkydj3.smartemeter:rangeColors}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_rangeValues son.funkydj3.smartemeter:rangeValues}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_scaleEndValue son.funkydj3.smartemeter:scaleEndValue}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_scalePosition son.funkydj3.smartemeter:scalePosition}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_scaleStartAngle son.funkydj3.smartemeter:scaleStartAngle}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_scaleStartValue son.funkydj3.smartemeter:scaleStartValue}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showInnerRim son.funkydj3.smartemeter:showInnerRim}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showNeedle son.funkydj3.smartemeter:showNeedle}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showOuterBorder son.funkydj3.smartemeter:showOuterBorder}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showOuterRim son.funkydj3.smartemeter:showOuterRim}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showOuterShadow son.funkydj3.smartemeter:showOuterShadow}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showRanges son.funkydj3.smartemeter:showRanges}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showScale son.funkydj3.smartemeter:showScale}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_showText son.funkydj3.smartemeter:showText}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_subdivisions son.funkydj3.smartemeter:subdivisions}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textShadowColor son.funkydj3.smartemeter:textShadowColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textUnit son.funkydj3.smartemeter:textUnit}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textUnitColor son.funkydj3.smartemeter:textUnitColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textUnitSize son.funkydj3.smartemeter:textUnitSize}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textValue son.funkydj3.smartemeter:textValue}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textValueColor son.funkydj3.smartemeter:textValueColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #GaugeView_textValueSize son.funkydj3.smartemeter:textValueSize}</code></td><td></td></tr>
-           </table>
-           @see #GaugeView_divisions
-           @see #GaugeView_innerRimBorderWidth
-           @see #GaugeView_innerRimWidth
-           @see #GaugeView_needleHeight
-           @see #GaugeView_needleWidth
-           @see #GaugeView_outerBorderWidth
-           @see #GaugeView_outerRimWidth
-           @see #GaugeView_outerShadowWidth
-           @see #GaugeView_rangeColors
-           @see #GaugeView_rangeValues
-           @see #GaugeView_scaleEndValue
-           @see #GaugeView_scalePosition
-           @see #GaugeView_scaleStartAngle
-           @see #GaugeView_scaleStartValue
-           @see #GaugeView_showInnerRim
-           @see #GaugeView_showNeedle
-           @see #GaugeView_showOuterBorder
-           @see #GaugeView_showOuterRim
-           @see #GaugeView_showOuterShadow
-           @see #GaugeView_showRanges
-           @see #GaugeView_showScale
-           @see #GaugeView_showText
-           @see #GaugeView_subdivisions
-           @see #GaugeView_textShadowColor
-           @see #GaugeView_textUnit
-           @see #GaugeView_textUnitColor
-           @see #GaugeView_textUnitSize
-           @see #GaugeView_textValue
-           @see #GaugeView_textValueColor
-           @see #GaugeView_textValueSize
-         */
-        public static final int[] GaugeView = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
-            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
-            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
-            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
-            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
-            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017,
-            0x7f010018, 0x7f010019, 0x7f01001a, 0x7f01001b,
-            0x7f01001c, 0x7f01001d
-        };
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#divisions}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:divisions
-        */
-        public static final int GaugeView_divisions = 19;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#innerRimBorderWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:innerRimBorderWidth
-        */
-        public static final int GaugeView_innerRimBorderWidth = 12;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#innerRimWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:innerRimWidth
-        */
-        public static final int GaugeView_innerRimWidth = 11;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#needleHeight}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:needleHeight
-        */
-        public static final int GaugeView_needleHeight = 14;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#needleWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:needleWidth
-        */
-        public static final int GaugeView_needleWidth = 13;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#outerBorderWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:outerBorderWidth
-        */
-        public static final int GaugeView_outerBorderWidth = 9;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#outerRimWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:outerRimWidth
-        */
-        public static final int GaugeView_outerRimWidth = 10;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#outerShadowWidth}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:outerShadowWidth
-        */
-        public static final int GaugeView_outerShadowWidth = 8;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#rangeColors}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name son.funkydj3.smartemeter:rangeColors
-        */
-        public static final int GaugeView_rangeColors = 22;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#rangeValues}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name son.funkydj3.smartemeter:rangeValues
-        */
-        public static final int GaugeView_rangeValues = 21;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#scaleEndValue}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:scaleEndValue
-        */
-        public static final int GaugeView_scaleEndValue = 17;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#scalePosition}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:scalePosition
-        */
-        public static final int GaugeView_scalePosition = 15;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#scaleStartAngle}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:scaleStartAngle
-        */
-        public static final int GaugeView_scaleStartAngle = 18;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#scaleStartValue}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:scaleStartValue
-        */
-        public static final int GaugeView_scaleStartValue = 16;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showInnerRim}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showInnerRim
-        */
-        public static final int GaugeView_showInnerRim = 3;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showNeedle}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showNeedle
-        */
-        public static final int GaugeView_showNeedle = 4;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showOuterBorder}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showOuterBorder
-        */
-        public static final int GaugeView_showOuterBorder = 1;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showOuterRim}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showOuterRim
-        */
-        public static final int GaugeView_showOuterRim = 2;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showOuterShadow}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showOuterShadow
-        */
-        public static final int GaugeView_showOuterShadow = 0;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showRanges}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showRanges
-        */
-        public static final int GaugeView_showRanges = 6;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showScale}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showScale
-        */
-        public static final int GaugeView_showScale = 5;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#showText}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:showText
-        */
-        public static final int GaugeView_showText = 7;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#subdivisions}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:subdivisions
-        */
-        public static final int GaugeView_subdivisions = 20;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textShadowColor}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:textShadowColor
-        */
-        public static final int GaugeView_textShadowColor = 29;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textUnit}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name son.funkydj3.smartemeter:textUnit
-        */
-        public static final int GaugeView_textUnit = 26;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textUnitColor}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:textUnitColor
-        */
-        public static final int GaugeView_textUnitColor = 27;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textUnitSize}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:textUnitSize
-        */
-        public static final int GaugeView_textUnitSize = 28;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textValue}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
-or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-<p>May be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-          @attr name son.funkydj3.smartemeter:textValue
-        */
-        public static final int GaugeView_textValue = 23;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textValueColor}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:textValueColor
-        */
-        public static final int GaugeView_textValueColor = 24;
-        /**
-          <p>This symbol is the offset where the {@link son.funkydj3.smartemeter.R.attr#textValueSize}
-          attribute's value can be found in the {@link #GaugeView} array.
-
-
-          <p>Must be a floating point value, such as "<code>1.2</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name son.funkydj3.smartemeter:textValueSize
-        */
-        public static final int GaugeView_textValueSize = 25;
-    };
 }

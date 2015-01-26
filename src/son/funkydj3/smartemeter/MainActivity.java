@@ -35,13 +35,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Log.d("SON", "MainActivity - onCreate()");
+		if(Constant.D) Log.d("SON", "MainActivity - onCreate()");
 		init();
 		InfoDeviceDisplay();
-		if (Constant.initConstantCheck == 0) {
-			Constant.initConstant();
-			Constant.initConstantCheck = 1;
-		}
 
 		
 		if(Constant.GET_TST_STATE.equalsIgnoreCase("RUNNABLE")){
@@ -52,9 +48,9 @@ public class MainActivity extends Activity {
 			TT = new Thread_Second_Timer(mHandler);
 			TT.setDaemon(true);
 			TT.start();
-			Log.d("SON", "MainActivity - TT.start()");
+			if(Constant.D) Log.d("SON", "MainActivity - TT.start()");
 		//}
-		Log.d("SON", "TIME : " + System.currentTimeMillis());
+		if(Constant.D) Log.d("SON", "TIME : " + System.currentTimeMillis());
 	}
 	public static Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
@@ -158,12 +154,14 @@ public class MainActivity extends Activity {
 		Constant.scaledDensity = metrics.scaledDensity;
 		Constant.xdpi = metrics.xdpi;
 		Constant.ydpi = metrics.ydpi;
-		Log.d("SON", "Screen W x H pixels: " + Constant.widthPixels + " x "
-				+ Constant.heightPixels);
-		Log.d("SON", "Screen X x Y dpi: " + Constant.xdpi + " x "
-				+ Constant.ydpi);
-		Log.d("SON", "density = " + Constant.density + "  scaledDensity = "
-				+ Constant.scaledDensity + "  densityDpi = "
-				+ Constant.densityDpi);
+		if (Constant.D) {
+			Log.d("SON", "Screen W x H pixels: " + Constant.widthPixels + " x "
+					+ Constant.heightPixels);
+			Log.d("SON", "Screen X x Y dpi: " + Constant.xdpi + " x "
+					+ Constant.ydpi);
+			Log.d("SON", "density = " + Constant.density + "  scaledDensity = "
+					+ Constant.scaledDensity + "  densityDpi = "
+					+ Constant.densityDpi);
+		}
 	}
 }

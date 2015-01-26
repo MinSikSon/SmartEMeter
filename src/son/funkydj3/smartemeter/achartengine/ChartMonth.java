@@ -11,18 +11,22 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Color;
+import son.funkydj3.smartemeter.etc.Class_Time;
 import son.funkydj3.smartemeter.etc.Constant;
+import son.funkydj3.smartemeter.etc.SampleDataTable;
 import son.funkydj3.smartemeter.thread.Thread2;
-import son.funkydj3.smartemeter.thread.Thread3;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +36,13 @@ public class ChartMonth extends Fragment {
 	private XYMultipleSeriesDataset mDataset2 = new XYMultipleSeriesDataset();
 	private SimpleSeriesRenderer mCurrentRenderer2;
 	private XYMultipleSeriesRenderer mRenderer2 = new XYMultipleSeriesRenderer();
+	
+	private Button btn_display2;
+	
+	private TextView tv_sum_this_month_charge;
+	private TextView tv_chart_month_day1_10, tv_chart_month_day11_20, tv_chart_month_day21_31;
+	
+	
 	
 	public static ChartMonth newInstance(String title) {
 		ChartMonth pageFragment = new ChartMonth();
@@ -62,6 +73,18 @@ public class ChartMonth extends Fragment {
 				mCurrentSeries2.add(i, tmp1);
 			}
 			if(mChart2 != null) mChart2.repaint();
+			
+			// *tv
+			if(tv_chart_month_day21_31 != null){
+				if(Constant.D) Log.d("SON", "tv_chart_month_day21_31");
+				tv_chart_month_day1_10.setText(""+SampleDataTable.buf_month_charge_10[0]);
+				tv_chart_month_day11_20.setText(""+SampleDataTable.buf_month_charge_10[1]);
+				tv_chart_month_day21_31.setText(""+SampleDataTable.buf_month_charge_10[2]);
+			}
+			if(tv_sum_this_month_charge != null){
+				//Calculator.sumThisYearCharge();				
+				tv_sum_this_month_charge.setText("  " + Constant.this_year_charge[Class_Time.getCurMonth()] + " WON");
+			}
 		}
 	};
 
@@ -73,14 +96,27 @@ public class ChartMonth extends Fragment {
 		textView.setText(getArguments().getString("title"));
 
 		LinearLayout layout2 = (LinearLayout)view.findViewById(R.id.chart_month);
-		//if(mChart == null){
-			if (mChart2 == null) initChart2();
-			// * Study about "ChartFactory"
-			mChart2 = ChartFactory.getBarChartView(view.getContext(), mDataset2, mRenderer2, Type.DEFAULT);
-			layout2.addView(mChart2);
-		//} else{
-			//mChart.repaint();
-		//}
+		if (mChart2 == null) initChart2();
+		mChart2 = ChartFactory.getBarChartView(view.getContext(), mDataset2, mRenderer2, Type.DEFAULT);
+		layout2.addView(mChart2);
+		
+		
+		
+		btn_display2 = (Button) view.findViewById(R.id.btn_display_add2);
+		btn_display2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SampleDataTable.calculateSampleData();
+			}
+		});
+		
+		tv_sum_this_month_charge = (TextView)view.findViewById(R.id.tv_sum_this_month_charge);
+		tv_sum_this_month_charge.setText("  " + Constant.this_year_charge[Class_Time.getCurMonth()] + " WON");
+		
+		tv_chart_month_day1_10 = (TextView)view.findViewById(R.id.tv_chart_month_day1_10);
+		tv_chart_month_day11_20 = (TextView)view.findViewById(R.id.tv_chart_month_day11_20);
+		tv_chart_month_day21_31 = (TextView)view.findViewById(R.id.tv_chart_month_day21_31);
+		
 		return view;
 	}
 	
@@ -89,7 +125,7 @@ public class ChartMonth extends Fragment {
 		mDataset2.addSeries(mCurrentSeries2);
 		
 		mCurrentRenderer2 = new XYSeriesRenderer();
-		mCurrentRenderer2.setColor(Color.rgb(18, 105, 120));
+		mCurrentRenderer2.setColor(Color.rgb(153, 138, 0));
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer2.setDisplayChartValues(true);
 		mCurrentRenderer2.setChartValuesTextAlign(Align.CENTER);
@@ -137,7 +173,7 @@ public class ChartMonth extends Fragment {
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
-		mRenderer2.setPanEnabled(true, false); // * fix graph
+		mRenderer2.setPanEnabled(false, false); // * fix graph
 		double[] panLimits2 = new double[] {0,31.5,0,100};
 		mRenderer2.setPanLimits(panLimits2);
 		mRenderer2.setZoomEnabled(false, false); // * enable zoom
@@ -161,7 +197,8 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setXLabelsAngle(0);
 		//mRenderer2.setXLabels(30); // sets the number of integer labels to appear
 		for(int i = 1 ; i < 31 ; i++){
-			mRenderer2.addXTextLabel(i, Integer.toString(i));
+			//mRenderer2.addXTextLabel(i, Integer.toString(i));
+			mRenderer2.addXTextLabel(i, "");
 		}
 		
 		
@@ -170,14 +207,14 @@ public class ChartMonth extends Fragment {
 		mRenderer2.setYLabelsColor(0, Color.BLACK);
 		mRenderer2.setYLabelsAngle(0);
 		for(int i = 0 ; i < 21 ; i++)
-		mRenderer2.addYTextLabel(i*5, Integer.toString(i*5));
+		mRenderer2.addYTextLabel(i, Integer.toString(i));
 		
 		
 		mRenderer2.setBarSpacing(0.6);
 		mRenderer2.setXAxisMin(0.5);
-		mRenderer2.setXAxisMax(12.5);
+		mRenderer2.setXAxisMax(31.5);
 		mRenderer2.setYAxisMin(0);
-		mRenderer2.setYAxisMax(10);
+		mRenderer2.setYAxisMax(8);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer2.addSeriesRenderer(mCurrentRenderer2);

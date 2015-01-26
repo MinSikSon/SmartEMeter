@@ -1,3 +1,8 @@
+// Language : Korean , English
+// Charge : won, dollar 
+// speed up : x2, x3, x4... 
+
+
 package son.funkydj3.smartemeter.option;
 
 import son.funkydj3.smartemeter.R;

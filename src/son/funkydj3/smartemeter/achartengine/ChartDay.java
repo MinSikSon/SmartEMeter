@@ -11,7 +11,9 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Color;
+import son.funkydj3.smartemeter.etc.Class_Time;
 import son.funkydj3.smartemeter.etc.Constant;
+import son.funkydj3.smartemeter.etc.SampleDataTable;
 import son.funkydj3.smartemeter.thread.Thread3;
 import android.R.color;
 import android.graphics.Color;
@@ -24,6 +26,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +43,10 @@ public class ChartDay extends Fragment {
 	private XYMultipleSeriesDataset mDataset3_2 = new XYMultipleSeriesDataset();
 	private SimpleSeriesRenderer mCurrentRenderer3_2;
 	private XYMultipleSeriesRenderer mRenderer3_2 = new XYMultipleSeriesRenderer();
+	
+	private Button btn_display3;
+	
+	private TextView tv_sum_today_kwh;
 	
 	public static ChartDay newInstance(String title) {
 		ChartDay pageFragment = new ChartDay();
@@ -73,6 +81,11 @@ public class ChartDay extends Fragment {
 			}
 			if(mChart3_1 != null) mChart3_1.repaint();
 			if(mChart3_2 != null) mChart3_2.repaint();
+			
+			if(tv_sum_today_kwh != null){
+				//Calculator.sumThisYearCharge();				
+				tv_sum_today_kwh.setText("  " + Math.round(Constant.this_month_kWh[Class_Time.getCurDay()]*10000d)/10000d + " kWh");
+			}
 		}
 	};
 
@@ -93,6 +106,17 @@ public class ChartDay extends Fragment {
 		mChart3_2 = ChartFactory.getBarChartView(view.getContext(), mDataset3_2, mRenderer3_2, Type.DEFAULT);
 		layout3_2.addView(mChart3_2);
 		
+		btn_display3 = (Button) view.findViewById(R.id.btn_display_add3);
+		btn_display3.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				SampleDataTable.calculateSampleData();
+			}
+		});
+		
+		tv_sum_today_kwh = (TextView)view.findViewById(R.id.tv_sum_today_kwh);
+		tv_sum_today_kwh.setText("  " + Constant.this_month_kWh[Class_Time.getCurDay()] + " kWh");
+		
 		return view;
 	}
 	
@@ -101,16 +125,16 @@ public class ChartDay extends Fragment {
 		mDataset3_1.addSeries(mCurrentSeries3_1);
 		
 		mCurrentRenderer3_1 = new XYSeriesRenderer();
-		mCurrentRenderer3_1.setColor(Color.WHITE);
+		mCurrentRenderer3_1.setColor(Color.rgb(198, 101, 84));
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer3_1.setDisplayChartValues(true);
 		mCurrentRenderer3_1.setChartValuesTextAlign(Align.CENTER);
 		if(Constant.widthPixels <= 480){
-			mCurrentRenderer3_1.setChartValuesTextSize(20);
+			mCurrentRenderer3_1.setChartValuesTextSize(15);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mCurrentRenderer3_1.setChartValuesTextSize(20);
+			mCurrentRenderer3_1.setChartValuesTextSize(15);
 		}else if(Constant.widthPixels >= 1080){
-			mCurrentRenderer3_1.setChartValuesTextSize(30);
+			mCurrentRenderer3_1.setChartValuesTextSize(25);
 		}
 		
 	    //mRenderer.setClickEnabled(false);
@@ -151,7 +175,7 @@ public class ChartDay extends Fragment {
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
-		mRenderer3_1.setPanEnabled(false, true); // * fix graph
+		mRenderer3_1.setPanEnabled(false, false); // * fix graph
 		double[] panLimits3_1 = new double[] {0.5,12.8,0,40};
 		mRenderer3_1.setPanLimits(panLimits3_1);
 		mRenderer3_1.setZoomEnabled(false, false); // * enable zoom
@@ -186,11 +210,11 @@ public class ChartDay extends Fragment {
 			mRenderer3_1.addYTextLabel(i*2, Integer.toString(i*2));
 		
 		
-		mRenderer3_1.setBarSpacing(0.6);
+		mRenderer3_1.setBarSpacing(0.5);
 		mRenderer3_1.setXAxisMin(0.5);
 		mRenderer3_1.setXAxisMax(12.8);
 		mRenderer3_1.setYAxisMin(0);
-		mRenderer3_1.setYAxisMax(8);
+		mRenderer3_1.setYAxisMax(1);
 		
 		mRenderer3_1.setPointSize(1.5f);
 	    mRenderer3_1.addSeriesRenderer(mCurrentRenderer3_1);
@@ -201,16 +225,16 @@ public class ChartDay extends Fragment {
 		mDataset3_2.addSeries(mCurrentSeries3_2);
 		
 		mCurrentRenderer3_2 = new XYSeriesRenderer();
-		mCurrentRenderer3_2.setColor(Color.WHITE);
+		mCurrentRenderer3_2.setColor(Color.rgb(211, 77, 57));
 		//mCurrentRenderer.setColor(Class_Color.GREEN()); // * GREEN
 		mCurrentRenderer3_2.setDisplayChartValues(true);
 		mCurrentRenderer3_2.setChartValuesTextAlign(Align.CENTER);
 		if(Constant.widthPixels <= 480){
-			mCurrentRenderer3_2.setChartValuesTextSize(20);
+			mCurrentRenderer3_2.setChartValuesTextSize(15);
 		}else if(Constant.widthPixels > 480 && Constant.widthPixels <= 720){
-			mCurrentRenderer3_2.setChartValuesTextSize(20);
+			mCurrentRenderer3_2.setChartValuesTextSize(15);
 		}else if(Constant.widthPixels >= 1080){
-			mCurrentRenderer3_2.setChartValuesTextSize(30);
+			mCurrentRenderer3_2.setChartValuesTextSize(25);
 		}
 		
 	    //mRenderer.setClickEnabled(false);
@@ -250,7 +274,7 @@ public class ChartDay extends Fragment {
 		//mRenderer.setBackgroundColor(Color.rgb(255, 228, 0));
 		
 		
-		mRenderer3_2.setPanEnabled(false, true); // * fix graph
+		mRenderer3_2.setPanEnabled(false, false); // * fix graph
 		double[] panLimits3_2 = new double[] {12.5,24.8,0,40};
 		mRenderer3_2.setPanLimits(panLimits3_2);
 		mRenderer3_2.setZoomEnabled(false, false); // * enable zoom
@@ -281,15 +305,15 @@ public class ChartDay extends Fragment {
 		//mRenderer3_2.setYLabels(2);
 		mRenderer3_2.setYLabelsColor(0, Color.BLACK);
 		mRenderer3_2.setYLabelsAngle(0);
-		for(int i = 0 ; i < 20 ; i++)
-			mRenderer3_2.addYTextLabel(i*2, Integer.toString(i*2));
+		for(int i = 0 ; i < 10 ; i++)
+			mRenderer3_2.addYTextLabel(i, Integer.toString(i));
 		
 		
-		mRenderer3_2.setBarSpacing(0.6);
+		mRenderer3_2.setBarSpacing(0.5);
 		mRenderer3_2.setXAxisMin(12.5);
 		mRenderer3_2.setXAxisMax(24.8);
 		mRenderer3_2.setYAxisMin(0);
-		mRenderer3_2.setYAxisMax(8);
+		mRenderer3_2.setYAxisMax(1);
 		
 		//mRenderer2.setPointSize(1.0f);
 	    mRenderer3_2.addSeriesRenderer(mCurrentRenderer3_2);
