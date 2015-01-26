@@ -47,7 +47,7 @@ public class ChartYear extends Fragment {
 	private TextView tv_sum_this_year_charge;
 
 	private TextView[] tv_chart_year_month = new TextView[]{null,null,null,null,null,null,null,null,null,null,null,null,null};
-	private int[] percentTemp = new int[13];
+	private double[] percentTemp = new double[13];
 	private int percentTempCalOK = 0;
 	
 	public static ChartYear newInstance(String title) {
@@ -91,7 +91,7 @@ public class ChartYear extends Fragment {
 			if(tv_chart_year_month[12] != null){
 				Calculator.sumThisYearCharge();
 				for(int i = 1 ; i<13 ; i++){
-					percentTemp [i] = ((Constant.this_year_charge[i])*100) / (Constant.sum_this_year_charge);
+					percentTemp [i] = Math.round(((double)(100 * (Constant.this_year_charge[i])) / (double)Constant.sum_this_year_charge)*10d)/10d;
 					tv_chart_year_month[i] .setText(""+Constant.this_year_charge[i] + "  (" + percentTemp[i] +"%)");
 				}
 			}

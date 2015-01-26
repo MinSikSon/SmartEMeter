@@ -17,8 +17,12 @@ public class GaugeActivity extends Activity {
 	public static TextView tv_gauge_power;
 	public static TextView tv_gauge_voltage;
 	public static TextView tv_gauge_current;
+	public static TextView tv_gauge_kWh;
+	
 	public static Thread_Gauge TG;
 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,6 +34,8 @@ public class GaugeActivity extends Activity {
 		tv_gauge_voltage = (TextView) findViewById(R.id.tv_gauge_voltage);
 		tv_gauge_current = (TextView) findViewById(R.id.tv_gauge_current);
 
+		tv_gauge_kWh = (TextView) findViewById(R.id.tv_gauge_kWh);
+		
 		TG = new Thread_Gauge(mHandler_Gauge);
 		TG.setDaemon(true);
 		TG.start();
@@ -41,7 +47,9 @@ public class GaugeActivity extends Activity {
 			tv_gauge_time.setText(Class_Time.getCurTimeToString());
 			tv_gauge_power.setText(Double.toString((Math.round(Class_Data.Data_POWER*1000d))/1000d));
 			tv_gauge_voltage.setText(Double.toString((Math.round(Class_Data.Data_VOLTAGE*1000d))/1000d));
-			tv_gauge_current.setText(Double.toString((Math.round(Class_Data.Data_CURRENT*1000d))/1000d));
+			tv_gauge_current.setText(Double.toString((Math.round(Class_Data.Data_CURRENT_mA*10000d))/10000d));
+			String tv_gauge_kWh_temp = Double.toString(Math.round(Class_Data.Data_POWER*3600))+"\nkWh"; 
+			tv_gauge_kWh.setText(tv_gauge_kWh_temp);
 		}
 	};
 

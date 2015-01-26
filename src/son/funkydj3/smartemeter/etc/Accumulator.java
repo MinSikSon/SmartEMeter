@@ -6,7 +6,7 @@ public class Accumulator {
 	private static int off_month1 = 0;
 	private static int off_year1 = 0;
 	public static void getANDaccmulatePower(){
-		Constant.wattPerSecond = Class_Data.Data_POWER/1000;
+		Constant.wattPerSecond = Class_Data.Data_POWER;
 		Constant.KwattPerSecond = Constant.wattPerSecond/1000;
 		Constant.accumulatedWatt += Constant.wattPerSecond;
 		Constant.accumulatedkWh = Constant.accumulatedWatt/1000;

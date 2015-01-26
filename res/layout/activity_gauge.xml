@@ -40,9 +40,9 @@
             android:layout_weight="2"
             android:background="@color/HOLOCOLOR"
             android:gravity="center"
+            android:text="01 Jan 2015"
             android:textColor="@color/WHITE"
-            android:textSize="40dp" 
-            android:text="01 Jan 2015"/>
+            android:textSize="40dp" />
 
         <TextView
             android:id="@+id/tv_gauge_time"
@@ -53,9 +53,9 @@
             android:layout_weight="2"
             android:background="@color/HOLOCOLOR"
             android:gravity="center"
+            android:text="12:00:00"
             android:textColor="@color/WHITE"
-            android:textSize="45dp"
-            android:text="12:00:00" />
+            android:textSize="45dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,7 +68,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="3.5"
             android:gravity="center"
             android:orientation="vertical" >
 
@@ -106,7 +106,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2.5"
             android:gravity="center"
             android:orientation="vertical" >
 
@@ -134,6 +134,24 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text=" mA"
+                android:textColor="@color/BLACK"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_gauge_kWh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/TITLE"
+                android:gravity="center"
+                android:text=" \nkWh"
                 android:textColor="@color/BLACK"
                 android:textSize="25dp" />
         </LinearLayout>

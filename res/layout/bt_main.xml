@@ -52,19 +52,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Please Click the Menu Button, and..\nConnect a device with meter" />
+            android:text="Please Click this Button..\n
+After connect this device \n
+with E-Meter\n\n
+if you want to connect \n
+with board\nClick [Menu Button]" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="vertical" >
+        android:gravity="center"
+        android:orientation="horizontal" >
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:id="@+id/img_bluetooth"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bluetooth_disconnect1" />
     </LinearLayout>
 
 </LinearLayout>

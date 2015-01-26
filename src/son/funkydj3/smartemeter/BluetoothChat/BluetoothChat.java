@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -108,6 +109,7 @@ public class BluetoothChat extends Activity {
 	public static TextView tv_time;
 	
 	public static Button btn_Guage;
+	public static ImageView img_bluetoothimage;
 	
 	//*point* thread
 	public static BT_Thread ST= null; 
@@ -128,6 +130,7 @@ public class BluetoothChat extends Activity {
 		tv_voltage = (TextView)findViewById(R.id.tv_voltage);
 		tv_time = (TextView)findViewById(R.id.tv_time);
 		
+		img_bluetoothimage = (ImageView)findViewById(R.id.img_bluetooth);
 		
 		//*
 		btn_Guage = (Button)findViewById(R.id.test);
@@ -169,7 +172,7 @@ public class BluetoothChat extends Activity {
 		super.onStart();
 		if (D)
 			Log.e(TAG, "++ ON START ++");
-		Log.d("SON", "BluetoothChat / onStart()");
+		if(D_SON) Log.d("SON", "BluetoothChat / onStart()");
 
 		// If BT is not on, request that it be enabled.
 		// setupChat() will then be called during onActivityResult
@@ -183,7 +186,7 @@ public class BluetoothChat extends Activity {
 				setupChat();
 		}
 
-		Log.d("SON", "auto pairing test");
+		if(D_SON) Log.d("SON", "auto pairing test");
 		// *auto pairing test*
 		/*if (mBluetoothAdapter.isEnabled()){
 			BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(BLUETOOTH_SERIAL);
@@ -218,7 +221,7 @@ public class BluetoothChat extends Activity {
 	}
 
 	private void setupChat() {
-		Log.d(TAG, "setupChat()");
+		if(D_SON)Log.d(TAG, "setupChat()");
 
 		// Initialize the array adapter for the conversation thread
 		mConversationArrayAdapter = new ArrayAdapter<String>(this,
@@ -377,7 +380,7 @@ public class BluetoothChat extends Activity {
 				if(D_SON) Log.d("SON","---------------------------------------------------");
 
 				String readBufToStr = BT_TypeCasting.byteToHex(readBuf); // *point* byteToHex
-				Log.d("SON", "readBufToStr : " + readBufToStr);
+				if(D_SON) Log.d("SON", "readBufToStr : " + readBufToStr);
 				
 				BT_StringCutter ssc = new BT_StringCutter(readBufToStr);
 				ssc.Cutting();
@@ -390,15 +393,18 @@ public class BluetoothChat extends Activity {
 				VOLTAGE_String = ssc.get_VOLTAGE();
 				// Log.d("SON", "CUR & VOL String : " + CURRENT_String + " & "+ VOLTAGE_String);
 				if(D_SON)Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
-				Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
+				if(D_SON) Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
 				
 				{
-					CURRENT = (Math.round(BT_TypeCasting._6HexToDec(CURRENT_String)));
+					//************
+					CURRENT = (Math.round(BT_TypeCasting._8HexToDec(CURRENT_String)));
+					//Log.d("SON", "CURRENT : " + CURRENT);
 					CURRENT /= 10000;
+					//Log.d("SON", "CURRENT/10000 : " + CURRENT);
 				}
 				VOLTAGE = BT_TypeCasting.V_Gain(0.1 * BT_TypeCasting._4HexToDec(VOLTAGE_String));
 				//VOLTAGE = Son_TypeCasting.V_Gain(VOLTAGE);
-				Log.d("SON", "this");
+				if(D_SON) Log.d("SON", "this");
 				//*point* �� ���� �����ǿ� Data�� display�ȴ�
 				if(OK_ACK.equals("06")) {
 					if(VOLTAGE >= 210 && VOLTAGE <= 230){
@@ -521,6 +527,10 @@ public class BluetoothChat extends Activity {
 			byte[] send = { 1, 1 };
 			mChatService.write(send);
 			mOutStringBuffer.setLength(0);
+			
+			// *btn animation
+			if(STT.get_global_time()%4 == 0) btn_Guage.setTextColor(Color.BLACK);
+			else btn_Guage.setTextColor(Color.WHITE);
 			// mOutEditText.setText(mOutStringBuffer);
 				
 			//else if(mBluetoothAdapter.disable()) BLUETOOTH_ON = 0;
@@ -528,13 +538,15 @@ public class BluetoothChat extends Activity {
 			// *test end*
 			
 			if (BLUETOOTH_STATE_SON == 1) {
+				if(img_bluetoothimage != null) img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_connect);
 				if(RECEIVE_DATA_OK == 1){
 					tv_current.setText(CURRENT + " mA");
 					tv_voltage.setText(VOLTAGE + " V");
 					// *
-					Class_Data.Data_CURRENT = CURRENT;
-					Class_Data.Data_VOLTAGE = VOLTAGE;
-					Class_Data.Data_POWER = CURRENT*VOLTAGE;
+					Class_Data.Data_CURRENT_mA = CURRENT; // mA
+					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000; // A
+					Class_Data.Data_VOLTAGE = VOLTAGE; // V
+					Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A; // W = VI
 				}
 				if(STT.get_grid_time_hour() > 0 ){
 					tv_time.setText(STT.get_grid_time_hour() + " Hour " + STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
@@ -552,8 +564,14 @@ public class BluetoothChat extends Activity {
 				}
 				
 			} else {
-				Class_Data.Data_CURRENT = 0;
+				if(img_bluetoothimage != null) {
+					if(STT.get_global_time() % 4 == 0)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect1);
+					else if(STT.get_global_time() % 4 == 2)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect2);
+				}
+				Class_Data.Data_CURRENT_mA = 0;
+				Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
 				Class_Data.Data_VOLTAGE = 0;
+				Class_Data.Data_POWER = 0;
 				tv_current.setText("0 mA");
 				tv_voltage.setText("0 V");
 			}
