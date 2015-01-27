@@ -1,6 +1,9 @@
 package son.funkydj3.smartemeter.etc;
 
 public class Constant {
+	// *Saving*
+	public static int targetCharge = 15000;
+	
 	// *Option*
 	public static int speedUp = 1; // speedup
 	public static double powerSetting = 0; // powersetting

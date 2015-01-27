@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
-        android:layout_weight="1.2"
+        android:layout_weight="1.4"
         android:background="@drawable/background_dark"
         android:orientation="vertical" >
 
@@ -88,7 +88,7 @@
         android:id="@+id/chart_day_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.4"
+        android:layout_weight="3.3"
         android:background="@drawable/sunrise"
         android:orientation="vertical" >
     </LinearLayout>
@@ -97,7 +97,7 @@
         android:id="@+id/chart_day_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.4"
+        android:layout_weight="3.3"
         android:background="@drawable/sunset"
         android:orientation="vertical" >
     </LinearLayout>

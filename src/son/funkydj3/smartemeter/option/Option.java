@@ -87,11 +87,11 @@ public class Option extends Activity implements OnClickListener {
 			break;
 		case R.id.btn_option_powerset3:
 			Constant.powerSettingDeactivated = false;
-			Constant.powerSetting = 0.1;
+			Constant.powerSetting = 0.5;
 			break;
 		case R.id.btn_option_powerset4:
 			Constant.powerSettingDeactivated = false;
-			Constant.powerSetting = 0.5;
+			Constant.powerSetting = 1.0;
 			break;
 		default:
 			break;

@@ -57,7 +57,8 @@
         </activity>
         <activity
             android:name=".option.Option"
-            android:label="@string/title_activity_option" >
+            android:label="@string/title_activity_option"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".BluetoothChat.BluetoothChat"
@@ -78,19 +79,23 @@
         </activity>
         <activity
             android:name=".gauge.Guage"
-            android:label="@string/title_activity_guage" >
+            android:label="@string/title_activity_guage"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".saving.Saving"
-            android:label="@string/title_activity_saving" >
+            android:label="@string/title_activity_saving"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".gauge.GaugeView"
-            android:label="@string/title_activity_gauge_view" >
+            android:label="@string/title_activity_gauge_view"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="son.funkydj3.smartemeter.gauge.GaugeActivity"
-            android:label="@string/title_activity_gauge" >
+            android:label="@string/title_activity_gauge"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

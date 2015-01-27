@@ -42,12 +42,23 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:background="@color/WtoB7"
                 android:gravity="center"
                 android:text="TARGET CHARGE"
                 android:textColor="@color/WHITE"
-                android:textSize="35dp" />
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/txt_targetcharge_selected"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"
+                android:background="@color/WtoB7"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/WHITE"
+                android:textSize="15dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,6 +67,7 @@
                 android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/btn_saving_15000"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -63,6 +75,7 @@
                     android:textSize="15dp" />
 
                 <Button
+                    android:id="@+id/btn_saving_20000"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -70,6 +83,7 @@
                     android:textSize="15dp" />
 
                 <Button
+                    android:id="@+id/btn_saving_25000"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -77,6 +91,7 @@
                     android:textSize="15dp" />
 
                 <Button
+                    android:id="@+id/btn_saving_30000"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -103,10 +118,26 @@
                 android:textColor="@color/WHITE"
                 android:textSize="35dp" />
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2" />
+                android:layout_weight="4" >
+
+                <ImageView
+                    android:id="@+id/img_saving_currentphase"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/currentphase1" />
+
+                <TextView
+                    android:id="@+id/txt_saving_currentphase"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="CURRENT PHASE"
+                    android:textColor="@color/WHITE"
+                    android:textSize="25dp" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
