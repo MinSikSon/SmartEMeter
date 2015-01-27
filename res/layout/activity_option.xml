@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/CHARTBACKGOUND"
+    android:background="@drawable/background_dark"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
 
@@ -26,60 +26,185 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="9"
         android:background="@drawable/background_dark"
         android:orientation="vertical" >
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/HOLOCOLOR"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="SPEED\nUP"
+                android:textColor="@color/WHITE"
+                android:textSize="35dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:background="@color/HOLOCOLOR"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/HOLOCOLOR"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/btn_option_speed_x1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="x1"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/btn_option_speed_x2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="x2"
+                        android:textSize="25dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/HOLOCOLOR"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/btn_option_speed_x3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="x3"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/btn_option_speed_x4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="x4"
+                        android:textSize="25dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:background="@color/HOLOCOLOR"
-            android:textColor="@color/WHITE" />
+            android:orientation="horizontal" >
 
-        <TextView
+            <Button
+                android:id="@+id/btn_option_speed_x8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="x8"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/btn_option_speed_x16"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="x16"
+                android:textSize="25dp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="3"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
             android:background="@color/HOLOCOLOR"
-            android:textColor="@color/WHITE" />
-    </LinearLayout>
+            android:orientation="horizontal" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:background="@color/CHARTBACKGOUND"
-        android:orientation="vertical" >
-    </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="POWER\nSetting"
+                android:textColor="@color/WHITE"
+                android:textSize="35dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="3" >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@color/HOLOCOLOR"
+                android:orientation="vertical" >
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="1" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/HOLOCOLOR"
+                    android:orientation="horizontal" >
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="2" />
+                    <Button
+                        android:id="@+id/btn_option_powerset1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="de-\nactivated"
+                        android:textSize="12dp" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="3" />
+                    <Button
+                        android:id="@+id/btn_option_powerset2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="activated\nw = 0.01"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/HOLOCOLOR"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/btn_option_powerset3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="activated\nw = 0.1"
+                        android:textSize="12dp" />
+
+                    <Button
+                        android:id="@+id/btn_option_powerset4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="activated\nw = 0.5"
+                        android:textSize="12dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

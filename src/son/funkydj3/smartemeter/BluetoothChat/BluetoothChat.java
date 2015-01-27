@@ -19,6 +19,7 @@ package son.funkydj3.smartemeter.BluetoothChat;
 import son.funkydj3.smartemeter.MainActivity;
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Data;
+import son.funkydj3.smartemeter.etc.Constant;
 import son.funkydj3.smartemeter.handler.BackPressCloseHandler;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -543,10 +544,14 @@ public class BluetoothChat extends Activity {
 					tv_current.setText(CURRENT + " mA");
 					tv_voltage.setText(VOLTAGE + " V");
 					// *
+					if(Constant.powerSettingDeactivated == true){
 					Class_Data.Data_CURRENT_mA = CURRENT; // mA
 					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000; // A
 					Class_Data.Data_VOLTAGE = VOLTAGE; // V
-					Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A; // W = VI
+					Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A * Constant.speedUp; // W = VI
+					}else if(Constant.powerSettingDeactivated == false){
+						Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
+					}
 				}
 				if(STT.get_grid_time_hour() > 0 ){
 					tv_time.setText(STT.get_grid_time_hour() + " Hour " + STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
@@ -571,7 +576,12 @@ public class BluetoothChat extends Activity {
 				Class_Data.Data_CURRENT_mA = 0;
 				Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
 				Class_Data.Data_VOLTAGE = 0;
-				Class_Data.Data_POWER = 0;
+				if(Constant.powerSettingDeactivated == true){
+					Class_Data.Data_POWER = 0 * Constant.speedUp;
+				}else if(Constant.powerSettingDeactivated == false){
+					Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
+				}
+				// *test*
 				tv_current.setText("0 mA");
 				tv_voltage.setText("0 V");
 			}

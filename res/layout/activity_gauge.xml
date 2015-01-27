@@ -78,7 +78,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:text="0"
+                android:text="0.0"
                 android:textColor="@color/BLACK"
                 android:textSize="35dp" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:text="0"
+                android:text="0.0"
                 android:textColor="@color/BLACK"
                 android:textSize="35dp" />
 
@@ -98,7 +98,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:text="0"
+                android:text="0.0"
                 android:textColor="@color/BLACK"
                 android:textSize="35dp" />
         </LinearLayout>
@@ -137,32 +137,36 @@
                 android:textColor="@color/BLACK"
                 android:textSize="25dp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/tv_gauge_kWh"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/TITLE"
-                android:gravity="center"
-                android:text=" \nkWh"
-                android:textColor="@color/BLACK"
-                android:textSize="25dp" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/BACKGROUNDCOLOR"
-        android:orientation="vertical" >
+        android:background="@color/HOLOCOLOR"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_gauge_kWh1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="3.5"
+            android:gravity="right|center_vertical"
+            android:text="0.0"
+            android:textColor="@color/RED"
+            android:textSize="35dp" />
+
+        <TextView
+            android:id="@+id/tv_gauge_kWh2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="2.5"
+            android:gravity="left|center_vertical"
+            android:text=" kWh"
+            android:textColor="@color/WHITE"
+            android:textSize="25dp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -34,7 +34,7 @@ public class GaugeActivity extends Activity {
 		tv_gauge_voltage = (TextView) findViewById(R.id.tv_gauge_voltage);
 		tv_gauge_current = (TextView) findViewById(R.id.tv_gauge_current);
 
-		tv_gauge_kWh = (TextView) findViewById(R.id.tv_gauge_kWh);
+		tv_gauge_kWh = (TextView) findViewById(R.id.tv_gauge_kWh1);
 		
 		TG = new Thread_Gauge(mHandler_Gauge);
 		TG.setDaemon(true);

@@ -1,6 +1,11 @@
 package son.funkydj3.smartemeter.etc;
 
 public class Constant {
+	// *Option*
+	public static int speedUp = 1; // speedup
+	public static double powerSetting = 0; // powersetting
+	public static boolean powerSettingDeactivated = true; 
+	
 	// *log*
 	public static boolean D = false;
 	
