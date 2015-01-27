@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/CHARTBACKGOUND"
+    android:background="@drawable/background_dark"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
 
@@ -26,7 +26,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1.2"
         android:background="@drawable/background_dark"
         android:orientation="vertical" >
 
@@ -64,7 +65,8 @@
                     android:textColor="@color/WHITE"
                     android:textSize="25dp" />
             </LinearLayout>
-            <LinearLayout
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -80,21 +82,13 @@
                 </Button>
             </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="6"
-            android:background="@color/HOLOCOLOR"
-            android:textColor="@color/WHITE" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/chart_day_1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3.4"
         android:background="@drawable/sunrise"
         android:orientation="vertical" >
     </LinearLayout>
@@ -103,7 +97,7 @@
         android:id="@+id/chart_day_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="3.4"
         android:background="@drawable/sunset"
         android:orientation="vertical" >
     </LinearLayout>

@@ -46,9 +46,9 @@ public class GaugeActivity extends Activity {
 			tv_gauge_date.setText(Class_Time.getCurDateToString());
 			tv_gauge_time.setText(Class_Time.getCurTimeToString());
 			tv_gauge_power.setText(Double.toString((Math.round(Class_Data.Data_POWER*1000d))/1000d));
-			tv_gauge_voltage.setText(Double.toString((Math.round(Class_Data.Data_VOLTAGE*1000d))/1000d));
-			tv_gauge_current.setText(Double.toString((Math.round(Class_Data.Data_CURRENT_mA*10000d))/10000d));
-			String tv_gauge_kWh_temp = Double.toString(Math.round(Class_Data.Data_POWER*3600))+"\nkWh"; 
+			tv_gauge_voltage.setText(Double.toString((Math.round(Class_Data.Data_VOLTAGE*1000d)/1000d)));
+			tv_gauge_current.setText(Double.toString((Math.round(Class_Data.Data_CURRENT_mA*10000d)/10000d)));
+			String tv_gauge_kWh_temp = Double.toString(Math.round(Class_Data.Data_POWER*3600/1000*1000d)/1000d)+"\nWh"; 
 			tv_gauge_kWh.setText(tv_gauge_kWh_temp);
 		}
 	};
