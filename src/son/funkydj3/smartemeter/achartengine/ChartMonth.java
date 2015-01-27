@@ -10,6 +10,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import son.funkydj3.smartemeter.R;
+import son.funkydj3.smartemeter.etc.ChargeTable_WON;
 import son.funkydj3.smartemeter.etc.Class_Color;
 import son.funkydj3.smartemeter.etc.Class_Time;
 import son.funkydj3.smartemeter.etc.Constant;
@@ -37,10 +38,12 @@ public class ChartMonth extends Fragment {
 	private SimpleSeriesRenderer mCurrentRenderer2;
 	private XYMultipleSeriesRenderer mRenderer2 = new XYMultipleSeriesRenderer();
 	
-	private Button btn_display2;
+	public Button btn_display2;
 	
 	private TextView tv_sum_this_month_charge;
-	private TextView tv_chart_month_day1_10, tv_chart_month_day11_20, tv_chart_month_day21_31;
+	private TextView tv_chart_month_day1_10 = null,
+			tv_chart_month_day11_20 = null,
+			tv_chart_month_day21_31 = null;
 	
 	
 	
@@ -67,8 +70,16 @@ public class ChartMonth extends Fragment {
 				mCurrentRenderer2.setColor(Class_Color.RED()); // * RED
 			}
 			double tmp1;
+			double tv_chart_month_day1_10_tmp = 0;
+			double tv_chart_month_day11_20_tmp = 0;
+			double tv_chart_month_day21_31_tmp = 0;
+			double tv_chart_month_day1_31_tmp = 0;
 			for(int i = 1 ; i < 32 ; i++){
 				tmp1 = Constant.this_month_kWh[i];
+				tv_chart_month_day1_31_tmp += tmp1;
+				if(i >= 1 && i < 11) tv_chart_month_day1_10_tmp += tmp1;
+				else if(i >= 11 && i < 21) tv_chart_month_day11_20_tmp += tmp1;
+				else if(i >= 21 && i < 32) tv_chart_month_day21_31_tmp += tmp1;
 				tmp1 = Math.round(tmp1*1000d)/1000d; // * get point 3
 				mCurrentSeries2.add(i, tmp1);
 			}
@@ -76,11 +87,11 @@ public class ChartMonth extends Fragment {
 			
 			// *tv
 			if(tv_chart_month_day21_31 != null){
-				if(Constant.D) Log.d("SON", "tv_chart_month_day21_31");
-				tv_chart_month_day1_10.setText(""+SampleDataTable.buf_month_charge_10[0]);
-				tv_chart_month_day11_20.setText(""+SampleDataTable.buf_month_charge_10[1]);
-				tv_chart_month_day21_31.setText(""+SampleDataTable.buf_month_charge_10[2]);
+				tv_chart_month_day1_10.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day1_10_tmp / tv_chart_month_day1_31_tmp));
+				tv_chart_month_day11_20.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day11_20_tmp / tv_chart_month_day1_31_tmp));
+				tv_chart_month_day21_31.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day21_31_tmp / tv_chart_month_day1_31_tmp));
 			}
+			
 			if(tv_sum_this_month_charge != null){
 				//Calculator.sumThisYearCharge();				
 				tv_sum_this_month_charge.setText("  " + Constant.this_year_charge[Class_Time.getCurMonth()] + " WON");

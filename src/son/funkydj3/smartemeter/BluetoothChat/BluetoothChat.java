@@ -545,11 +545,14 @@ public class BluetoothChat extends Activity {
 					tv_voltage.setText(VOLTAGE + " V");
 					// *
 					if(Constant.powerSettingDeactivated == true){
-					Class_Data.Data_CURRENT_mA = CURRENT; // mA
-					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000; // A
-					Class_Data.Data_VOLTAGE = VOLTAGE; // V
-					Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A * Constant.speedUp; // W = VI
+						Class_Data.Data_CURRENT_mA = CURRENT; // mA
+						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000; // A
+						Class_Data.Data_VOLTAGE = VOLTAGE; // V
+						Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A * Constant.speedUp; // W = VI
 					}else if(Constant.powerSettingDeactivated == false){
+						Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220 ;
+						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+						Class_Data.Data_VOLTAGE = 220.0;
 						Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
 					}
 				}
@@ -573,12 +576,15 @@ public class BluetoothChat extends Activity {
 					if(STT.get_global_time() % 4 == 0)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect1);
 					else if(STT.get_global_time() % 4 == 2)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect2);
 				}
-				Class_Data.Data_CURRENT_mA = 0;
-				Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
-				Class_Data.Data_VOLTAGE = 0;
 				if(Constant.powerSettingDeactivated == true){
+					Class_Data.Data_CURRENT_mA = 0;
+					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+					Class_Data.Data_VOLTAGE = 0;
 					Class_Data.Data_POWER = 0 * Constant.speedUp;
 				}else if(Constant.powerSettingDeactivated == false){
+					Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220 ;
+					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+					Class_Data.Data_VOLTAGE = 220.0;
 					Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
 				}
 				// *test*

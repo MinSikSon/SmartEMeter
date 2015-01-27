@@ -44,19 +44,17 @@ public class SampleDataTable {
 				Constant.this_year_charge[i] = SampleDataTable.buf_year_charge[i];
 			}
 
+			Log.d("SON", "be - month");
+			// * month			
 			for(int i = 1; i < 32 ; i++){
 				Constant.this_month_kWh[i] += SampleDataTable.buf_month_kWh[i];
 				Constant.this_month_charge[i] = (int) ((Constant.this_year_charge[Class_Time.getCurMonth()])*(Constant.this_month_kWh[i]/Constant.this_year_kWh[Class_Time.getCurMonth()]));
+				if((i >= 1) && (i < 11)) SampleDataTable.buf_month_charge_10[0] += Constant.this_month_charge[i];
+				else if((i >= 11) && (i < 21)) SampleDataTable.buf_month_charge_10[1] += Constant.this_month_charge[i];
+				else if((i >= 21) && (i < 32)) SampleDataTable.buf_month_charge_10[2] += Constant.this_month_charge[i];
 			}
+			Log.d("SON", "af - month");
 			
-			// * month			
-			for(int i = 1 ; i < 11 ; i ++){
-				buf_month_charge_10[0] += Constant.this_month_charge[i];
-				buf_month_charge_10[1] += Constant.this_month_charge[10+i];
-				buf_month_charge_10[2] += Constant.this_month_charge[20+i];
-			}
-			buf_month_charge_10[2] += Constant.this_month_charge[31];
-
 			
 			//* day
 			for(int i = 1; i< 25 ; i++){
@@ -77,16 +75,15 @@ public class SampleDataTable {
 				Constant.this_year_charge[i] = SampleDataTable.buf_year_charge[i];
 			}
 			
-			for(int i = 1 ; i < 11 ; i ++){
-				buf_month_charge_10[0] -= Constant.this_month_charge[i];
-				buf_month_charge_10[1] -= Constant.this_month_charge[10+i];
-				buf_month_charge_10[2] -= Constant.this_month_charge[20+i];
-			}
-			buf_month_charge_10[2] -= Constant.this_month_charge[31];
-
+			buf_month_charge_10[0] = 0;
+			buf_month_charge_10[1] = 0;
+			buf_month_charge_10[2] = 0;
 			for(int i = 1; i < 32 ; i++){
 				Constant.this_month_kWh[i] -= SampleDataTable.buf_month_kWh[i];
 				Constant.this_month_charge[i] = (int) ((Constant.this_year_charge[Class_Time.getCurMonth()])*(Constant.this_month_kWh[i]/Constant.this_year_kWh[Class_Time.getCurMonth()]));
+				if((i >= 1) && (i < 11)) SampleDataTable.buf_month_charge_10[0] += Constant.this_month_charge[i];
+				else if((i >= 11) && (i < 21)) SampleDataTable.buf_month_charge_10[1] += Constant.this_month_charge[i];
+				else if((i >= 21) && (i < 32)) SampleDataTable.buf_month_charge_10[2] += Constant.this_month_charge[i];
 			}			
 			
 			//* day
