@@ -87,9 +87,9 @@ public class ChartMonth extends Fragment {
 			
 			// *tv
 			if(tv_chart_month_day21_31 != null){
-				tv_chart_month_day1_10.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day1_10_tmp / tv_chart_month_day1_31_tmp));
-				tv_chart_month_day11_20.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day11_20_tmp / tv_chart_month_day1_31_tmp));
-				tv_chart_month_day21_31.setText(""+(int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day21_31_tmp / tv_chart_month_day1_31_tmp));
+				tv_chart_month_day1_10.setText(""+((int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day1_10_tmp / tv_chart_month_day1_31_tmp)) +" WON");
+				tv_chart_month_day11_20.setText(""+((int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day11_20_tmp / tv_chart_month_day1_31_tmp)) +" WON");
+				tv_chart_month_day21_31.setText(""+((int)(ChargeTable_WON.ChargeCalculate(tv_chart_month_day1_31_tmp) * tv_chart_month_day21_31_tmp / tv_chart_month_day1_31_tmp)) +" WON");
 			}
 			
 			if(tv_sum_this_month_charge != null){
