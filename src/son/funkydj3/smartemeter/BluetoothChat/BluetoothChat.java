@@ -410,6 +410,9 @@ public class BluetoothChat extends Activity {
 				if(OK_ACK.equals("06")) {
 					if(VOLTAGE >= 210 && VOLTAGE <= 230){
 						RECEIVE_DATA_OK = 1;
+					}else if(VOLTAGE >= 135 && VOLTAGE <= 145){
+						VOLTAGE = Math.round(VOLTAGE * 1.56029 * 10000) / 10000;
+						RECEIVE_DATA_OK = 1;
 					}else{
 						RECEIVE_DATA_OK = 0;
 					}

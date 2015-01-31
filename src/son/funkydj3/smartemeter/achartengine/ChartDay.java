@@ -83,8 +83,12 @@ public class ChartDay extends Fragment {
 			if(mChart3_2 != null) mChart3_2.repaint();
 			
 			if(tv_sum_today_kwh != null){
-				//Calculator.sumThisYearCharge();				
-				tv_sum_today_kwh.setText("  " + Math.round(Constant.this_month_kWh[Class_Time.getCurDay()]*10000d)/10000d + " kWh");
+				double tmp3 = 0;
+				for(int i = 1 ; i < 13 ; i++){
+					tmp3 += (Math.round(Constant.today_kWh[i]*1000d))/1000d; 
+					tmp3 += (Math.round(Constant.today_kWh[i+12]*1000d))/1000d; 
+				}
+				tv_sum_today_kwh.setText("  " + tmp3 + " kWh");
 			}
 		}
 	};
@@ -115,8 +119,14 @@ public class ChartDay extends Fragment {
 		});
 		
 		tv_sum_today_kwh = (TextView)view.findViewById(R.id.tv_sum_today_kwh);
-		tv_sum_today_kwh.setText("  " + Constant.this_month_kWh[Class_Time.getCurDay()] + " kWh");
-		
+		if(tv_sum_today_kwh != null){
+			double tmp3 = 0;
+			for(int i = 1 ; i < 13 ; i++){
+				tmp3 += (Math.round(Constant.today_kWh[i]*1000d))/1000d; 
+				tmp3 += (Math.round(Constant.today_kWh[i+12]*1000d))/1000d; 
+			}
+			tv_sum_today_kwh.setText("  " + tmp3 + " kWh");
+		}
 		return view;
 	}
 	
