@@ -568,7 +568,7 @@ public class BluetoothChat extends Activity {
 					tv_time.setText(STT.get_grid_time_second() + " Sec");
 				}
 				//*point* ��������� �ٸ� �� �ֱ� ������, �� �κ��� �����ϰ� �ٲ������.
-				if(CURRENT > 0.0048){
+				if(CURRENT >= 0.0048){
 					STT.up_grid_time();
 				}
 				else{

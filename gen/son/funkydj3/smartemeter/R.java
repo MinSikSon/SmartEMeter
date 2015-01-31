@@ -148,13 +148,13 @@ public final class R {
         public static final int tv_chart_year_month8=0x7f08001a;
         public static final int tv_chart_year_month9=0x7f08001b;
         public static final int tv_current=0x7f080044;
-        public static final int tv_gauge_current=0x7f080024;
+        public static final int tv_gauge_current=0x7f080023;
         public static final int tv_gauge_date=0x7f080020;
         public static final int tv_gauge_kWh1=0x7f080025;
         public static final int tv_gauge_kWh2=0x7f080026;
-        public static final int tv_gauge_power=0x7f080022;
+        public static final int tv_gauge_power=0x7f080024;
         public static final int tv_gauge_time=0x7f080021;
-        public static final int tv_gauge_voltage=0x7f080023;
+        public static final int tv_gauge_voltage=0x7f080022;
         public static final int tv_sum_this_month_charge=0x7f08000a;
         public static final int tv_sum_this_year_charge=0x7f080011;
         public static final int tv_sum_today_kwh=0x7f080005;
