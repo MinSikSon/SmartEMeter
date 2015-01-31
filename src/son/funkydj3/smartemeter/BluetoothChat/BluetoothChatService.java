@@ -335,8 +335,7 @@ public class BluetoothChatService {
                         case STATE_LISTEN:
                         case STATE_CONNECTING:
                             // Situation normal. Start the connected thread.
-                            connected(socket, socket.getRemoteDevice(),
-                                    mSocketType);
+                            connected(socket, socket.getRemoteDevice(), mSocketType);
                             break;
                         case STATE_NONE:
                         case STATE_CONNECTED:
