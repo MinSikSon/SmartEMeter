@@ -109,7 +109,7 @@ public class BluetoothChat extends Activity {
 	public static TextView tv_voltage;
 	public static TextView tv_time;
 	
-	public static Button btn_Guage;
+	public static Button btn_BluetoothChat_IntentToMain;
 	public static ImageView img_bluetoothimage;
 	
 	//*point* thread
@@ -127,21 +127,8 @@ public class BluetoothChat extends Activity {
 
 		// Set up the window layout
 		setContentView(R.layout.bt_main);
-		tv_current = (TextView)findViewById(R.id.tv_current);
-		tv_voltage = (TextView)findViewById(R.id.tv_voltage);
-		tv_time = (TextView)findViewById(R.id.tv_time);
+		initLayout();
 		
-		img_bluetoothimage = (ImageView)findViewById(R.id.img_bluetooth);
-		
-		//*
-		btn_Guage = (Button)findViewById(R.id.test);
-		btn_Guage.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(BluetoothChat.this, MainActivity.class);
-				startActivity(i);
-			}
-		});
 		
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -166,6 +153,24 @@ public class BluetoothChat extends Activity {
 		}
 		
 		backPressCloseHandler = new BackPressCloseHandler(this);
+	}
+	void initLayout(){
+		tv_current = (TextView)findViewById(R.id.tv_current);
+		tv_voltage = (TextView)findViewById(R.id.tv_voltage);
+		tv_time = (TextView)findViewById(R.id.tv_time);
+		
+		img_bluetoothimage = (ImageView)findViewById(R.id.img_bluetooth);
+		
+		//*
+		btn_BluetoothChat_IntentToMain = (Button)findViewById(R.id.btn_BluetoothChat_IntentToMain);
+		btn_BluetoothChat_IntentToMain.setText("if you want to connect \nwith board\nClick [Menu Button]");
+		btn_BluetoothChat_IntentToMain.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(BluetoothChat.this, MainActivity.class);
+				startActivity(i);
+			}
+		});
 	}
 
 	@Override
@@ -532,8 +537,8 @@ public class BluetoothChat extends Activity {
 			mOutStringBuffer.setLength(0);
 			
 			// *btn animation
-			if(STT.get_global_time()%4 == 0) btn_Guage.setTextColor(Color.BLACK);
-			else btn_Guage.setTextColor(Color.WHITE);
+			if(STT.get_global_time()%4 == 0) btn_BluetoothChat_IntentToMain.setTextColor(Color.BLACK);
+			else btn_BluetoothChat_IntentToMain.setTextColor(Color.WHITE);
 			// mOutEditText.setText(mOutStringBuffer);
 				
 			//else if(mBluetoothAdapter.disable()) BLUETOOTH_ON = 0;

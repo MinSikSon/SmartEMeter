@@ -87,6 +87,7 @@ public final class R {
         public static final int title=0x7f020032;
     }
     public static final class id {
+        public static final int btn_BluetoothChat_IntentToMain=0x7f080046;
         public static final int btn_Chart1=0x7f080001;
         public static final int btn_Chart2=0x7f080002;
         public static final int btn_Chart3=0x7f080003;
@@ -118,13 +119,12 @@ public final class R {
         public static final int chart_year=0x7f08001f;
         public static final int discoverable=0x7f08004b;
         public static final int img_Main1=0x7f080029;
-        public static final int img_bluetooth=0x7f080048;
+        public static final int img_bluetooth=0x7f080047;
         public static final int img_saving_currentphase=0x7f08003b;
         public static final int insecure_connect_scan=0x7f08004a;
         public static final int new_devices=0x7f080042;
         public static final int paired_devices=0x7f080040;
         public static final int secure_connect_scan=0x7f080049;
-        public static final int test=0x7f080047;
         public static final int textView1=0x7f080010;
         public static final int textView2=0x7f080009;
         public static final int textView3=0x7f080004;
@@ -158,7 +158,7 @@ public final class R {
         public static final int tv_sum_this_month_charge=0x7f08000a;
         public static final int tv_sum_this_year_charge=0x7f080011;
         public static final int tv_sum_today_kwh=0x7f080005;
-        public static final int tv_time=0x7f080046;
+        public static final int tv_time=0x7f080048;
         public static final int tv_voltage=0x7f080045;
         public static final int txt_saving_currentphase=0x7f08003c;
         public static final int txt_targetcharge_selected=0x7f080036;
