@@ -11,16 +11,39 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/BACKGROUNDCOLOR" >
+        android:background="@color/BACKGROUNDCOLOR"
+        android:orientation="horizontal" >
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/title"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/WHITE"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:background="@drawable/title"
             android:gravity="center"
             android:text="Option"
             android:textColor="@color/WHITE"
             android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tv_option_version"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/title"
+            android:gravity="right"
+            android:text="version"
+            android:textColor="@color/WHITE"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout

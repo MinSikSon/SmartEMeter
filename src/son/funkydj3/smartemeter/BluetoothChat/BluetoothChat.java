@@ -16,16 +16,28 @@
 
 package son.funkydj3.smartemeter.BluetoothChat;
 
+import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.BarChart.Type;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.SimpleSeriesRenderer;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+
 import son.funkydj3.smartemeter.MainActivity;
 import son.funkydj3.smartemeter.R;
 import son.funkydj3.smartemeter.etc.Class_Data;
+import son.funkydj3.smartemeter.etc.Class_Time;
 import son.funkydj3.smartemeter.etc.Constant;
+import son.funkydj3.smartemeter.etc.SampleDataTable;
 import son.funkydj3.smartemeter.handler.BackPressCloseHandler;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint.Align;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,9 +52,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 /**
  * This is the main Activity that displays the current chat session.
@@ -52,7 +64,6 @@ public class BluetoothChat extends Activity {
 	private static final String TAG = "BluetoothChat";
 	private static final boolean D = false;
 	private static final boolean D_SON = false;
-	
 
 	// Message types sent from the BluetoothChatService Handler
 	public static final int MESSAGE_STATE_CHANGE = 1;
@@ -76,8 +87,8 @@ public class BluetoothChat extends Activity {
 	// private Button mSendButton;
 
 	public static String BLUETOOTH_SERIAL = "00:01:95:17:AD:08";
-    public static int BLUETOOTH_ON = 0;
-	
+	public static int BLUETOOTH_ON = 0;
+
 	// Name of the connected device
 	private String mConnectedDeviceName = null;
 	// Array adapter for the conversation thread
@@ -85,40 +96,43 @@ public class BluetoothChat extends Activity {
 	// String buffer for outgoing messages
 	public static StringBuffer mOutStringBuffer;
 	// Local Bluetooth adapter
-	//private BluetoothAdapter mBluetoothAdapter = null;
+	// private BluetoothAdapter mBluetoothAdapter = null;
 	public static BluetoothAdapter mBluetoothAdapter = null;
 	// Member object for the chat services
-	//private BluetoothChatService mChatService = null;
+	// private BluetoothChatService mChatService = null;
 	public static BluetoothChatService mChatService = null;
 
 	// *point*
 	public static int init_data_get_count = 0;
-	public static int data_get_count = 0; // *point* ó���� ������ �߸��� Stream ���͸� ���� ���Ǵ�
-									// count
+	public static int data_get_count = 0; // *point* ó���� ������ �߸��� Stream
+											// ���͸� ���� ���Ǵ�
+	// count
 
 	public static String VOLTAGE_String;
 	public static String CURRENT_String;
 	private static double VOLTAGE;
 	private static double CURRENT;
 	public static int RECEIVE_DATA_OK = 0;
-	
+
 	public static int BLUETOOTH_STATE_SON = 0;
 
 	// *point* layout
-	public static TextView tv_current;
-	public static TextView tv_voltage;
+	public static TextView tv_BluetoothChat_charge_now = null;
+	public static TextView tv_BluetoothChat_charge_endofmonth = null;
 	public static TextView tv_time;
-	
-	public static Button btn_BluetoothChat_IntentToMain;
-	public static ImageView img_bluetoothimage;
-	
-	//*point* thread
-	public static BT_Thread ST= null; 
+	public static int BluetoothChat_charge_now = 0;
+	public static int BluetoothChat_charge_endofmonth = 0;
+
+	public static Button btn_BluetoothChat_IntentToMain = null;
+	public static ImageView img_bluetoothimage = null;
+
+	// *point* thread
+	public static BT_Thread ST = null;
 	public static BT_Thread_Timer STT = null;
 
 	// *
 	private BackPressCloseHandler backPressCloseHandler;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -127,19 +141,24 @@ public class BluetoothChat extends Activity {
 
 		// Set up the window layout
 		setContentView(R.layout.bt_main);
-		initLayout();
-		
-		
+		initLayout_BluetoothChat();
+
+		// *charylayout
+		initGaugeLayout_BluetoothChat1();
+		initChart_BluetoothChat1();
+		initGaugeLayout_BluetoothChat2();
+		initChart_BluetoothChat2();
+
 		// Get local Bluetooth adapter
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		
+
 		// Start thread
-		if(ST == null){
+		if (ST == null) {
 			ST = new BT_Thread(mHandler2);
 			ST.setDaemon(true);
 			ST.start();
 		}
-		if(STT == null){
+		if (STT == null) {
 			STT = new BT_Thread_Timer();
 			STT.setDaemon(true);
 			STT.start();
@@ -147,30 +166,207 @@ public class BluetoothChat extends Activity {
 
 		// If the adapter is null, then Bluetooth is not supported
 		if (mBluetoothAdapter == null) {
-			Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Bluetooth is not available",
+					Toast.LENGTH_LONG).show();
 			finish();
 			return;
 		}
-		
+
 		backPressCloseHandler = new BackPressCloseHandler(this);
 	}
-	void initLayout(){
-		tv_current = (TextView)findViewById(R.id.tv_current);
-		tv_voltage = (TextView)findViewById(R.id.tv_voltage);
-		tv_time = (TextView)findViewById(R.id.tv_time);
-		
-		img_bluetoothimage = (ImageView)findViewById(R.id.img_bluetooth);
-		
-		//*
-		btn_BluetoothChat_IntentToMain = (Button)findViewById(R.id.btn_BluetoothChat_IntentToMain);
-		btn_BluetoothChat_IntentToMain.setText("if you want to connect \nwith board\nClick [Menu Button]");
-		btn_BluetoothChat_IntentToMain.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(BluetoothChat.this, MainActivity.class);
-				startActivity(i);
+
+	void initLayout_BluetoothChat() {
+		tv_BluetoothChat_charge_now = (TextView) findViewById(R.id.tv_BluetoothChat_charge_now);
+		tv_BluetoothChat_charge_endofmonth = (TextView) findViewById(R.id.tv_BluetoothChat_charge_endofmonth);
+		tv_time = (TextView) findViewById(R.id.tv_time);
+
+		img_bluetoothimage = (ImageView) findViewById(R.id.img_bluetooth);
+
+		// *
+		btn_BluetoothChat_IntentToMain = (Button) findViewById(R.id.btn_BluetoothChat_IntentToMain);
+		btn_BluetoothChat_IntentToMain
+				.setText("if you want to connect \nwith board\nClick [Menu Button]");
+		btn_BluetoothChat_IntentToMain
+				.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Intent i = new Intent(BluetoothChat.this,
+								MainActivity.class);
+						startActivity(i);
+					}
+				});
+	}
+
+	// * gaugeView1
+		public static GraphicalView mChart_BluetoothChat1;
+		public static XYSeries mCurrentSeries_BluetoothChat1;
+		public static XYMultipleSeriesDataset mDataset_BluetoothChat1 = new XYMultipleSeriesDataset();
+		public static SimpleSeriesRenderer mCurrentRenderer_BluetoothChat1;
+		public static XYMultipleSeriesRenderer mRenderer_BluetoothChat1 = new XYMultipleSeriesRenderer();
+		public static LinearLayout layout_BluetoothChat1;
+
+		void initGaugeLayout_BluetoothChat1() {
+			layout_BluetoothChat1 = (LinearLayout) findViewById(R.id.ll_BluetoothChat_chart1);
+			if (mChart_BluetoothChat1 == null)
+				initChart_BluetoothChat1();
+			mChart_BluetoothChat1 = ChartFactory
+					.getBarChartView(this, mDataset_BluetoothChat1,
+							mRenderer_BluetoothChat1, Type.STACKED); // * modified
+			layout_BluetoothChat1.addView(mChart_BluetoothChat1);
+		}
+
+		void initChart_BluetoothChat1() {
+			mCurrentSeries_BluetoothChat1 = new XYSeries("");
+			mDataset_BluetoothChat1.addSeries(mCurrentSeries_BluetoothChat1);
+
+			mCurrentRenderer_BluetoothChat1 = new XYSeriesRenderer();
+			mCurrentRenderer_BluetoothChat1.setColor(Color.BLACK);
+			mCurrentRenderer_BluetoothChat1.setDisplayChartValues(true);
+			mCurrentRenderer_BluetoothChat1.setChartValuesTextAlign(Align.CENTER);
+			if (Constant.widthPixels <= 480) {
+				mCurrentRenderer_BluetoothChat1.setChartValuesTextSize(15);
+			} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+				mCurrentRenderer_BluetoothChat1.setChartValuesTextSize(20);
+			} else if (Constant.widthPixels >= 1080) {
+				mCurrentRenderer_BluetoothChat1.setChartValuesTextSize(25);
 			}
-		});
+			mRenderer_BluetoothChat1.setLabelsColor(Color.rgb(255, 255, 255)); // *
+																				// "title + label"'s
+																				// color
+			if (Constant.widthPixels <= 480) {
+				mRenderer_BluetoothChat1.setLabelsTextSize(20);
+			} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+				mRenderer_BluetoothChat1.setLabelsTextSize(30);
+			} else if (Constant.widthPixels >= 1080) {
+				mRenderer_BluetoothChat1.setLabelsTextSize(40);
+			}
+			int[] margins_BluetoothChat1 = new int[] { 0, 0, 0, 0 }; // {top, left,
+																		// bottom,
+																		// right}
+			if (Constant.widthPixels <= 480) {
+				margins_BluetoothChat1 = new int[] { 40, 90, -15, 50 };
+			} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+				margins_BluetoothChat1 = new int[] { 50, 120, -25, 60 };
+			} else if (Constant.widthPixels == 1080) { // 1080*1920
+				margins_BluetoothChat1 = new int[] { 60, 150, -35, 70 };
+			}
+			mRenderer_BluetoothChat1.setMargins(margins_BluetoothChat1);
+			mRenderer_BluetoothChat1.setApplyBackgroundColor(true);
+			mRenderer_BluetoothChat1.setPanEnabled(false, false); // * fix graph
+			mRenderer_BluetoothChat1.setZoomEnabled(false, false); // * enable zoom
+			mRenderer_BluetoothChat1.setYLabelsAlign(Align.RIGHT);
+			mRenderer_BluetoothChat1.setXTitle(""); // another one's name is "THE
+													// END OF THIS MONTH
+			mRenderer_BluetoothChat1.setYTitle("");
+			if (Constant.widthPixels <= 480) { // 480*720
+				mRenderer_BluetoothChat1.setAxisTitleTextSize(24);
+			} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) { // 720*1080
+				mRenderer_BluetoothChat1.setAxisTitleTextSize(32);
+			} else if (Constant.widthPixels >= 1080) { // 1080*1920
+				mRenderer_BluetoothChat1.setAxisTitleTextSize(40);
+			}
+			mRenderer_BluetoothChat1.setShowGridX(true);
+			mRenderer_BluetoothChat1.setGridColor(Color.rgb(255, 255, 255));
+			mRenderer_BluetoothChat1.setXLabelsColor(Color.WHITE);
+			mRenderer_BluetoothChat1.setXLabels(0); // sets the number of integer
+													// labels to appear
+			mRenderer_BluetoothChat1.addXTextLabel(1, ""); // set X Text
+			mRenderer_BluetoothChat1.setShowGridY(true);
+			mRenderer_BluetoothChat1.setYLabelsColor(0, Color.WHITE); // y축 값 색깔
+			mRenderer_BluetoothChat1.setYLabelsAngle(0);
+			mRenderer_BluetoothChat1.setBarSpacing(0);
+			mRenderer_BluetoothChat1.setXAxisMin(0);
+			mRenderer_BluetoothChat1.setXAxisMax(2);
+			mRenderer_BluetoothChat1.setYAxisMin(0);
+			mRenderer_BluetoothChat1.setYAxisMax(25000);
+			mRenderer_BluetoothChat1
+					.addSeriesRenderer(mCurrentRenderer_BluetoothChat1);
+		}
+
+	// * gaugeView2
+	public static GraphicalView mChart_BluetoothChat2;
+	public static XYSeries mCurrentSeries_BluetoothChat2;
+	public static XYMultipleSeriesDataset mDataset_BluetoothChat2 = new XYMultipleSeriesDataset();
+	public static SimpleSeriesRenderer mCurrentRenderer_BluetoothChat2;
+	public static XYMultipleSeriesRenderer mRenderer_BluetoothChat2 = new XYMultipleSeriesRenderer();
+	public static LinearLayout layout_BluetoothChat2;
+
+	void initGaugeLayout_BluetoothChat2() {
+		layout_BluetoothChat2 = (LinearLayout) findViewById(R.id.ll_BluetoothChat_chart2);
+		if (mChart_BluetoothChat2 == null)
+			initChart_BluetoothChat2();
+		mChart_BluetoothChat2 = ChartFactory
+				.getBarChartView(this, mDataset_BluetoothChat2,
+						mRenderer_BluetoothChat2, Type.STACKED); // * modified
+		layout_BluetoothChat2.addView(mChart_BluetoothChat2);
+	}
+
+	void initChart_BluetoothChat2() {
+		mCurrentSeries_BluetoothChat2 = new XYSeries("");
+		mDataset_BluetoothChat2.addSeries(mCurrentSeries_BluetoothChat2);
+
+		mCurrentRenderer_BluetoothChat2 = new XYSeriesRenderer();
+		mCurrentRenderer_BluetoothChat2.setColor(Color.BLACK);
+		mCurrentRenderer_BluetoothChat2.setDisplayChartValues(true);
+		mCurrentRenderer_BluetoothChat2.setChartValuesTextAlign(Align.CENTER);
+		if (Constant.widthPixels <= 480) {
+			mCurrentRenderer_BluetoothChat2.setChartValuesTextSize(15);
+		} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+			mCurrentRenderer_BluetoothChat2.setChartValuesTextSize(20);
+		} else if (Constant.widthPixels >= 1080) {
+			mCurrentRenderer_BluetoothChat2.setChartValuesTextSize(25);
+		}
+		mRenderer_BluetoothChat2.setLabelsColor(Color.rgb(255, 255, 255)); // *
+																			// "title + label"'s
+																			// color
+		if (Constant.widthPixels <= 480) {
+			mRenderer_BluetoothChat2.setLabelsTextSize(20);
+		} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+			mRenderer_BluetoothChat2.setLabelsTextSize(30);
+		} else if (Constant.widthPixels >= 1080) {
+			mRenderer_BluetoothChat2.setLabelsTextSize(40);
+		}
+		int[] margins_BluetoothChat2 = new int[] { 0, 0, 0, 0 }; // {top, left,
+																	// bottom,
+																	// right}
+		if (Constant.widthPixels <= 480) {
+			margins_BluetoothChat2 = new int[] { 40, 90, -15, 50 };
+		} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) {
+			margins_BluetoothChat2 = new int[] { 50, 120, -25, 60 };
+		} else if (Constant.widthPixels == 1080) { // 1080*1920
+			margins_BluetoothChat2 = new int[] { 60, 150, -35, 70 };
+		}
+		mRenderer_BluetoothChat2.setMargins(margins_BluetoothChat2);
+		mRenderer_BluetoothChat2.setApplyBackgroundColor(true);
+		mRenderer_BluetoothChat2.setPanEnabled(false, false); // * fix graph
+		mRenderer_BluetoothChat2.setZoomEnabled(false, false); // * enable zoom
+		mRenderer_BluetoothChat2.setYLabelsAlign(Align.RIGHT);
+		mRenderer_BluetoothChat2.setXTitle(""); // another one's name is "THE
+												// END OF THIS MONTH
+		mRenderer_BluetoothChat2.setYTitle("");
+		if (Constant.widthPixels <= 480) { // 480*720
+			mRenderer_BluetoothChat2.setAxisTitleTextSize(24);
+		} else if (Constant.widthPixels > 480 && Constant.widthPixels <= 720) { // 720*1080
+			mRenderer_BluetoothChat2.setAxisTitleTextSize(32);
+		} else if (Constant.widthPixels >= 1080) { // 1080*1920
+			mRenderer_BluetoothChat2.setAxisTitleTextSize(40);
+		}
+		mRenderer_BluetoothChat2.setShowGridX(true);
+		mRenderer_BluetoothChat2.setGridColor(Color.rgb(255, 255, 255));
+		mRenderer_BluetoothChat2.setXLabelsColor(Color.WHITE);
+		mRenderer_BluetoothChat2.setXLabels(0); // sets the number of integer
+												// labels to appear
+		mRenderer_BluetoothChat2.addXTextLabel(1, ""); // set X Text
+		mRenderer_BluetoothChat2.setShowGridY(true);
+		mRenderer_BluetoothChat2.setYLabelsColor(0, Color.WHITE); // y축 값 색깔
+		mRenderer_BluetoothChat2.setYLabelsAngle(0);
+		mRenderer_BluetoothChat2.setBarSpacing(0);
+		mRenderer_BluetoothChat2.setXAxisMin(0);
+		mRenderer_BluetoothChat2.setXAxisMax(2);
+		mRenderer_BluetoothChat2.setYAxisMin(0);
+		mRenderer_BluetoothChat2.setYAxisMax(25000);
+		mRenderer_BluetoothChat2
+				.addSeriesRenderer(mCurrentRenderer_BluetoothChat2);
 	}
 
 	@Override
@@ -178,13 +374,15 @@ public class BluetoothChat extends Activity {
 		super.onStart();
 		if (D)
 			Log.e(TAG, "++ ON START ++");
-		if(D_SON) Log.d("SON", "BluetoothChat / onStart()");
+		if (D_SON)
+			Log.d("SON", "BluetoothChat / onStart()");
 
 		// If BT is not on, request that it be enabled.
 		// setupChat() will then be called during onActivityResult
 		// *point* ó�� ����ǰ� �ߴ�, Bluetooth Ȱ��ȭ ����â
 		if (!mBluetoothAdapter.isEnabled()) {
-			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			Intent enableIntent = new Intent(
+					BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
 			// Otherwise, setup the chat session
 		} else {
@@ -192,16 +390,16 @@ public class BluetoothChat extends Activity {
 				setupChat();
 		}
 
-		if(D_SON) Log.d("SON", "auto pairing test");
+		if (D_SON)
+			Log.d("SON", "auto pairing test");
 		// *auto pairing test*
-		/*if (mBluetoothAdapter.isEnabled()){
-			BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(BLUETOOTH_SERIAL);
-			mChatService.connect(device, false);
-			BLUETOOTH_ON = 1;
-		}*/
+		/*
+		 * if (mBluetoothAdapter.isEnabled()){ BluetoothDevice device =
+		 * mBluetoothAdapter.getRemoteDevice(BLUETOOTH_SERIAL);
+		 * mChatService.connect(device, false); BLUETOOTH_ON = 1; }
+		 */
 		// *test end*
-					
-		
+
 	}
 
 	@Override
@@ -223,11 +421,11 @@ public class BluetoothChat extends Activity {
 			}
 		}
 
-		
 	}
 
 	private void setupChat() {
-		if(D_SON)Log.d(TAG, "setupChat()");
+		if (D_SON)
+			Log.d(TAG, "setupChat()");
 
 		// Initialize the array adapter for the conversation thread
 		mConversationArrayAdapter = new ArrayAdapter<String>(this,
@@ -379,54 +577,68 @@ public class BluetoothChat extends Activity {
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
-				//byte[] readBuf = new byte[1024];
-				//readBuf = (byte[]) msg.obj;
-				
-				for(int i = 0 ; i<8 ; i++) if(D_SON) Log.d("SON", "readBuf[] : " + readBuf[i]);
-				if(D_SON) Log.d("SON","---------------------------------------------------");
+				// byte[] readBuf = new byte[1024];
+				// readBuf = (byte[]) msg.obj;
 
-				String readBufToStr = BT_TypeCasting.byteToHex(readBuf); // *point* byteToHex
-				if(D_SON) Log.d("SON", "readBufToStr : " + readBufToStr);
-				
+				for (int i = 0; i < 8; i++)
+					if (D_SON)
+						Log.d("SON", "readBuf[] : " + readBuf[i]);
+				if (D_SON)
+					Log.d("SON",
+							"---------------------------------------------------");
+
+				String readBufToStr = BT_TypeCasting.byteToHex(readBuf); // *point*
+																			// byteToHex
+				if (D_SON)
+					Log.d("SON", "readBufToStr : " + readBufToStr);
+
 				BT_StringCutter ssc = new BT_StringCutter(readBufToStr);
 				ssc.Cutting();
 				String OK_ACK = ssc.get_ACK();
 
 				String OK_CURRENT1 = ssc.get_CURRENT1();
 				String OK_VOLTAGE1 = ssc.get_VOLTAGE1();
-				
+
 				CURRENT_String = ssc.get_CURRENT();
 				VOLTAGE_String = ssc.get_VOLTAGE();
-				// Log.d("SON", "CUR & VOL String : " + CURRENT_String + " & "+ VOLTAGE_String);
-				if(D_SON)Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
-				if(D_SON) Log.d("SON", "CALIB : " + CURRENT_String + " & " + VOLTAGE_String);
-				
+				// Log.d("SON", "CUR & VOL String : " + CURRENT_String + " & "+
+				// VOLTAGE_String);
+				if (D_SON)
+					Log.d("SON", "CALIB : " + CURRENT_String + " & "
+							+ VOLTAGE_String);
+				if (D_SON)
+					Log.d("SON", "CALIB : " + CURRENT_String + " & "
+							+ VOLTAGE_String);
+
 				{
-					//************
-					CURRENT = (Math.round(BT_TypeCasting._8HexToDec(CURRENT_String)));
-					//Log.d("SON", "CURRENT : " + CURRENT);
+					// ************
+					CURRENT = (Math.round(BT_TypeCasting
+							._8HexToDec(CURRENT_String)));
+					// Log.d("SON", "CURRENT : " + CURRENT);
 					CURRENT /= 10000;
-					//Log.d("SON", "CURRENT/10000 : " + CURRENT);
+					// Log.d("SON", "CURRENT/10000 : " + CURRENT);
 				}
-				VOLTAGE = BT_TypeCasting.V_Gain(0.1 * BT_TypeCasting._4HexToDec(VOLTAGE_String));
-				//VOLTAGE = Son_TypeCasting.V_Gain(VOLTAGE);
-				if(D_SON) Log.d("SON", "this");
-				//*point* �� ���� �����ǿ� Data�� display�ȴ�
-				if(OK_ACK.equals("06")) {
-					if(VOLTAGE >= 210 && VOLTAGE <= 230){
+				VOLTAGE = BT_TypeCasting.V_Gain(0.1 * BT_TypeCasting
+						._4HexToDec(VOLTAGE_String));
+				// VOLTAGE = Son_TypeCasting.V_Gain(VOLTAGE);
+				if (D_SON)
+					Log.d("SON", "this");
+				// *point* �� ���� �����ǿ� Data�� display�ȴ�
+				if (OK_ACK.equals("06")) {
+					if (VOLTAGE >= 210 && VOLTAGE <= 230) {
 						RECEIVE_DATA_OK = 1;
-					}else if(VOLTAGE >= 135 && VOLTAGE <= 145){
+					} else if (VOLTAGE >= 135 && VOLTAGE <= 145) {
 						VOLTAGE = Math.round(VOLTAGE * 1.56029 * 10000) / 10000;
 						RECEIVE_DATA_OK = 1;
-					}else{
+					} else {
 						RECEIVE_DATA_OK = 0;
 					}
-				}
-				else RECEIVE_DATA_OK = 0;
-					
+				} else
+					RECEIVE_DATA_OK = 0;
 
 				String readMessage = new String(readBuf, 0, msg.arg1);
-				// mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
+				// mConversationArrayAdapter.add(mConnectedDeviceName+":  " +
+				// readMessage);
 				// mConversationArrayAdapter.add(readMessage);
 				readMessage = "0"; // *point* String �ʱ�ȭ
 
@@ -446,10 +658,6 @@ public class BluetoothChat extends Activity {
 			}
 		}
 	};
-
-	
-
-	
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (D)
@@ -484,7 +692,8 @@ public class BluetoothChat extends Activity {
 
 	private void connectDevice(Intent data, boolean secure) {
 		// Get the device MAC address
-		String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+		String address = data.getExtras().getString(
+				DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 		// Get the BluetoothDevice object
 		BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
 		// Attempt to connect to the device
@@ -525,9 +734,8 @@ public class BluetoothChat extends Activity {
 		}
 		return false;
 	}
-	
-	
-	// **********************************************************************************************************	
+
+	// **********************************************************************************************************
 	// **********************************************************************************************************
 	// *point*
 	public static Handler mHandler2 = new Handler() {
@@ -535,78 +743,154 @@ public class BluetoothChat extends Activity {
 			byte[] send = { 1, 1 };
 			mChatService.write(send);
 			mOutStringBuffer.setLength(0);
-			
+
 			// *btn animation
-			if(STT.get_global_time()%4 == 0) btn_BluetoothChat_IntentToMain.setTextColor(Color.BLACK);
-			else btn_BluetoothChat_IntentToMain.setTextColor(Color.WHITE);
+			if (STT.get_global_time() % 4 == 0)
+				btn_BluetoothChat_IntentToMain.setTextColor(Color.BLACK);
+			else
+				btn_BluetoothChat_IntentToMain.setTextColor(Color.WHITE);
 			// mOutEditText.setText(mOutStringBuffer);
-				
-			//else if(mBluetoothAdapter.disable()) BLUETOOTH_ON = 0;
-			
+
+			// else if(mBluetoothAdapter.disable()) BLUETOOTH_ON = 0;
+
 			// *test end*
-			
+
+			// *
 			if (BLUETOOTH_STATE_SON == 1) {
-				if(img_bluetoothimage != null) img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_connect);
-				if(RECEIVE_DATA_OK == 1){
-					tv_current.setText(CURRENT + " mA");
-					tv_voltage.setText(VOLTAGE + " V");
+				if (img_bluetoothimage != null)
+					img_bluetoothimage
+							.setBackgroundResource(R.drawable.bluetooth_connect);
+				if (btn_BluetoothChat_IntentToMain != null)
+					btn_BluetoothChat_IntentToMain
+							.setText("If you want to see more information,\n click this button");
+				if (RECEIVE_DATA_OK == 1) {
+
+					// *chart
+					if (tv_BluetoothChat_charge_now != null
+							&& tv_BluetoothChat_charge_endofmonth != null) {
+						BluetoothChat_charge_now = Constant.this_year_charge[Class_Time
+								.getCurMonth()];
+						if (SampleDataTable.addOn == 1) {
+							BluetoothChat_charge_endofmonth = BluetoothChat_charge_now;
+						} else {
+							BluetoothChat_charge_endofmonth = 460 + (((BluetoothChat_charge_now - 460) / Class_Time
+									.getCurDay()) * 30);
+						}
+						tv_BluetoothChat_charge_now
+								.setText(BluetoothChat_charge_now + " WON");
+						tv_BluetoothChat_charge_endofmonth
+								.setText(BluetoothChat_charge_endofmonth
+										+ " WON");
+						Log.d("SON", "BT...." + BluetoothChat_charge_now
+								+ "   " + BluetoothChat_charge_endofmonth);
+					}
+
 					// *
-					if(Constant.powerSettingDeactivated == true){
+					if (Constant.powerSettingDeactivated == true) {
 						Class_Data.Data_CURRENT_mA = CURRENT; // mA
-						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000; // A
+						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA / 1000; // A
 						Class_Data.Data_VOLTAGE = VOLTAGE; // V
-						Class_Data.Data_POWER = Class_Data.Data_VOLTAGE * Class_Data.Data_CURRENT_A * Constant.speedUp; // W = VI
-					}else if(Constant.powerSettingDeactivated == false){
-						Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220 ;
-						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+						Class_Data.Data_POWER = Class_Data.Data_VOLTAGE
+								* Class_Data.Data_CURRENT_A * Constant.speedUp; // W
+																				// =
+																				// VI
+					} else if (Constant.powerSettingDeactivated == false) {
+						Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220;
+						Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA / 1000;
 						Class_Data.Data_VOLTAGE = 220.0;
-						Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
+						Class_Data.Data_POWER = Constant.powerSetting
+								* Constant.speedUp;
 					}
 				}
-				if(STT.get_grid_time_hour() > 0 ){
-					tv_time.setText(STT.get_grid_time_hour() + " Hour " + STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
-				}
-				else if(STT.get_grid_time_minute() > 0){
-					tv_time.setText(STT.get_grid_time_minute() + " Min "+STT.get_grid_time_second()+" Sec");
-				}else{
+				if (STT.get_grid_time_hour() > 0) {
+					tv_time.setText(STT.get_grid_time_hour() + " Hour "
+							+ STT.get_grid_time_minute() + " Min "
+							+ STT.get_grid_time_second() + " Sec");
+				} else if (STT.get_grid_time_minute() > 0) {
+					tv_time.setText(STT.get_grid_time_minute() + " Min "
+							+ STT.get_grid_time_second() + " Sec");
+				} else {
 					tv_time.setText(STT.get_grid_time_second() + " Sec");
 				}
-				//*point* ��������� �ٸ� �� �ֱ� ������, �� �κ��� �����ϰ� �ٲ������.
-				if(CURRENT >= 0.0048){
+				// *point* ��������� �ٸ� �� �ֱ� ������, �� �κ��� �����ϰ�
+				// �ٲ������.
+				if (CURRENT >= 0.0048) {
 					STT.up_grid_time();
+				} else {
 				}
-				else{
-				}
-				
+
 			} else {
-				if(img_bluetoothimage != null) {
-					if(STT.get_global_time() % 4 == 0)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect1);
-					else if(STT.get_global_time() % 4 == 2)img_bluetoothimage.setBackgroundResource(R.drawable.bluetooth_disconnect2);
+				if (img_bluetoothimage != null) {
+					if (STT.get_global_time() % 4 == 0)
+						img_bluetoothimage
+								.setBackgroundResource(R.drawable.bluetooth_disconnect1);
+					else if (STT.get_global_time() % 4 == 2)
+						img_bluetoothimage
+								.setBackgroundResource(R.drawable.bluetooth_disconnect2);
 				}
-				if(Constant.powerSettingDeactivated == true){
+				if (btn_BluetoothChat_IntentToMain != null)
+					btn_BluetoothChat_IntentToMain
+							.setText("if you want to connect \nwith board\nClick [Menu Button]");
+				if (Constant.powerSettingDeactivated == true) {
 					Class_Data.Data_CURRENT_mA = 0;
-					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA / 1000;
 					Class_Data.Data_VOLTAGE = 0;
 					Class_Data.Data_POWER = 0 * Constant.speedUp;
-				}else if(Constant.powerSettingDeactivated == false){
-					Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220 ;
-					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA/1000;
+				} else if (Constant.powerSettingDeactivated == false) {
+					Class_Data.Data_CURRENT_mA = 1000 * Constant.powerSetting / 220;
+					Class_Data.Data_CURRENT_A = Class_Data.Data_CURRENT_mA / 1000;
 					Class_Data.Data_VOLTAGE = 220.0;
-					Class_Data.Data_POWER = Constant.powerSetting * Constant.speedUp;
+					Class_Data.Data_POWER = Constant.powerSetting
+							* Constant.speedUp;
 				}
 				// *test*
-				tv_current.setText("0 mA");
-				tv_voltage.setText("0 V");
+				// tv_BluetoothChat_charge_now.setText("0 WON");
+				// tv_BluetoothChat_charge_endofmonth.setText("0 WON");
+
+				// *chart
+				if (tv_BluetoothChat_charge_now != null
+						&& tv_BluetoothChat_charge_endofmonth != null) {
+					BluetoothChat_charge_now = Constant.this_year_charge[Class_Time
+							.getCurMonth()];
+					if (SampleDataTable.addOn == 1) {
+						BluetoothChat_charge_endofmonth = BluetoothChat_charge_now;
+					} else {
+						BluetoothChat_charge_endofmonth = 460 + (((BluetoothChat_charge_now - 460) / Class_Time
+								.getCurDay()) * 30);
+					}
+					tv_BluetoothChat_charge_now
+							.setText(BluetoothChat_charge_now + " WON");
+					tv_BluetoothChat_charge_endofmonth
+							.setText(BluetoothChat_charge_endofmonth + " WON");
+					Log.d("SON", "BT...." + BluetoothChat_charge_now + "   "
+							+ BluetoothChat_charge_endofmonth);
+				}
+			}
+
+			// *chart
+			if (mChart_BluetoothChat1 != null)
+				mChart_BluetoothChat1.repaint();
+			if (mCurrentSeries_BluetoothChat1 != null
+					&& Constant.update_RealTime_START == 1) {
+				int tmp = Math.round(Constant.this_year_charge[Class_Time.getCurMonth()]);
+				mCurrentSeries_BluetoothChat1.add(1, tmp);
+			}
+			if (mChart_BluetoothChat2 != null)
+				mChart_BluetoothChat2.repaint();
+			if (mCurrentSeries_BluetoothChat2 != null
+					&& Constant.update_RealTime_START == 1) {
+				mCurrentSeries_BluetoothChat2.add(1,
+						BluetoothChat_charge_endofmonth);
 			}
 		}
 	};
+
 	// **********************************************************************************************************
 	// **********************************************************************************************************
-	
-	
+
 	@Override
 	public void onBackPressed() {
-		//super.onBackPressed();
-		//backPressCloseHandler.onBackPressed();
+		// super.onBackPressed();
+		// backPressCloseHandler.onBackPressed();
 	}
 }

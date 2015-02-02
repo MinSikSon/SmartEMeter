@@ -78,10 +78,6 @@ public class ChartYear extends Fragment {
 			double tmp1;
 			int tmp2;
 			for (int i = 1; i < 13; i++) {
-				tmp1 = Constant.this_year_kWh[i];
-				tmp2 = (int)ChargeTable_WON.ChargeCalculate(tmp1);
-				// 3
-				Constant.this_year_charge[i] = (tmp2);
 				mCurrentSeries.add(i, Math.round((Constant.this_year_kWh[i])));
 			}
 			if (mChart != null)

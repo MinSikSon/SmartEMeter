@@ -1,6 +1,9 @@
 package son.funkydj3.smartemeter.etc;
 
 public class Constant {
+	// *BluetoothChat*
+	public static int update_RealTime_START = 0;
+	
 	// *Saving*
 	public static int targetCharge = 15000;
 	
@@ -8,6 +11,7 @@ public class Constant {
 	public static int speedUp = 1; // speedup
 	public static double powerSetting = 0; // powersetting
 	public static boolean powerSettingDeactivated = true; 
+	public static double VERSION = 11.0;
 	
 	// *log*
 	public static boolean D = false;

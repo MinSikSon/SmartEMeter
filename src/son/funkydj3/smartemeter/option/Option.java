@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Option extends Activity implements OnClickListener {
 	private Button btn_option_speed_x1, btn_option_speed_x2,
@@ -19,18 +20,19 @@ public class Option extends Activity implements OnClickListener {
 			btn_option_speed_x16;
 	private Button btn_option_powerset1, btn_option_powerset2,
 			btn_option_powerset3, btn_option_powerset4;
-
+	private TextView tv_Option_version;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.d("SON", "Option - start");
 		setContentView(R.layout.activity_option);
 		Log.d("SON", "Option - made");
-		initBtn();
+		initLayout_Option();
 		Log.d("SON", "Option - made");
 	}
 
-	void initBtn() {
+	void initLayout_Option() {
 		btn_option_speed_x1 = (Button) findViewById(R.id.btn_option_speed_x1);
 		btn_option_speed_x2 = (Button) findViewById(R.id.btn_option_speed_x2);
 		btn_option_speed_x3 = (Button) findViewById(R.id.btn_option_speed_x3);
@@ -54,6 +56,9 @@ public class Option extends Activity implements OnClickListener {
 		btn_option_powerset2.setOnClickListener(this);
 		btn_option_powerset3.setOnClickListener(this);
 		btn_option_powerset4.setOnClickListener(this);
+		
+		tv_Option_version = (TextView)findViewById(R.id.tv_option_version);
+		tv_Option_version.setText("ver " + Constant.VERSION);
 	}
 
 	@Override

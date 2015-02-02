@@ -22,7 +22,7 @@ public class Thread_Second_Timer extends Thread {
 			mHandler.sendMessage(msg);
 			// *calculate* 
 			Accumulator.getANDaccmulatePower();
-			Class_Time.update_RealTime();
+			
 			Accumulator.accumulateStart();
 			Constant.COUNT += 100;
 			Constant.COUNT2 += 1;
